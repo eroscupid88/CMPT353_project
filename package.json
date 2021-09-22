@@ -1,0 +1,26 @@
+{
+  "name": "cmpt353team",
+  "version": "1.0.0",
+  "description": "This project is for CMPT 353",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eroscupid88/CMPT353_project.git"
+  },
+  "keywords": [
+    "GOODLUCK",
+    "everyone"
+  ],
+  "author": "Dillon Vu, Jucius Ho, Kyle, one more person",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eroscupid88/CMPT353_project/issues"
+  },
+  "homepage": "https://github.com/eroscupid88/CMPT353_project#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
