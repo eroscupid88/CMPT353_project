@@ -1,4 +1,4 @@
-## this README.md is for server side
+#### this README.md is for server side
 
 ## To run server with script:
 
@@ -8,3 +8,12 @@ call startcommand.sh
 
 - npm install
 - npm run start
+
+## to run ESLint just simple run:
+
+- npm run lint
+- npm run lint-fix
+
+## change format to prettier just simple run:
+
+- npm run format
