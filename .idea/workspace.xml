@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d4e28c8-59f7-4f06-b2df-67d8019b909f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/its-lucius.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +42,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1632268723862</updated>
-      <workItem from="1632268725089" duration="931000" />
+      <workItem from="1632268725089" duration="1333000" />
     </task>
     <servers />
   </component>
