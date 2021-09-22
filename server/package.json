@@ -4,6 +4,9 @@
   "description": "This project is for CMPT 353",
   "main": "server.js",
   "scripts": {
+    "lint": "eslint ./",
+    "lint-fix": "eslint ./ --fix",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "nodemon server.js"
   },
   "repository": {
@@ -21,9 +24,21 @@
   },
   "homepage": "https://github.com/eroscupid88/CMPT353_project#readme",
   "dependencies": {
+    "custom-env": "2.0.1",
     "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-node": "4.1.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "nodemon": "^2.0.12",
+    "prettier": "2.4.0"
   }
 }
