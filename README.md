@@ -1,7 +1,8 @@
-## README
+## This is the project for CMPT 353
 
-## this is a node js project for CMPT 353 . The Software Stack are:
+## Teams:
 
-- server side using node js express
-- client side using ReactJs and HTML, CSS, SCSS
-- database using mongoDB
+- Dillon Vu
+- Lucius Ho
+- Kyle
+- One more person
