@@ -14,6 +14,11 @@ mongoose.connect(
   `mongodb://${process.env.HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
 );
 
+// to connect with docker
+// mongoose.connect(
+//   `mongodb://${process.env.DOCKER_HOST}:${process.env.DOCKER_DB_PORT}/${process.env.DOCKER_DB_NAME}`
+// );
+
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {
