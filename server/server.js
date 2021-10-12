@@ -2,12 +2,13 @@
 const express = require('express');
 
 // import variable environment from dev environment
-require('custom-env').env('dev', '../');
+require('custom-env').env('dev');
 
 // create application object
 const app = express();
+
 // path to HTML file
-app.use('/', express.static('../client/public/'));
+app.use('/', express.static('./public'));
 
 // Server Listener
 app.listen(process.env.SERVER_PORT, () =>

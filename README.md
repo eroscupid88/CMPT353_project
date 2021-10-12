@@ -4,7 +4,7 @@
 
 - Dillon Vu
 - Lucius Ho
-- Kyle
+- Kyle Holtby
 - One more person
 
 ## Software Stack for this project:

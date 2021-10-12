@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  #server
+  server:
+    build: ${SERVER_BUILD_LOCATION}
+    image: node_server:latest
+    # set container name
+    container_name: ${PROJECT_NAME}_${SERVER_SERVICE_NAME}
+    #set environment
+    environment:
+      NODE_ENV: ${APPLICATION_ENV}
+    # Ports to map, mapping our port 8080, to the port 8080 on the container
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    networks:
+      app:
+        aliases:
+          - 'server'
+
+  # mysqldatabase:
+
+  # client
+  client:
+    build: ${CLIENT_BUILD_LOCATION}
+    image: node_client:latest
+    # set container name
+    container_name: ${PROJECT_NAME}_${CLIENT_SERVICE_NAME}
+    #set environment
+    environment:
+      NODE_ENV: ${APPLICATION_ENV}
+    # The location of dockerfile to build this service
+    ports:
+      - ${CLIENT_PORT}:${CLIENT_PORT}
+    networks:
+      app:
+        aliases:
+          - 'client'
+
+networks:
+  app:
+    driver: bridge
+
+volumes:
+  my-db:
+    driver: local
