@@ -10,10 +10,13 @@ const app = express();
 
 // path to HTML file
 app.use('/', express.static('./public'));
-mongoose.connect('mongodb://localhost:27017/usersdb', {
-  useNewUrlParser: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  `mongodb://${process.env.HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`
+);
 
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error: '));
+db.once('open', () => {
+  console.log('Connected to mongodb successfully');
+});
 module.exports = app;
