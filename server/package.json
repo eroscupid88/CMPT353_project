@@ -32,7 +32,8 @@
     "concurrently": "^6.3.0",
     "custom-env": "2.0.1",
     "express": "^4.17.1",
-    "mongoose": "^6.0.10"
+    "mongoose": "^6.0.10",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
