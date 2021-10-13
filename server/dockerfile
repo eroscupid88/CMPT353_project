@@ -1,4 +1,5 @@
 FROM node:alpine
+
 LABEL version='1.0'
 LABEL description='This is a docker image of express server side of CMPT 353 project'
 

@@ -36,6 +36,8 @@ services:
     image: node_server:latest
     # set container name
     container_name: ${PROJECT_NAME}_${SERVER_SERVICE_NAME}
+    depends_on:
+      - mongodb
     #set environment
     environment:
       NODE_ENV: ${APPLICATION_ENV}
