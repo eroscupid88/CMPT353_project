@@ -21,7 +21,7 @@
     "GOODLUCK",
     "everyone"
   ],
-  "author": "Dillon Vu, Lucius Ho, Kyle, one more person",
+  "author": "Dillon Vu, Lucius Ho, Kyle",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/eroscupid88/CMPT353_project/issues"
@@ -30,10 +30,12 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^6.3.0",
+    "cookie-parser": "^1.4.5",
     "custom-env": "2.0.1",
     "express": "^4.17.1",
     "mongoose": "^6.0.10",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "validator": "^13.6.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
