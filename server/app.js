@@ -70,20 +70,9 @@ mongoose.connect(
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {
-  console.log('Connected to mongodb successfully');
-});
-
-app.use((req, res, next) => {
-  res.header('Acess-Control-Allow-Origin', '*');
-  res.header(
-    'Access-Control-Allow-Headers',
-    'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+  console.log(
+    `Connected to mongodb successfully!\n\n uri: ${process.env.HOST}:${process.env.DB_PORT}`
   );
-  if (req.method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-    return res.status(200).json({});
-  }
-  next();
 });
 
 module.exports = app;
