@@ -13,14 +13,6 @@ const userSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  first_name: {
-    type: String,
-    required: true,
-  },
-  last_name: {
-    type: String,
-    required: true,
-  },
   date: {
     type: Date,
     default: Date.now,

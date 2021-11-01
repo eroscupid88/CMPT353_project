@@ -64,7 +64,9 @@ app.use((error, req, res, next) => {
 //   next(error);
 // });
 
-mongoose.connect(`mongodb://${process.env.HOST}:${process.env.DB_PORT}`);
+mongoose.connect(
+  `mongodb://${process.env.HOST}:${process.env.DB_PORT}/cmpt353db`
+);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {
