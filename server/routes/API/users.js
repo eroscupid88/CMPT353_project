@@ -1,9 +1,15 @@
 /* eslint-disable consistent-return */
 // Router
 const router = require('express').Router();
+
 const mongoose = require('mongoose');
+
+const jwt = require('jsonwebtoken');
+
+const bcrypt = require('bcryptjs');
 // model from moongodb
 const Users = require('../../model/user');
+
 // validate register input
 const validateRegisterInputs = require('../../validation/register');
 const validateLoginInputs = require('../../validation/login');
@@ -24,33 +30,41 @@ router.post('/register', (req, res, next) => {
         errors.email = 'Email exist';
         return res.status(409).json({ error: errors });
       }
-      const defaultAvatar =
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqlaxdI3EIEf2voJ56Ut0G_M9pXJhUYgQXQaKLMzL5yJ81cbUt';
-      new Users({
-        _id: mongoose.Types.ObjectId(),
-        email: req.body.email,
-        username: req.body.username,
-        date: req.body.date,
-        avatar: defaultAvatar,
-        password: req.body.password,
-      })
-        .save()
-        .then((result) => {
-          console.log(result);
-          res.status(201).json({
-            message: 'User Created',
-            request: {
-              type: 'POST',
-              info: result,
-            },
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-          res.status(500).json({
+      // hashsing password
+      bcrypt.hash(req.body.password, 10, (err, hash) => {
+        if (err) {
+          return res.status(500).json({
             error: err,
           });
-        });
+        }
+        const defaultAvatar =
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqlaxdI3EIEf2voJ56Ut0G_M9pXJhUYgQXQaKLMzL5yJ81cbUt';
+        new Users({
+          _id: mongoose.Types.ObjectId(),
+          email: req.body.email,
+          username: req.body.username,
+          date: req.body.date,
+          avatar: defaultAvatar,
+          password: hash,
+        })
+          .save()
+          .then((result) => {
+            console.log(result);
+            res.status(201).json({
+              message: 'User Created',
+              request: {
+                type: 'POST',
+                info: result,
+              },
+            });
+          })
+          .catch((er) => {
+            console.log(er);
+            res.status(500).json({
+              error: er,
+            });
+          });
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -76,14 +90,32 @@ router.post('/login', (req, res, next) => {
         errors.email = ' User not found';
         return res.status(401).json(errors);
       }
-      if (user[0].password !== req.body.password) {
-        return res.status(500).json({
-          message: 'Auth fail!',
-        });
-      }
-      res.status(200).json({
-        message: 'Success login',
+      bcrypt.compare(req.body.password, user[0].password, (err, flag) => {
+        if (err) {
+          return res.status(500).json({
+            message: ' Auth fail',
+          });
+        }
+        if (flag) {
+          const payload = {
+            email: user[0].email,
+            userId: user[0]._id,
+            name: user[0].name,
+            avatar: user[0].avatar,
+          };
+          const token = jwt.sign(payload, process.env.JWT_KEY, {
+            expiresIn: 3600,
+          });
+          return res.status(200).json({
+            message: 'auth success!',
+            token: 'Bearer ' + token,
+          });
+        }
+        errors.password = 'password is incorrect';
+        return res.status(400).json(errors);
       });
+
+      console.log(user);
     })
     .catch((err) => {
       console.log(err);
