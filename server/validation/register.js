@@ -5,6 +5,7 @@ module.exports = function validateRegisterInputs(data) {
   const errors = {};
 
   data.email = !isEmpty(data.email) ? data.email : '';
+  data.username = !isEmpty(data.username) ? data.username : '';
   data.password = !isEmpty(data.password) ? data.password : '';
   data.password2 = !isEmpty(data.password2) ? data.password2 : '';
 
@@ -13,6 +14,9 @@ module.exports = function validateRegisterInputs(data) {
   }
   if (!validator.isEmail(data.email)) {
     errors.email = 'Email is invalid';
+  }
+  if (validator.isEmpty(data.username)) {
+    errors.username = 'username field is required';
   }
   if (validator.isEmpty(data.password)) {
     errors.password = 'password field is required';
