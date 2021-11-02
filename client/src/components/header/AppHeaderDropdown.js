@@ -24,6 +24,10 @@ import CIcon from '@coreui/icons-react'
 
 import avatar8 from './../../assets/images/avatars/8.jpg'
 
+/**
+ *
+ * Header working here
+ */
 const AppHeaderDropdown = () => {
   return (
     <CDropdown variant="nav-item">
@@ -43,7 +47,7 @@ const AppHeaderDropdown = () => {
           <CIcon icon={cilEnvelopeOpen} className="me-2" />
           Messages
           <CBadge color="success" className="ms-2">
-            42
+            100
           </CBadge>
         </CDropdownItem>
         <CDropdownItem href="#">

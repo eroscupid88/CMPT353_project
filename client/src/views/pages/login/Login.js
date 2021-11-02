@@ -24,12 +24,12 @@ class Login extends Component {
   constructor() {
     super()
     this.state = {
-      username: '',
       email: '',
       password: '',
       errors: {},
     }
   }
+
   render() {
     const { errors } = this.state
 
@@ -41,21 +41,10 @@ class Login extends Component {
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>
-                    <CForm action="" method="post">
+                    <CForm onSubmit method="post">
                       <h1>Login</h1>
                       <p className="text-medium-emphasis">Sign In to your account</p>
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>
-                          <CIcon icon={cilUser} />
-                        </CInputGroupText>
-                        <CFormInput
-                          placeholder="Username"
-                          autoComplete="username"
-                          value={this.state.username}
-                          onChange={this.onChange}
-                          errors={errors.username}
-                        />
-                      </CInputGroup>
+
                       <CInputGroup className="mb-3">
                         <CInputGroupText>
                           <CIcon icon={cibGmail} />
@@ -64,9 +53,9 @@ class Login extends Component {
                           placeholder="email"
                           autoComplete="email"
                           type="email"
-                          value={this.state.email}
-                          onChange={this.onChange}
-                          errors={errors.email}
+                          // value={this.state.email}
+                          // onChange={this.onChange}
+                          // errors={errors.email}
                         />
                       </CInputGroup>
                       <CInputGroup className="mb-4">
@@ -77,24 +66,12 @@ class Login extends Component {
                           type="password"
                           placeholder="Password"
                           autoComplete="current-password"
-                          value={this.state.password}
-                          onChange={this.onChange}
-                          errors={errors.password}
+                          // value={this.state.password}
+                          // onChange={this.onChange}
+                          // errors={errors.password}
                         />
                       </CInputGroup>
-                      <CInputGroup className="mb-4">
-                        <CInputGroupText>
-                          <CIcon icon={cilLockLocked} />
-                        </CInputGroupText>
-                        <CFormInput
-                          type="password"
-                          placeholder="Re Enter Password"
-                          autoComplete="current-password"
-                          value={this.state.password}
-                          onChange={this.onChange}
-                          errors={errors.password}
-                        />
-                      </CInputGroup>
+
                       <CRow>
                         <CCol xs={6}>
                           <CButton color="primary" className="px-4" type="submit">
