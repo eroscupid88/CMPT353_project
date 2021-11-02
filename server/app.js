@@ -6,6 +6,7 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 //  use this for connect mongodb with an app
 // const mongoClient = require('mongodb').MongoClient;
@@ -33,6 +34,11 @@ app.use('/v1/user', userRoutes);
 app.use('/v1/profile', profileRoutes);
 
 // middleware
+// passport middle ware
+app.use(passport.initialize());
+
+// passport config
+require('./config/passport')(passport);
 // eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
   res.header('Acess-Control-Allow-Origin', '*');
