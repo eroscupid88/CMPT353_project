@@ -18,7 +18,7 @@ import {
   CInput,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cibGmail, cilLockLocked, cilUser } from '@coreui/icons'
+import { cibGmail, cilLockLocked } from '@coreui/icons'
 
 class Login extends Component {
   constructor() {
@@ -29,7 +29,17 @@ class Login extends Component {
       errors: {},
     }
   }
-
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+  onSubmit = (event) => {
+    event.preventDefault()
+    const userData = {
+      email: this.state.email,
+      password: this.state.password,
+    }
+    console.log(userData)
+  }
   render() {
     const { errors } = this.state
 
@@ -41,7 +51,7 @@ class Login extends Component {
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>
-                    <CForm onSubmit method="post">
+                    <CForm onSubmit={this.onSubmit}>
                       <h1>Login</h1>
                       <p className="text-medium-emphasis">Sign In to your account</p>
 
@@ -52,10 +62,11 @@ class Login extends Component {
                         <CFormInput
                           placeholder="email"
                           autoComplete="email"
+                          name="email"
                           type="email"
-                          // value={this.state.email}
-                          // onChange={this.onChange}
-                          // errors={errors.email}
+                          value={this.state.email}
+                          onChange={this.onChange}
+                          errors={errors.email}
                         />
                       </CInputGroup>
                       <CInputGroup className="mb-4">
@@ -63,12 +74,13 @@ class Login extends Component {
                           <CIcon icon={cilLockLocked} />
                         </CInputGroupText>
                         <CFormInput
+                          name="password"
                           type="password"
                           placeholder="Password"
                           autoComplete="current-password"
-                          // value={this.state.password}
-                          // onChange={this.onChange}
-                          // errors={errors.password}
+                          value={this.state.password}
+                          onChange={this.onChange}
+                          errors={errors.password}
                         />
                       </CInputGroup>
 
@@ -104,4 +116,7 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapStateToProps = (state) => ({
+  errors: state.errors,
+})
+export default connect(mapStateToProps, { loginUser })(Login)

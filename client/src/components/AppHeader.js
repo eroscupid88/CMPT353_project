@@ -50,17 +50,17 @@ const AppHeader = () => {
         </CHeaderNav>
         <CHeaderNav>
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink href="/login">
               <CIcon icon={cilBell} size="lg" />
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink href="/login">
               <CIcon icon={cilList} size="lg" />
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="#">
+            <CNavLink href="/login">
               <CIcon icon={cilEnvelopeOpen} size="lg" />
             </CNavLink>
           </CNavItem>
