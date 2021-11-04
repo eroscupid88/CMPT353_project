@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loginUser } from '../../../action/authAction'
@@ -16,6 +17,7 @@ import {
   CInputGroupText,
   CRow,
   CInput,
+  CFormFeedback,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cibGmail, cilLockLocked } from '@coreui/icons'
@@ -29,6 +31,22 @@ class Login extends Component {
       errors: {},
     }
   }
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      console.log('AUthenticate!!')
+      this.props.history.push('/dashboard')
+    }
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push('/dashboard')
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
+  }
+
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
@@ -38,8 +56,9 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password,
     }
-    console.log(userData)
+    this.props.loginUser(userData)
   }
+
   render() {
     const { errors } = this.state
 
@@ -51,8 +70,8 @@ class Login extends Component {
               <CCardGroup>
                 <CCard className="p-4">
                   <CCardBody>
-                    <CForm onSubmit={this.onSubmit}>
-                      <h1>Login</h1>
+                    <CForm validated={true} onSubmit={this.onSubmit}>
+                      <h1></h1>
                       <p className="text-medium-emphasis">Sign In to your account</p>
 
                       <CInputGroup className="mb-3">
@@ -64,9 +83,10 @@ class Login extends Component {
                           autoComplete="email"
                           name="email"
                           type="email"
+                          defaultValue=""
                           value={this.state.email}
                           onChange={this.onChange}
-                          errors={errors.email}
+                          required
                         />
                       </CInputGroup>
                       <CInputGroup className="mb-4">
@@ -81,6 +101,7 @@ class Login extends Component {
                           value={this.state.password}
                           onChange={this.onChange}
                           errors={errors.password}
+                          required
                         />
                       </CInputGroup>
 
@@ -116,7 +137,16 @@ class Login extends Component {
   }
 }
 
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+}
+
 const mapStateToProps = (state) => ({
   errors: state.errors,
+  auth: state.auth,
 })
 export default connect(mapStateToProps, { loginUser })(Login)
