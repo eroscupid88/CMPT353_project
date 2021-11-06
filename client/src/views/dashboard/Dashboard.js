@@ -11,7 +11,7 @@ class Dashboard extends Component {
     const { user } = this.props.auth
     return (
       <>
-        <h1>{user.avatar}</h1>
+        <h1>{user.email}</h1>
       </>
     )
   }
