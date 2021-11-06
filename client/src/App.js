@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, HashRouter, Route, Switch } from 'react-router-dom'
 import './scss/style.scss'
+import PrivateRoute from './components/common/PrivateRoute'
 
 const loading = (
   <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
+    <div className="sk-spinner sk-spinner-pulse" />
   </div>
 )
 
@@ -28,7 +29,10 @@ class App extends Component {
           <Route exact path="/404" name="Page 404" component={Page404} />
           <Route exact path="/500" name="Page 500" component={Page500} />
           <Route exact path="/about" name="About" component={About} />
-          <Route path="/dashboard" name="Home" component={DefaultLayout} />
+          <Switch>
+            <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
+          </Switch>
+          {/*<Route path="/dashboard" name="Home" component={DefaultLayout} />*/}
         </Router>
       </React.Suspense>
     )
