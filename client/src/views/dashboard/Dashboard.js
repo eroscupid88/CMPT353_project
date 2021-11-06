@@ -5,22 +5,13 @@ import PropTypes from 'prop-types'
 class Dashboard extends Component {
   constructor() {
     super()
-    this.state = {
-      auth: 'sfasdfsad',
-      a: 'hohoho',
-    }
-  }
-
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.setState({ auth: this.props.auth })
-    }
   }
 
   render() {
+    const { user } = this.props.auth
     return (
       <>
-        <h1>{this.props.auth.user.email}</h1>
+        <h1>{user.avatar}</h1>
       </>
     )
   }

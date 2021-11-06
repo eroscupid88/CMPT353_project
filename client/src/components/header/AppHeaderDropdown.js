@@ -22,8 +22,8 @@ import {
   cilUser,
 } from '@coreui/icons'
 import CIcon from '@coreui/icons-react'
-import avatar8 from './../../assets/images/avatars/8.jpg'
 import PropTypes from 'prop-types'
+import { logoutUser } from '../../action/authAction'
 
 /**
  *
@@ -32,21 +32,18 @@ import PropTypes from 'prop-types'
 class AppHeaderDropdown extends Component {
   constructor() {
     super()
-    this.state = {
-      avatar: '',
-    }
   }
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.setState({ avatar: this.props.auth.user.avatar })
-    }
+  onLogoutClick(event) {
+    event.preventDefault()
+    this.props.logoutUser()
   }
 
   render() {
+    const { user } = this.props.auth
     return (
       <CDropdown variant="nav-item">
         <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-          <CAvatar src={this.state.avatar} size="md" />
+          <CAvatar src={user.avatar} size="md" />
         </CDropdownToggle>
         <CDropdownMenu className="pt-0" placement="bottom-end">
           <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
@@ -102,7 +99,8 @@ class AppHeaderDropdown extends Component {
             </CBadge>
           </CDropdownItem>
           <CDropdownDivider />
-          <CDropdownItem href="#">
+
+          <CDropdownItem href="#" onClick={this.onLogoutClick.bind(this)}>
             <CIcon icon={cilLockLocked} className="me-2" />
             Logout
           </CDropdownItem>
@@ -114,9 +112,10 @@ class AppHeaderDropdown extends Component {
 
 AppHeaderDropdown.propTypes = {
   auth: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
 })
 
-export default connect(mapStateToProps)(AppHeaderDropdown)
+export default connect(mapStateToProps, { logoutUser })(AppHeaderDropdown)
