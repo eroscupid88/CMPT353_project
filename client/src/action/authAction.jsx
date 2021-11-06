@@ -19,7 +19,7 @@ export const registerUser = (userData, history) => (dispatch) => {
 
 /**
  * dispatch function connect redux store to Login Components, fetch data and send it to component
- * @param {} userData
+ * @param  userData : json  input
  * @returns
  */
 export const loginUser = (userData) => (dispatch) => {
