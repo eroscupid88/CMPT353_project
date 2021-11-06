@@ -38,10 +38,11 @@ class Login extends Component {
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
+    // if authenticate, /login cannot be call and push to dashboard instead
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
     }
-
+    // if see any errors, set props.error to be current state
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
     }
@@ -86,6 +87,7 @@ class Login extends Component {
                           defaultValue=""
                           value={this.state.email}
                           onChange={this.onChange}
+                          errors={errors.email}
                           required
                         />
                       </CInputGroup>

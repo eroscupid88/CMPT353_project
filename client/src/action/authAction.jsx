@@ -2,7 +2,20 @@ import axios from 'axios'
 import { GET_ERRORS, SET_CURRENT_USER } from './types'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from '../utilities/setAuthToken'
-export const registerUser = (userData, history) => (dispatch) => {}
+export const registerUser = (userData, history) => (dispatch) => {
+  axios
+    .post('/v1/user/register', userData)
+    .then((result) => {
+      history.push('/login')
+      console.log(result)
+    })
+    .catch((error) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: error.response.data,
+      })
+    })
+}
 
 /**
  * dispatch function connect redux store to Login Components, fetch data and send it to component
