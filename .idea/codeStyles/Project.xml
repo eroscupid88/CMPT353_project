@@ -32,6 +32,14 @@
         <option name="USE_TAB_CHARACTER" value="true" />
       </indentOptions>
     </codeStyleSettings>
+<<<<<<< Updated upstream
+=======
+    <codeStyleSettings language="JSON">
+      <indentOptions>
+        <option name="USE_TAB_CHARACTER" value="true" />
+      </indentOptions>
+    </codeStyleSettings>
+>>>>>>> Stashed changes
     <codeStyleSettings language="JavaScript">
       <option name="SOFT_MARGINS" value="80" />
       <indentOptions>
