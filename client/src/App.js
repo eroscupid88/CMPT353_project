@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, HashRouter, Route, Switch } from 'react-router-dom'
 import './scss/style.scss'
 import PrivateRoute from './components/common/PrivateRoute'
+import CreateProfile from './components/createprofile/CreateProfile'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -31,6 +32,9 @@ class App extends Component {
           <Route exact path="/about" name="About" component={About} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/createprofile" component={CreateProfile} />
           </Switch>
           {/*<Route path="/dashboard" name="Home" component={DefaultLayout} />*/}
         </Router>
