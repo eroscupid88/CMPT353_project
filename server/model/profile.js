@@ -10,7 +10,7 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  handle: {
+  profileusername: {
     type: String,
     required: true,
     max: 40,

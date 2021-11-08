@@ -9,6 +9,7 @@ import store from './store'
 import setAuthToken from './utilities/setAuthToken'
 import jwt_decode from 'jwt-decode'
 import { logoutUser, setCurrentUser } from './action/authAction'
+import { clearCurrentProfile } from './action/profileAction'
 
 if (localStorage.jwtToken) {
   // set auth token header auth
@@ -18,13 +19,14 @@ if (localStorage.jwtToken) {
   // set user and isAuthenticated
   store.dispatch(setCurrentUser(decoded))
   // check for expired token
+  store.dispatch(clearCurrentProfile)
 
   const currentTime = Date.now() / 1000
   if (decoded.exp < currentTime) {
     // logout user
     store.dispatch(logoutUser())
     // clear current Profile
-    // store.dispatch(clearCurrentProfile)
+    store.dispatch(clearCurrentProfile)
     // redirect to login
     window.location.href = '/login'
   }

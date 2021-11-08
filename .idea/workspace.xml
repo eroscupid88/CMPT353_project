@@ -2,16 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ff7b5b9-1031-4dba-a542-62afd51fa07b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/client/src/components/common/AnInputGroup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/common/TextFieldGroup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/createprofile/CreateProfile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/action/profileAction.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/common/Loader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/common/spinner.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/profile/EditProfile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/profile/Profile.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/profile/ProfileAction.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/profile/ProfileGithubs.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/profile/ProfileHeader.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/profile/Welcome.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/reducers/profileReducer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/action/types.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/action/types.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AppHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AppHeader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/AppSidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/AppSidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/common/AnInputGroup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/common/TextFieldGroup.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/createprofile/CreateProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/createprofile/CreateProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/reducers/coreuiReducer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/coreuiReducer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/reducers/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/reducers/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/style.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scss/style.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/model/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/API/profiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/API/profiles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/routes/API/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/API/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/validation/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/validation/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/validation/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/validation/register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -33,13 +68,23 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/client/src/components/profile" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
     <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/components/profile" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/client/src/components/common" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -51,6 +96,7 @@
       <updated>1635534598117</updated>
       <workItem from="1635534604283" duration="222000" />
       <workItem from="1636062506917" duration="36031000" />
+      <workItem from="1636328237684" duration="17409000" />
     </task>
     <servers />
   </component>
@@ -67,17 +113,7 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/components/common/TextFieldGroup.jsx</url>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -23,13 +23,16 @@ router.post('/register', (req, res, next) => {
   if (!isValid) {
     return res.status(400).json(errors);
   }
-  Users.find({ email: req.body.email })
+  Users.find({
+    email: req.body.email,
+  })
     .exec()
     .then((user) => {
       if (user.length >= 1) {
         errors.email = 'Email exist';
         return res.status(409).json({ error: errors });
       }
+
       // hashsing password
       bcrypt.hash(req.body.password, 10, (err, hash) => {
         if (err) {

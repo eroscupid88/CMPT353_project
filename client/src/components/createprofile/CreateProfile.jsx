@@ -1,17 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { CFormInput, CInputGroup, CInputGroupText, CForm } from '@coreui/react'
+import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton } from '@coreui/react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressBook, faNetworkWired, faUser } from '@fortawesome/free-solid-svg-icons'
 import CIcon from '@coreui/icons-react'
-import { cilUser } from '@coreui/icons'
-import AnInputGroups from '../../views/forms/input-group/InputGroup'
-import TextFieldGroup from '../common/TextFieldGroup'
+import {
+  cibGithub,
+  cibWebcomponentsOrg,
+  cibLinkedin,
+  cibYoutube,
+  cibInstagram,
+  cibTwitter,
+} from '@coreui/icons'
+import { createProfile } from '../../action/profileAction'
 
 class CreateProfile extends Component {
   constructor() {
     super()
     this.state = {
-      handle: '',
+      profileusername: '',
       location: '',
       githubusername: '',
       twitter: '',
@@ -22,10 +30,31 @@ class CreateProfile extends Component {
       errors: {},
     }
   }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
+  }
+
   onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     })
+  }
+  onSubmit = (event) => {
+    event.preventDefault()
+    const profileData = {
+      profileusername: this.state.profileusername,
+      location: this.state.location,
+      githubusername: this.state.githubusername,
+      twitter: this.state.twitter,
+      facebook: this.state.facebook,
+      linkedin: this.state.linkedin,
+      youtube: this.state.youtube,
+      instagram: this.state.instagram,
+    }
+    this.props.createProfile(profileData, this.props.history)
   }
   render() {
     const { errors, displaySocialInputs } = this.state
@@ -34,46 +63,79 @@ class CreateProfile extends Component {
     if (displaySocialInputs) {
       socialInputs = (
         <div>
-          <CFormInput
-            placeholder="Twitter Profile URL"
-            name="twitter"
-            icon="fab fa-twitter"
-            value={this.state.twitter}
-            onChange={this.onChange}
-            errors={errors.twitter}
-          />
-          <CFormInput
-            placeholder="Facebook Profile URL"
-            name="facebook"
-            icon="fab fa-facebook"
-            value={this.state.facebook}
-            onChange={this.onChange}
-            errors={errors.facebook}
-          />
-          <CFormInput
-            placeholder="Linkedin Profile URL"
-            name="linkedin"
-            icon="fab fa-linkedin"
-            value={this.state.linkedin}
-            onChange={this.onChange}
-            errors={errors.linkedin}
-          />
-          <CFormInput
-            placeholder="YouTube Profile URL"
-            name="youtube"
-            icon="fab fa-youtube"
-            value={this.state.youtube}
-            onChange={this.onChange}
-            errors={errors.youtube}
-          />
-          <CFormInput
-            placeholder="Instagram Profile URL"
-            name="instagram"
-            icon="fab fa-instagram"
-            value={this.state.instagram}
-            onChange={this.onChange}
-            errors={errors.instagram}
-          />
+          <CInputGroup className="mb-3">
+            <CInputGroupText id="basic-addon1">
+              <CIcon icon={cibTwitter} />
+            </CInputGroupText>
+            <CFormInput
+              placeholder="Twitter Profile URL"
+              name="twitter"
+              icon="fab fa-twitter"
+              value={this.state.twitter}
+              onChange={this.onChange}
+              errors={errors.twitter}
+            />
+          </CInputGroup>
+          <CInputGroup className="mb-3">
+            <CInputGroupText id="basic-addon1">
+              <FontAwesomeIcon icon={faAddressBook} />
+            </CInputGroupText>
+
+            <CFormInput
+              placeholder="Facebook Profile URL"
+              name="facebook"
+              icon="fab fa-facebook"
+              value={this.state.facebook}
+              onChange={this.onChange}
+              errors={errors.facebook}
+            />
+          </CInputGroup>
+
+          <CInputGroup className="mb-3">
+            <CInputGroupText id="basic-addon1">
+              <CInputGroupText id="basic-addon1">
+                <CIcon icon={cibLinkedin} />
+              </CInputGroupText>
+            </CInputGroupText>
+            <CFormInput
+              placeholder="Linkedin Profile URL"
+              name="linkedin"
+              icon="fab fa-linkedin"
+              value={this.state.linkedin}
+              onChange={this.onChange}
+              errors={errors.linkedin}
+            />
+          </CInputGroup>
+          <CInputGroup className="mb-3">
+            <CInputGroupText id="basic-addon1">
+              <CInputGroupText id="basic-addon1">
+                <CIcon icon={cibYoutube} />
+              </CInputGroupText>
+            </CInputGroupText>
+            <CFormInput
+              placeholder="YouTube Profile URL"
+              name="youtube"
+              icon="fab fa-youtube"
+              value={this.state.youtube}
+              onChange={this.onChange}
+              errors={errors.youtube}
+            />
+          </CInputGroup>
+          <CInputGroup className="mb-3">
+            <CInputGroupText id="basic-addon1">
+              <CInputGroupText id="basic-addon1">
+                <CIcon icon={cibInstagram} />
+              </CInputGroupText>
+            </CInputGroupText>
+            <CFormInput
+              placeholder="Instagram Profile URL"
+              name="instagram"
+              icon="fab fa-instagram"
+              value={this.state.instagram}
+              onChange={this.onChange}
+              errors={errors.instagram}
+            />
+          </CInputGroup>
         </div>
       )
     }
@@ -86,30 +148,35 @@ class CreateProfile extends Component {
                 <h1 className="display-4 text-center">Create Your Profile</h1>
                 <CForm onSubmit={this.onSubmit}>
                   <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">@</CInputGroupText>
+                    <CInputGroupText id="basic-addon1">
+                      <FontAwesomeIcon icon={faUser} />
+                    </CInputGroupText>
                     <CFormInput
-                      placeholder="* Profile Handle"
-                      name="handle"
-                      value={this.state.handle}
+                      placeholder="* Profile username"
+                      name="profileusername"
+                      value={this.state.profileusername}
                       onChange={this.onChange}
-                      errors={errors.handle}
-                      info="User name"
+                      errors={errors.profileusername}
                     />
                   </CInputGroup>
 
                   <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">@</CInputGroupText>
+                    <CInputGroupText id="basic-addon1">
+                      <FontAwesomeIcon icon={faAddressBook} />
+                    </CInputGroupText>
                     <CFormInput
-                      placeholder="Website"
-                      name="website"
-                      value={this.state.website}
+                      placeholder="location"
+                      name="location"
+                      value={this.state.location}
                       onChange={this.onChange}
-                      errors={errors.website}
+                      errors={errors.location}
                     />
                   </CInputGroup>
 
                   <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">@</CInputGroupText>
+                    <CInputGroupText id="basic-addon1">
+                      <CIcon icon={cibGithub} />
+                    </CInputGroupText>
                     <CFormInput
                       placeholder="Github Username"
                       name="githubusername"
@@ -119,14 +186,6 @@ class CreateProfile extends Component {
                     />
                   </CInputGroup>
 
-                  <TextFieldGroup
-                    placeholder="Github Username"
-                    name="githubusername"
-                    value={this.state.githubusername}
-                    onChange={this.onChange}
-                    errors={errors.githubusername}
-                    info="If you want your latest repos and a Github link, include your username"
-                  />
                   <div className="mb-3">
                     <button
                       type="button"
@@ -141,7 +200,11 @@ class CreateProfile extends Component {
                     </button>
                   </div>
                   {socialInputs}
-                  <input type="submit" value="submit" className=" btn btn-info btn-block mt-4" />
+                  <div className="d-grid">
+                    <CButton color="success" type="submit">
+                      Submit
+                    </CButton>
+                  </div>
                 </CForm>
               </div>
             </div>
@@ -154,9 +217,12 @@ class CreateProfile extends Component {
 CreateProfile.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
 })
-export default connect(mapStateToProps)(CreateProfile)
+export default connect(mapStateToProps, { createProfile })(CreateProfile)

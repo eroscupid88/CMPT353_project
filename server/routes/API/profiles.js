@@ -15,27 +15,27 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user[0].id })
-      .populate('user', ['name', 'email', 'avatar'])
+      .populate('user', ['username', 'email', 'avatar'])
       .then((profile) => {
         if (!profile) {
           errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
         }
-        res.send('found Profile');
+        res.json(profile);
       })
 
       .catch((error) => {
-        res.status(404).json(error);
+        res.status(404).json({ something: error });
       });
   }
 );
 
-// profile/handle/:handle
-// get profile by handle
+// v1/profile/profileusername/:profileusername
+// get profile by profileusername
 // public
-router.get('/handle/:handle', (req, res) => {
+router.get('/profileusername/:profileusername', (req, res) => {
   const errors = {};
-  Profile.findOne({ handle: req.params.handle })
+  Profile.findOne({ profileusername: req.params.profileusername })
     .populate('user', ['name', 'avatar'])
     .then((profile) => {
       if (!profile) {
@@ -104,7 +104,8 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user[0].id;
-    if (req.body.handle) profileFields.handle = req.body.handle;
+    if (req.body.profileusername)
+      profileFields.profileusername = req.body.profileusername;
     if (req.body.githubusername)
       profileFields.githubusername = req.body.githubusername;
     if (req.body.location) profileFields.location = req.body.location;
@@ -127,9 +128,11 @@ router.post(
         ).then((profile) => res.json(profile));
       } else {
         // Check if handle exists
-        Profile.findOne({ handle: profileFields.handle }).then((found) => {
+        Profile.findOne({
+          profileusername: profileFields.profileusername,
+        }).then((found) => {
           if (found) {
-            errors.handle = 'That handle already exists';
+            errors.profileusername = 'That username already exists';
             res.status(400).json(errors);
           }
 
