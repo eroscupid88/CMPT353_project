@@ -2,18 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ff7b5b9-1031-4dba-a542-62afd51fa07b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/CMPT353Team.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CMPT353Team.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-<<<<<<< Updated upstream
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/body-parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/body-parser/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/json.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/json.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/raw.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/raw.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/text.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/text.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/urlencoded.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/body-parser/lib/types/urlencoded.js" afterDir="false" />
-=======
-      <change beforePath="$PROJECT_DIR$/client/src/components/about/About.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/about/About.jsx" afterDir="false" />
->>>>>>> Stashed changes
+      <change beforePath="$PROJECT_DIR$/client/src/action/authAction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/action/authAction.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/header/AppHeaderDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/AppHeaderDropdown.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/dashboard/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/views/pages/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/pages/login/Login.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +38,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -57,20 +50,13 @@
       <option name="presentableId" value="Default" />
       <updated>1635534598117</updated>
       <workItem from="1635534604283" duration="222000" />
-<<<<<<< Updated upstream
-      <workItem from="1636062506917" duration="1922000" />
-=======
       <workItem from="1636062506917" duration="28734000" />
-      <workItem from="1636244001867" duration="2154000" />
->>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-<<<<<<< Updated upstream
-=======
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -81,9 +67,7 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
->>>>>>> Stashed changes
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
