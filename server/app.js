@@ -17,7 +17,13 @@ const app = express();
 const userRoutes = require('./routes/API/users');
 
 const profileRoutes = require('./routes/API/profiles');
+const bodyParser = require('body-parser');
+// passport config
+require('./config/passport')(passport);
+// middleware
+// passport middle ware
 
+app.use(passport.initialize());
 // path to HTML file
 app.use('/', express.static('public'));
 // For LOGGER
@@ -27,18 +33,13 @@ app.use(cookieParser());
 // parsing JSON format
 app.use(express.json());
 // Body parser
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // connect user route
 app.use('/v1/user', userRoutes);
 
 app.use('/v1/profile', profileRoutes);
 
-// middleware
-// passport middle ware
-app.use(passport.initialize());
-
-// passport config
-require('./config/passport')(passport);
 // eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
   res.header('Acess-Control-Allow-Origin', '*');
@@ -63,12 +64,11 @@ app.use((error, req, res, next) => {
   });
 });
 
-// this will be use for the app if we have router
-// app.use((req, res, next) => {
-//   const error = new Error('Not Found');
-//   error.status = 404;
-//   next(error);
-// });
+app.use((req, res, next) => {
+  const error = new Error('Not Found');
+  error.status = 404;
+  next(error);
+});
 
 mongoose.connect(
   `mongodb://${process.env.HOST}:${process.env.DB_PORT}/cmpt353db`
