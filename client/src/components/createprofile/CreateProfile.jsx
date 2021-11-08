@@ -5,6 +5,7 @@ import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton } from '@coreu
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, faNetworkWired, faUser } from '@fortawesome/free-solid-svg-icons'
 import CIcon from '@coreui/icons-react'
+import { withRouter } from 'react-router-dom'
 import {
   cibGithub,
   cibWebcomponentsOrg,
@@ -19,6 +20,8 @@ class CreateProfile extends Component {
   constructor() {
     super()
     this.state = {
+      firstname: '',
+      lastname: '',
       profileusername: '',
       location: '',
       githubusername: '',
@@ -45,6 +48,8 @@ class CreateProfile extends Component {
   onSubmit = (event) => {
     event.preventDefault()
     const profileData = {
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
       profileusername: this.state.profileusername,
       location: this.state.location,
       githubusername: this.state.githubusername,
@@ -162,6 +167,32 @@ class CreateProfile extends Component {
 
                   <CInputGroup className="mb-3">
                     <CInputGroupText id="basic-addon1">
+                      <FontAwesomeIcon icon={faUser} />
+                    </CInputGroupText>
+                    <CFormInput
+                      placeholder="* first name"
+                      name="firstname"
+                      value={this.state.firstname}
+                      onChange={this.onChange}
+                      errors={errors.firstname}
+                    />
+                  </CInputGroup>
+
+                  <CInputGroup className="mb-3">
+                    <CInputGroupText id="basic-addon1">
+                      <FontAwesomeIcon icon={faUser} />
+                    </CInputGroupText>
+                    <CFormInput
+                      placeholder="* last name"
+                      name="lastname"
+                      value={this.state.lastname}
+                      onChange={this.onChange}
+                      errors={errors.lastname}
+                    />
+                  </CInputGroup>
+
+                  <CInputGroup className="mb-3">
+                    <CInputGroupText id="basic-addon1">
                       <FontAwesomeIcon icon={faAddressBook} />
                     </CInputGroupText>
                     <CFormInput
@@ -225,4 +256,4 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
 })
-export default connect(mapStateToProps, { createProfile })(CreateProfile)
+export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile))

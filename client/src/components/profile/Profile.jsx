@@ -8,10 +8,37 @@ import Loader from '../common/Loader'
 import { getProfileByProfileUsername } from '../../action/profileAction'
 
 class Profile extends Component {
+  componentDidMount() {
+    if (this.props.match.params.profileusername) {
+      this.props.getProfileByProfileUsername(this.props.match.params.profileusername)
+    }
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push('/404')
+    }
+  }
   render() {
     const { profile, loading } = this.props.profile
-    console.log(this.props.profile)
-    const profileContent = ''
+    let profileContent = ''
+    if (profile === null || loading) {
+      profileContent = <Loader />
+    } else {
+      profileContent = (
+        <div>
+          <div className="row">
+            <div className="col-md-6">
+              <Link to="/profile" className="btn btn-light mb-3 float-left">
+                Back To Profiles
+              </Link>
+            </div>
+            <div className="col-md-6" />
+          </div>
+          <ProfileHeader profile={profile} />
+          {profile.githubusername ? <ProfileGithubs username={profile.githubusername} /> : null}
+        </div>
+      )
+    }
     return (
       <div className="profile">
         <div className="container">

@@ -29,9 +29,7 @@ class Welcome extends Component {
           <div>
             <p className="lead text-muted">
               Welcome to{' '}
-              <Link to={`/profileusername/$(profile.profileusername)`}>
-                {profile.profileusername}
-              </Link>
+              <Link to={`profile/${profile.profileusername}`}>{profile.profileusername}</Link>
             </p>
             <ProfileAction />
             <div style={{ marginBottom: '60px' }} />

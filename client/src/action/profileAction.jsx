@@ -62,7 +62,7 @@ export const deleteAccount = () => (dispatch) => {
 export const getProfileByProfileUsername = (profileusername) => (dispatch) => {
   dispatch(setProfileLoading())
   axios
-    .get(`v1/profile/profileusername/${profileusername}`)
+    .get(`/v1/profile/profileusername/${profileusername}`)
     .then((res) =>
       dispatch({
         type: GET_PROFILE,

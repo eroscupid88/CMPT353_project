@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
+import { createProfile, getCurrentProfile } from '../../action/profileAction'
 
-class EditProfile extends Component {
+class CreateProfile extends Component {
   constructor() {
     super()
   }
@@ -10,11 +12,15 @@ class EditProfile extends Component {
     return <h1>edit-profile</h1>
   }
 }
-EditProfile.propTypes = {
+CreateProfile.propTypes = {
   auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  errors: state.errors,
 })
-export default connect(mapStateToProps)(EditProfile)
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(CreateProfile),
+)
