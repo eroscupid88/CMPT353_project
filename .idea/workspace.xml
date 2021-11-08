@@ -3,16 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1ff7b5b9-1031-4dba-a542-62afd51fa07b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/action/profileAction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/action/profileAction.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/common/PrivateRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/common/PrivateRoute.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/createprofile/CreateProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/createprofile/CreateProfile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/profile/EditProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/profile/EditProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/profile/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/profile/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/profile/Welcome.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/profile/Welcome.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/model/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/model/profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/routes/API/profiles.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/routes/API/profiles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/validation/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/validation/profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +66,7 @@
       <updated>1635534598117</updated>
       <workItem from="1635534604283" duration="222000" />
       <workItem from="1636062506917" duration="36031000" />
-      <workItem from="1636328237684" duration="21577000" />
+      <workItem from="1636328237684" duration="22048000" />
     </task>
     <servers />
   </component>

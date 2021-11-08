@@ -8,11 +8,16 @@ class CreateProfile extends Component {
   constructor() {
     super()
   }
+  componentDidMount() {
+    this.props.getCurrentProfile()
+  }
   render() {
     return <h1>edit-profile</h1>
   }
 }
 CreateProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
 }
