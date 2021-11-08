@@ -2,17 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ff7b5b9-1031-4dba-a542-62afd51fa07b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/is-ci" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/is-ci" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/mime" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/nodemon" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/nodemon" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/nodetouch" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/nodetouch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/nopt" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/nopt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/rc" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/rc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/package-json/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/package-json/node_modules/.bin/semver" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/node_modules/semver-diff/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/semver-diff/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/CMPT353Team.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CMPT353Team.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/about/About.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/about/About.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/_about.scss" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/scss/_about.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/dist/_about.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/dist/_custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/scss/dist/_variables.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +39,8 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
-    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="/usr/local/lib/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -58,6 +54,9 @@
       <workItem from="1635534604283" duration="222000" />
       <workItem from="1636062506917" duration="28734000" />
       <workItem from="1636338145994" duration="117000" />
+      <workItem from="1636338271026" duration="2320000" />
+      <workItem from="1636403941840" duration="3984000" />
+      <workItem from="1636409432576" duration="921000" />
     </task>
     <servers />
   </component>
