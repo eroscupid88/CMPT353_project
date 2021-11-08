@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1ff7b5b9-1031-4dba-a542-62afd51fa07b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/action/authAction.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/action/authAction.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/header/AppHeaderDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/header/AppHeaderDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/dashboard/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/dashboard/Dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/views/pages/login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/views/pages/login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/is-ci" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/is-ci" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/mime" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/mime" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/nodemon" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/nodemon" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/nodetouch" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/nodetouch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/nopt" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/nopt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/rc" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/rc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/make-dir/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/package-json/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/package-json/node_modules/.bin/semver" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/node_modules/semver-diff/node_modules/.bin/semver" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/semver-diff/node_modules/.bin/semver" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +57,7 @@
       <updated>1635534598117</updated>
       <workItem from="1635534604283" duration="222000" />
       <workItem from="1636062506917" duration="28734000" />
+      <workItem from="1636338145994" duration="117000" />
     </task>
     <servers />
   </component>
@@ -67,6 +74,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
