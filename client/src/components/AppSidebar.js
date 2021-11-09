@@ -13,13 +13,15 @@ import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
 
 // sidebar nav config
-import navigation from '../_nav'
+import navigationOwner from '../_navOwner'
+import navigationStaff from '../_navStaff'
 import { SET } from '../action/types'
 
 const AppSidebar = () => {
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
+  const isOwner = false
 
   return (
     <CSidebar
@@ -37,7 +39,11 @@ const AppSidebar = () => {
 
       <CSidebarNav>
         <SimpleBar>
-          <AppSidebarNav items={navigation} />
+          {isOwner ? (
+            <AppSidebarNav items={navigationOwner} />
+          ) : (
+            <AppSidebarNav items={navigationStaff} />
+          )}
         </SimpleBar>
       </CSidebarNav>
 

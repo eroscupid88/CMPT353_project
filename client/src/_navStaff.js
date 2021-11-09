@@ -3,7 +3,7 @@ import CIcon from '@coreui/icons-react'
 import { cilBank, cilDollar, cilSpeedometer, cilStar } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
-const _nav = [
+const _navStaff = [
   {
     component: CNavTitle,
     name: 'Options',
@@ -21,13 +21,13 @@ const _nav = [
     items: [
       {
         component: CNavItem,
-        name: 'Login',
-        to: '/login',
+        name: 'Home',
+        to: '/about',
       },
       {
         component: CNavItem,
-        name: 'Register',
-        to: '/register',
+        name: 'Profile',
+        to: '/profile',
       },
     ],
   },
@@ -36,27 +36,10 @@ const _nav = [
     name: 'Actions',
   },
   {
-    component: CNavGroup,
-    name: 'Organizations',
-    to: '/organizations',
+    component: CNavItem,
+    name: 'Show Organization',
+    to: '/organization',
     icon: <CIcon icon={cilBank} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Show Organizations',
-        to: '/organizations/showorg',
-      },
-      {
-        component: CNavItem,
-        name: 'Hire Staff',
-        to: '/organizations/hire',
-      },
-      {
-        component: CNavItem,
-        name: 'Show Staff',
-        to: '/organizations/showstaff',
-      },
-    ],
   },
   {
     component: CNavItem,
@@ -66,4 +49,4 @@ const _nav = [
   },
 ]
 
-export default _nav
+export default _navStaff

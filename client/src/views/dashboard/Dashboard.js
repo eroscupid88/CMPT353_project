@@ -1,4 +1,5 @@
 import React, { lazy, Component } from 'react'
+import { Link } from 'react-router-dom'
 import {
   cibCcAmex,
   cibCcApplePay,
@@ -20,6 +21,7 @@ import avatar5 from 'src/assets/images/avatars/5.jpg'
 import avatar6 from 'src/assets/images/avatars/6.jpg'
 import {
   CAvatar,
+  CButton,
   CProgress,
   CTable,
   CTableBody,
@@ -30,10 +32,6 @@ import {
 } from '@coreui/react'
 
 class Dashboard extends Component {
-  constructor() {
-    super()
-  }
-
   render() {
     return (
       <>
@@ -46,14 +44,16 @@ class Dashboard extends Component {
               <CTableHeaderCell>People</CTableHeaderCell>
               <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
               <CTableHeaderCell className="text-center">Activity</CTableHeaderCell>
-              <CTableHeaderCell>Options</CTableHeaderCell>
+              <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
             </CTableRow>
           </CTableHead>
           <CTableBody>
             {tableExample.map((item, index) => (
               <CTableRow v-for="item in tableItems" key={index}>
                 <CTableDataCell className="text-center">
-                  <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
+                  <Link to={item.user.profile}>
+                    <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
+                  </Link>
                 </CTableDataCell>
                 <CTableDataCell>
                   <div>{item.user.name}</div>
@@ -69,9 +69,17 @@ class Dashboard extends Component {
                   <div className="small text-medium-emphasis">Last login</div>
                   <strong>{item.activity}</strong>
                 </CTableDataCell>
-                <CTableDataCell>
-                  <CIcon size="xl" icon={cilUserX} />
-                </CTableDataCell>
+                {isOwner ? (
+                  <CTableDataCell>
+                    {item.user.currentUser ? (
+                      ''
+                    ) : (
+                      <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
+                    )}
+                  </CTableDataCell>
+                ) : (
+                  <CTableDataCell></CTableDataCell>
+                )}
               </CTableRow>
             ))}
           </CTableBody>
@@ -80,12 +88,15 @@ class Dashboard extends Component {
     )
   }
 }
+const isOwner = false
+
 const tableExample = [
   {
     avatar: { src: avatar1, status: 'success' },
     user: {
+      profile: '/about',
       name: 'Yiorgos Avraamu',
-      new: true,
+      currentUser: true,
       registered: 'Jan 1, 2021',
     },
     role: { name: 'Owner', type: cilGroup },
@@ -95,8 +106,9 @@ const tableExample = [
   {
     avatar: { src: avatar2, status: 'danger' },
     user: {
+      profile: '/about',
       name: 'Avram Tarasios',
-      new: false,
+      currentUser: false,
       registered: 'Jan 1, 2021',
     },
     role: { name: 'Staff', type: cilUser },
@@ -105,14 +117,24 @@ const tableExample = [
   },
   {
     avatar: { src: avatar3, status: 'warning' },
-    user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2021' },
+    user: {
+      profile: '/about',
+      name: 'Quintin Ed',
+      currentUser: false,
+      registered: 'Jan 1, 2021',
+    },
     role: { name: 'Staff', type: cilUser },
     payment: { name: 'Stripe', icon: cibCcStripe },
     activity: '1 hour ago',
   },
   {
     avatar: { src: avatar4, status: 'secondary' },
-    user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2021' },
+    user: {
+      profile: '/about',
+      name: 'Enéas Kwadwo',
+      currentUser: false,
+      registered: 'Jan 1, 2021',
+    },
     role: { name: 'Staff', type: cilUser },
     payment: { name: 'PayPal', icon: cibCcPaypal },
     activity: 'Last month',
@@ -120,8 +142,9 @@ const tableExample = [
   {
     avatar: { src: avatar5, status: 'success' },
     user: {
+      profile: '/about',
       name: 'Agapetus Tadeáš',
-      new: true,
+      currentUser: false,
       registered: 'Jan 1, 2021',
     },
     role: { name: 'Staff', type: cilUser },
@@ -131,8 +154,9 @@ const tableExample = [
   {
     avatar: { src: avatar6, status: 'danger' },
     user: {
+      profile: '/about',
       name: 'Friderik Dávid',
-      new: true,
+      currentUser: false,
       registered: 'Jan 1, 2021',
     },
     role: { name: 'Staff', type: cilUser },
