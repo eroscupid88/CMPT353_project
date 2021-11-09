@@ -6,14 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, faNetworkWired, faUser } from '@fortawesome/free-solid-svg-icons'
 import CIcon from '@coreui/icons-react'
 import { withRouter } from 'react-router-dom'
-import {
-  cibGithub,
-  cibWebcomponentsOrg,
-  cibLinkedin,
-  cibYoutube,
-  cibInstagram,
-  cibTwitter,
-} from '@coreui/icons'
+import { cibGithub, cibLinkedin, cibYoutube, cibInstagram, cibTwitter } from '@coreui/icons'
 import { createProfile } from '../../action/profileAction'
 
 class CreateProfile extends Component {
