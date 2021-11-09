@@ -71,9 +71,7 @@ class Dashboard extends Component {
                 </CTableDataCell>
                 {isOwner ? (
                   <CTableDataCell>
-                    {item.user.currentUser ? (
-                      ''
-                    ) : (
+                    {item.user.currentUser ? null : (
                       <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
                     )}
                   </CTableDataCell>
