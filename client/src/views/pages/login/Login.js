@@ -40,7 +40,7 @@ class Login extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     // if authenticate, /login cannot be call and push to dashboard instead
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard')
+      this.props.history.push('/welcome')
     }
     // if see any errors, set props.error to be current state
     if (nextProps.errors) {

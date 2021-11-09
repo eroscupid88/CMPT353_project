@@ -85,7 +85,6 @@ class EditProfile extends Component {
   }
   render() {
     const { errors, displaySocialInputs } = this.state
-    console.log(this.props.profile)
     // select options for status
     let socialInputs
     if (displaySocialInputs) {

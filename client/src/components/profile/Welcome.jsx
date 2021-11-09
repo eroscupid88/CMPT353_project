@@ -10,8 +10,9 @@ class Welcome extends Component {
   componentDidMount() {
     this.props.getCurrentProfile()
   }
-  onDeleteClick(event) {
+  onDeleteClick = (event) => {
     this.props.deleteAccount()
+    this.props.history.push('/')
   }
 
   render() {
@@ -70,6 +71,8 @@ Welcome.propTypes = {
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  location: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({

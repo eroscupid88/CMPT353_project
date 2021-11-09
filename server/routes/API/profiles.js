@@ -48,6 +48,7 @@ router.get('/profileusername/:profileusername', (req, res) => {
 });
 
 // get profile/all
+// get company user profile
 // get all profiles
 // public
 router.get('/all', (req, res) => {
@@ -145,6 +146,19 @@ router.post(
         });
       }
     });
+  }
+);
+// delete profile/
+// delete  profile
+// private
+
+router.delete(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res, next) => {
+    Profile.findOneAndRemove({ user: req.user[0].id }).then(() =>
+      res.json({ success: true })
+    );
   }
 );
 
