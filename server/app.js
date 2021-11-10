@@ -21,6 +21,10 @@ const profileRoutes = require('./routes/API/profiles');
 
 const bookRoutes = require('./routes/API/books');
 
+const bookingRoutes = require('./routes/API/bookings');
+
+const companyRoute = require('./routes/API/companys');
+
 const bodyParser = require('body-parser');
 // passport config
 require('./config/passport')(passport);
@@ -50,6 +54,10 @@ app.get('/', (req, res) => {
 app.use('/v1/profile', profileRoutes);
 
 app.use('/v1/book', bookRoutes);
+
+app.use('/v1/booking', bookingRoutes);
+
+app.use('/v1/company', companyRoute);
 
 app.use('/uploads', express.static('uploads'));
 // eslint-disable-next-line consistent-return

@@ -105,6 +105,7 @@ router.post(
     // Get fields
     const profileFields = {};
     profileFields.user = req.user[0].id;
+    profileFields.company = '';
     if (req.body.profileusername)
       profileFields.profileusername = req.body.profileusername;
     if (req.body.githubusername)
@@ -148,6 +149,7 @@ router.post(
     });
   }
 );
+
 // delete profile/
 // delete  profile
 // private

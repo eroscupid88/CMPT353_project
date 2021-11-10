@@ -21,4 +21,10 @@
 
 # For Running on local machine:
 
-- /todo
+
+implementation ELK stacks
+zipkin server run on localhost:9411
+eureka server run on localhost:8081
+gateway server run on localhost:8083
+config server run on localhost:8082
+kibana server run on localhost:5601
