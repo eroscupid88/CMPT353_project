@@ -22,7 +22,7 @@ const mongoose = require('mongoose');
  */
 router.post(
   '/',
-  // passport.authenticate('jwt', { session: false }),
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateCompanyInputs(req.body);
     // Check Validation
@@ -37,7 +37,7 @@ router.post(
       _id: mongoose.Types.ObjectId(),
       name: req.body.name,
       //  test
-      //  owner: req.user[0].id,
+      owner: req.user[0].id,
       description: description,
     });
     // create new company
