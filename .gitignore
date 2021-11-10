@@ -7,8 +7,8 @@ yarn-error.log*
 lerna-debug.log*
 .pnpm-debug.log*
 
-**/.idea/workspace.xml
-.idea/
+**/.idea/
+**/.DS_Store
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -41,9 +41,9 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
+**/node_modules/
 jspm_packages/
-package-lock.json
+**/package-lock.json
 
 # Snowpack dependency directory (https://snowpack.dev/)
 web_modules/
@@ -119,3 +119,4 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+**/yarn.lock
