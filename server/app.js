@@ -7,6 +7,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const eurekaHelper = require('./eureka-helper');
 
 //  use this for connect mongodb with an app
 // const mongoClient = require('mongodb').MongoClient;
@@ -17,6 +18,9 @@ const app = express();
 const userRoutes = require('./routes/API/users');
 
 const profileRoutes = require('./routes/API/profiles');
+
+const bookRoutes = require('./routes/API/books');
+
 const bodyParser = require('body-parser');
 // passport config
 require('./config/passport')(passport);
@@ -35,11 +39,19 @@ app.use(express.json());
 // Body parser
 app.use(bodyParser.urlencoded({ extended: true }));
 
+eurekaHelper.registerWithEureka('user-service', process.env.SERVER_PORT);
+
 // connect user route
 app.use('/v1/user', userRoutes);
+app.get('/', (req, res) => {
+  res.json('I am user-service');
+});
 
 app.use('/v1/profile', profileRoutes);
 
+app.use('/v1/book', bookRoutes);
+
+app.use('/uploads', express.static('uploads'));
 // eslint-disable-next-line consistent-return
 app.use((req, res, next) => {
   res.header('Acess-Control-Allow-Origin', '*');
@@ -70,9 +82,8 @@ app.use((req, res, next) => {
   next(error);
 });
 
-mongoose.connect(
-  `mongodb://${process.env.HOST}:${process.env.DB_PORT}/cmpt353db`
-);
+const mongodb = process.env.MONGODB || 'localhost';
+mongoose.connect(`mongodb://${mongodb}:${process.env.DB_PORT}/cmpt353db`);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error: '));
 db.once('open', () => {

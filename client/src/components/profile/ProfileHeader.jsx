@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import isEmpty from '../../validation/isEmpty'
+import connect from 'react-redux/lib/connect/connect'
 
 class ProfileHeader extends Component {
+  constructor(props) {
+    super(props)
+  }
   render() {
     const { profile } = this.props
-
     return (
       <div className="row">
         <div className="col-md-12">
@@ -20,14 +23,15 @@ class ProfileHeader extends Component {
                 {isEmpty(profile.location) ? null : <p>{profile.location}</p>}
 
                 {isEmpty(profile.social && profile.social.twitter) ? null : (
-                  <a
-                    className="text-white p-2"
-                    href={profile.social.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i className="fab fa-twitter fa-2x" />
-                  </a>
+                  // <a
+                  //   className="text-white p-2"
+                  //   href={profile.social.twitter}
+                  //   target="_blank"
+                  //   rel="noopener noreferrer"
+                  // >
+                  //   <i className="fab fa-twitter fa-2x" />
+                  // </a>
+                  <p>need to show icon</p>
                 )}
 
                 {isEmpty(profile.social && profile.social.facebook) ? null : (

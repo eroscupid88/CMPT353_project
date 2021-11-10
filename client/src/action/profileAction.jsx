@@ -9,7 +9,7 @@ import {
 
 export const createProfile = (data, history) => (dispatch) => {
   axios
-    .post('v1/profile/', data)
+    .post('/v1/profile/', data)
     .then((result) => {
       history.push('/dashboard')
     })
@@ -25,7 +25,7 @@ export const createProfile = (data, history) => (dispatch) => {
 export const getCurrentProfile = () => (dispatch) => {
   dispatch(setProfileLoading())
   axios
-    .get('v1/profile')
+    .get('/v1/profile')
     .then((res) =>
       dispatch({
         type: GET_PROFILE,
@@ -43,13 +43,13 @@ export const getCurrentProfile = () => (dispatch) => {
 export const deleteAccount = () => (dispatch) => {
   if (window.confirm('Are you sure you want to delete your profile')) {
     axios
-      .delete('/profile')
-      .then((result) =>
+      .delete('/v1/profile')
+      .then((result) => {
         dispatch({
           type: SET_CURRENT_USER,
           payload: {},
-        }),
-      )
+        })
+      })
       .catch((err) =>
         dispatch({
           type: GET_ERRORS,
