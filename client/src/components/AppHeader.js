@@ -40,32 +40,14 @@ const AppHeader = () => {
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
             <CNavLink to="/dashboard" component={NavLink} activeClassName="active">
-              dashboard
-            </CNavLink>
-          </CNavItem>
-
-          <CNavItem>
-            <CNavLink href="/login">login</CNavLink>
-          </CNavItem>
-          <CNavItem>
-            <CNavLink href="/register">register</CNavLink>
-          </CNavItem>
-        </CHeaderNav>
-        <CHeaderNav>
-          <CNavItem>
-            <CNavLink href="/login">
-              <CIcon icon={cilBell} size="lg" />
+              Dashboard
             </CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="/login">
-              <CIcon icon={cilList} size="lg" />
-            </CNavLink>
+            <CNavLink href="/about">Home</CNavLink>
           </CNavItem>
           <CNavItem>
-            <CNavLink href="/login">
-              <CIcon icon={cilEnvelopeOpen} size="lg" />
-            </CNavLink>
+            <CNavLink href="/welcome">Profiles</CNavLink>
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav className="ms-3">
