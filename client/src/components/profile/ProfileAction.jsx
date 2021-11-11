@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const ProfileAction = (props) => {
   console.log(props)
   let companyItem
-  if ((props.user.email = 'dillon@yahoo.com') && (props.mycompany.company===null)){
+  if (props.user.email = 'dillon@yahoo.com'){
     companyItem = (
       <Link to="/create-company" className="btn btn-light">
         <i className="fas fa-user-circle text-info mr-1" /> Create Company
