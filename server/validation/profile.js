@@ -6,24 +6,11 @@ module.exports = function validateProfileInputs(data) {
   data.profileusername = !isEmpty(data.profileusername)
     ? data.profileusername
     : '';
-  data.firstname = !isEmpty(data.firstname) ? data.firstname : '';
-  data.lastname = !isEmpty(data.lastname) ? data.lastname : '';
   if (!validator.isLength(data.profileusername, { min: 2, max: 40 })) {
     errors.profileusername =
       'profileusername needs to be between 2 and 40 characters';
   }
-  if (!validator.isLength(data.firstname, { min: 2, max: 40 })) {
-    errors.firstname = 'first name needs to be between 2 and 40 characters';
-  }
-  if (!validator.isLength(data.lastname, { min: 2, max: 40 })) {
-    errors.lastname = 'last name needs to be between 2 and 40 characters';
-  }
-  if (isEmpty(data.firstname)) {
-    errors.firstname = 'first name field is required';
-  }
-  if (isEmpty(data.lastname)) {
-    errors.lastname = 'lastname name field is required';
-  }
+
   if (!isEmpty(data.website)) {
     if (!validator.isURL(data.website)) {
       errors.website = 'not a valid  website URL';

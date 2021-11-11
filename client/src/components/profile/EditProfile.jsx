@@ -14,8 +14,6 @@ class EditProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstname: '',
-      lastname: '',
       profileusername: '',
       location: '',
       githubusername: '',
@@ -35,7 +33,6 @@ class EditProfile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
     }
-    console.log(nextProps)
     if (nextProps.profile.profile) {
       const profile = nextProps.profile.profile
 

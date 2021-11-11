@@ -45,7 +45,8 @@ router.post('/register', (req, res, next) => {
         new Users({
           _id: mongoose.Types.ObjectId(),
           email: req.body.email,
-          username: req.body.username,
+          firstname: req.body.firstname,
+          lastname: req.body.lastname,
           date: req.body.date,
           avatar: defaultAvatar,
           password: hash,
@@ -103,7 +104,8 @@ router.post('/login', (req, res, next) => {
           const payload = {
             email: user[0].email,
             userId: user[0]._id,
-            name: user[0].name,
+            firstname: user[0].firstname,
+            lastname: user[0].lastname,
             avatar: user[0].avatar,
           };
           const token = jwt.sign(payload, process.env.JWT_KEY, {

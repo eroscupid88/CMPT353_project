@@ -2,10 +2,6 @@
 // Router
 const router = require('express').Router();
 
-const mongoose = require('mongoose');
-
-const passport = require('passport');
-
 // model from moongodb
 const Users = require('../../model/user');
 
