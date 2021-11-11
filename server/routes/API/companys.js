@@ -48,8 +48,7 @@ router.post(
           { user: req.user[0].id },
           { company: result.id },
           { new: true }
-        ).then((profile) => res.send(profile));
-        res.json(result);
+        ).then((profile) => res.status(200).json(profile)).catch(err=>res.status(404).json(err));
       })
       .catch((error) => {
         res.status(404).json(error);
