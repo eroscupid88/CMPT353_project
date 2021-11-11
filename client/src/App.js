@@ -29,12 +29,13 @@ class App extends Component {
     return (
       <React.Suspense fallback={loading}>
         <Router>
-          <Route exact path="/login" component={Login} a="hoho" />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/register" name="Register Page" component={Register} />
           <Route exact path="/404" name="Page 404" component={Page404} />
           <Route exact path="/500" name="Page 500" component={Page500} />
+          <Route exact path="/" name="Home Page" component={About} />
           <Route exact path="/about" name="About" component={About} />
-          <Route exact path="/welcome" name="welcome" component={Welcome} />
+          <Route exact path="/welcome" name="Welcome" component={Welcome} />
           <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />

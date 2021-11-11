@@ -1,37 +1,44 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Paragraph from './Paragraph'
 import Member from './Member'
+import { Link } from 'react-router-dom'
 
-class About extends Component {
-  render() {
-    return (
-      <div id="parallax-world-of-ugg">
-        <section>
-          <h1>Nomosnow</h1>
-        </section>
+function About() {
+  return (
+    <div id="parallax-world-of-ugg">
+      <section>
+        <h1>
+          Nomosnow
+          <Link to="/login">
+            <button className="button">Login/Register</button>
+          </Link>
+        </h1>
+      </section>
 
-        <section>
-          <div className="parallax one">
-            <h2>WHAT WE DO</h2>
-          </div>
-        </section>
+      <section>
+        <div className="parallax one">
+          <h2>WHAT WE DO</h2>
+        </div>
+      </section>
 
-        <section>
-          <Paragraph letter="F" first="irst paragraph" second="Second paragraph if needed" />
-        </section>
+      <section>
+        <Paragraph letter="F" first="irst paragraph" second="Second paragraph if needed" />
+      </section>
 
-        <section>
-          <div className="parallax two">
-            <h2>WHERE WE ARE FROM</h2>
-          </div>
-        </section>
+      <section>
+        <div className="parallax two">
+          <h2>WHO WE ARE</h2>
+        </div>
+      </section>
 
-        <section>
-          <Paragraph letter="F" first="irst paragraph" second="Second paragraph if needed" />
-        </section>
+      <section>
+        <Paragraph letter="F" first="irst paragraph" second="Second paragraph if needed" />
+      </section>
 
-        <section>
-          <div className="ourTeam-bg">
+      <section>
+        <div className="ourTeam-bg">
+          <h2>OUR TEAM</h2>
+          <div className="ourTeam-list">
             <div className="container">
               <div className="row">
                 <Member
@@ -61,9 +68,9 @@ class About extends Component {
               </div>
             </div>
           </div>
-        </section>
-      </div>
-    )
-  }
+        </div>
+      </section>
+    </div>
+  )
 }
 export default About
