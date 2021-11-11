@@ -6,6 +6,7 @@ import CreateProfile from './components/createprofile/CreateProfile'
 import Profile from './components/profile/Profile'
 import Welcome from './components/profile/Welcome'
 import EditProfile from './components/profile/EditProfile'
+import CreateCompany from "./components/profile/CreateCompany";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -39,7 +40,10 @@ class App extends Component {
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/createprofile" component={CreateProfile} />
+            <PrivateRoute exact path="/create-company" component={CreateCompany} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/create-profile" component={CreateProfile} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />

@@ -13,6 +13,8 @@ class CreateProfile extends Component {
   constructor() {
     super()
     this.state = {
+      firstname:'',
+      lastname:'',
       profileusername: '',
       location: '',
       githubusername: '',
@@ -40,6 +42,8 @@ class CreateProfile extends Component {
   onSubmit = (event) => {
     event.preventDefault()
     const profileData = {
+      firstname: this.props.auth.user.firstname,
+      lastname: this.props.auth.user.lastname,
       profileusername: this.state.profileusername,
       location: this.state.location,
       githubusername: this.state.githubusername,
@@ -52,6 +56,7 @@ class CreateProfile extends Component {
     this.props.createProfile(profileData, this.props.history)
   }
   render() {
+    const {auth} = this.state
     const { errors, displaySocialInputs } = this.state
     // select options for status
     let socialInputs

@@ -15,7 +15,7 @@ router.get(
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user[0].id })
-      .populate('user', ['username', 'email', 'avatar'])
+      .populate('user', ['firstname','lastname', 'email', 'avatar'])
       .then((profile) => {
         if (!profile) {
           errors.noprofile = 'There is no profile for this user';
@@ -36,7 +36,7 @@ router.get(
 router.get('/profileusername/:profileusername', (req, res) => {
   const errors = {};
   Profile.findOne({ profileusername: req.params.profileusername })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['firstname','lastname', 'avatar'])
     .then((profile) => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
@@ -110,6 +110,8 @@ router.post(
     if (req.body.githubusername)
       profileFields.githubusername = req.body.githubusername;
     if (req.body.location) profileFields.location = req.body.location;
+    if (req.body.firstname) profileFields.firstname = req.body.firstname;
+    if (req.body.lastname) profileFields.lastname = req.body.lastname;
 
     // social media
     profileFields.social = {};

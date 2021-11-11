@@ -14,8 +14,10 @@ import {
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import {cibAboutMe, cibGmail, cilLockLocked, cilUser} from '@coreui/icons'
 import PropTypes from 'prop-types'
+import {faUser} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Register extends Component {
   constructor() {
@@ -72,6 +74,35 @@ class Register extends Component {
                   <CForm validated={true} onSubmit={this.onSubmit}>
                     <h1>Register</h1>
                     <p className="text-medium-emphasis">Create your account</p>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <FontAwesomeIcon icon={faUser} />
+                      </CInputGroupText>
+                      <CFormInput
+                        placeholder="firstname"
+                        autoComplete="firstname"
+                        name="firstname"
+                        defaultValue=""
+                        value={this.state.firstname}
+                        onChange={this.onChange}
+                        errors={errors.firstname}
+                        required
+                      />
+                    </CInputGroup><CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <FontAwesomeIcon icon={faUser} />
+                      </CInputGroupText>
+                      <CFormInput
+                        placeholder="lastname"
+                        autoComplete="lastname"
+                        name="lastname"
+                        defaultValue=""
+                        value={this.state.lastname}
+                        onChange={this.onChange}
+                        errors={errors.lastname}
+                        required
+                      />
+                    </CInputGroup>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>@</CInputGroupText>
                       <CFormInput
