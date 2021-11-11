@@ -5,10 +5,13 @@ const bookingSchema = new Schema({
   id: {
     type: Schema.Types.ObjectId,
   },
+  register:{
+    type: String,
+    required: false
+  },
   pickUpAt: { type: Date, required: 'Starting date is required' },
   createdAt: { type: Date, default: Date.now },
-  user: { type: Schema.Types.ObjectId, ref: 'User' },
-  book: { type: Schema.Types.ObjectId, ref: 'Book' },
+  company: { type: Schema.Types.ObjectId, ref: 'Company' },
 });
 
 module.exports = mongoose.model('Booking', bookingSchema);

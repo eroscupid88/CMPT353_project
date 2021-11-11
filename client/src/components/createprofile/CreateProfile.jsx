@@ -13,8 +13,6 @@ class CreateProfile extends Component {
   constructor() {
     super()
     this.state = {
-      firstname: '',
-      lastname: '',
       profileusername: '',
       location: '',
       githubusername: '',
@@ -38,11 +36,10 @@ class CreateProfile extends Component {
       [event.target.name]: event.target.value,
     })
   }
+
   onSubmit = (event) => {
     event.preventDefault()
     const profileData = {
-      firstname: this.state.firstname,
-      lastname: this.state.lastname,
       profileusername: this.state.profileusername,
       location: this.state.location,
       githubusername: this.state.githubusername,
@@ -155,32 +152,6 @@ class CreateProfile extends Component {
                       value={this.state.profileusername}
                       onChange={this.onChange}
                       errors={errors.profileusername}
-                    />
-                  </CInputGroup>
-
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <FontAwesomeIcon icon={faUser} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="* first name"
-                      name="firstname"
-                      value={this.state.firstname}
-                      onChange={this.onChange}
-                      errors={errors.firstname}
-                    />
-                  </CInputGroup>
-
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <FontAwesomeIcon icon={faUser} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="* last name"
-                      name="lastname"
-                      value={this.state.lastname}
-                      onChange={this.onChange}
-                      errors={errors.lastname}
                     />
                   </CInputGroup>
 

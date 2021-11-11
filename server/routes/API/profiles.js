@@ -109,8 +109,6 @@ router.post(
       profileFields.profileusername = req.body.profileusername;
     if (req.body.githubusername)
       profileFields.githubusername = req.body.githubusername;
-    if (req.body.firstname) profileFields.firstname = req.body.firstname;
-    if (req.body.lastname) profileFields.lastname = req.body.lastname;
     if (req.body.location) profileFields.location = req.body.location;
 
     // social media

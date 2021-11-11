@@ -8,6 +8,7 @@ const companySchema = new Schema({
   createdAt: { type: Date, default: Date.now },
   description: { type: String, required: true },
   staff: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  customer:[{ type: Schema.Types.ObjectId, ref: 'User' }],
 });
 
 module.exports = mongoose.model('Company', companySchema);

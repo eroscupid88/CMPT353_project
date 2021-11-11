@@ -19,7 +19,6 @@ const userRoutes = require('./routes/API/users');
 
 const profileRoutes = require('./routes/API/profiles');
 
-const bookRoutes = require('./routes/API/books');
 
 const bookingRoutes = require('./routes/API/bookings');
 
@@ -52,8 +51,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/v1/profile', profileRoutes);
-
-app.use('/v1/book', bookRoutes);
 
 app.use('/v1/booking', bookingRoutes);
 
