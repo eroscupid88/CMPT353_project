@@ -72,7 +72,6 @@ class Login extends Component {
                 <CCard className="p-4">
                   <CCardBody>
                     <CForm validated={true} onSubmit={this.onSubmit}>
-                      <h1></h1>
                       <p className="text-medium-emphasis">Sign In to your account</p>
 
                       <CInputGroup className="mb-3">

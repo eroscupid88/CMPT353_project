@@ -21,7 +21,8 @@ class Register extends Component {
   constructor() {
     super()
     this.state = {
-      username: '',
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
       password2: '',
@@ -46,7 +47,8 @@ class Register extends Component {
   onSubmit = (event) => {
     event.preventDefault()
     const newUser = {
-      username: this.state.username,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname,
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2,
@@ -70,21 +72,6 @@ class Register extends Component {
                   <CForm validated={true} onSubmit={this.onSubmit}>
                     <h1>Register</h1>
                     <p className="text-medium-emphasis">Create your account</p>
-                    <CInputGroup className="mb-3">
-                      <CInputGroupText>
-                        <CIcon icon={cilUser} />
-                      </CInputGroupText>
-                      <CFormInput
-                        placeholder="Username"
-                        name="username"
-                        autoComplete="username"
-                        defaultValue=""
-                        value={this.state.username}
-                        onChange={this.onChange}
-                        errors={errors.username}
-                        required
-                      />
-                    </CInputGroup>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>@</CInputGroupText>
                       <CFormInput

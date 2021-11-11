@@ -14,8 +14,6 @@ class EditProfile extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstname: '',
-      lastname: '',
       profileusername: '',
       location: '',
       githubusername: '',

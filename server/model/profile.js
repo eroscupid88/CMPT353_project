@@ -10,17 +10,11 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
+  company: {
+    type: Schema.Types.ObjectId,
+    ref: 'Company',
+  },
   profileusername: {
-    type: String,
-    required: true,
-    max: 40,
-  },
-  firstname: {
-    type: String,
-    required: true,
-    max: 40,
-  },
-  lastname: {
     type: String,
     required: true,
     max: 40,
