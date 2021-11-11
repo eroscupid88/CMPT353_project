@@ -36,7 +36,6 @@ router.post(
     const newCompany = new Company({
       _id: mongoose.Types.ObjectId(),
       name: req.body.name,
-      //  test
       owner: req.user[0].id,
       description: description,
     });

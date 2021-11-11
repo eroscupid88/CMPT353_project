@@ -22,6 +22,12 @@ const ProfileSchema = new Schema({
   location: {
     type: String,
   },
+  firstname: {
+    type: String,
+  },
+  lastname: {
+    type: String,
+  },
   githubusername: {
     type: String,
   },
