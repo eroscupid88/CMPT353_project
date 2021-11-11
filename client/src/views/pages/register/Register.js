@@ -18,8 +18,8 @@ import { cilLockLocked, cilUser } from '@coreui/icons'
 import PropTypes from 'prop-types'
 
 class Register extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       username: '',
       email: '',
@@ -34,7 +34,7 @@ class Register extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     // if authenticate, /register cannot be call and push to dashboard instead
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard')
@@ -61,15 +61,14 @@ class Register extends Component {
   render() {
     const { errors } = this.state
     return (
-      <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+      <div className="login-bg min-vh-100 d-flex flex-row align-items-center">
         <CContainer>
           <CRow className="justify-content-center">
             <CCol md={9} lg={7} xl={6}>
               <CCard className="mx-4">
                 <CCardBody className="p-4">
                   <CForm validated={true} onSubmit={this.onSubmit}>
-                    <h1>Register</h1>
-                    <p className="text-medium-emphasis">Create your account</p>
+                    <p className="text-high-emphasis">Enter New Account Information</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
@@ -123,7 +122,7 @@ class Register extends Component {
                         name="password2"
                         value={this.state.password2}
                         defaultValue=""
-                        placeholder="Repeat password"
+                        placeholder="Re-enter Password"
                         autoComplete="new-password"
                         onChange={this.onChange}
                         errors={errors.password2}

@@ -76,7 +76,7 @@ class Dashboard extends Component {
                     )}
                   </CTableDataCell>
                 ) : (
-                  <CTableDataCell></CTableDataCell>
+                  <CTableDataCell/>
                 )}
               </CTableRow>
             ))}

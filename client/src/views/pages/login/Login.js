@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import { withRouter } from 'react-router'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { loginUser } from '../../../action/authAction'
@@ -8,7 +7,6 @@ import {
   CButton,
   CCard,
   CCardBody,
-  CCardGroup,
   CCol,
   CContainer,
   CForm,
@@ -16,15 +14,14 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-  CInput,
   CFormFeedback,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cibGmail, cilLockLocked } from '@coreui/icons'
 
 class Login extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       email: '',
       password: '',
@@ -37,7 +34,7 @@ class Login extends Component {
       this.props.history.push('/dashboard')
     }
   }
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     // if authenticate, /login cannot be call and push to dashboard instead
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/welcome')
@@ -45,6 +42,7 @@ class Login extends Component {
     // if see any errors, set props.error to be current state
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
+      alert('Incorrect email and/or password.\n' + 'Please try again!')
     }
   }
 
@@ -62,75 +60,62 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state
-
     return (
-      <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
+      <div className="login-bg min-vh-100 d-flex align-items-center">
         <CContainer>
           <CRow className="justify-content-center">
-            <CCol md={8}>
-              <CCardGroup>
-                <CCard className="p-4">
-                  <CCardBody>
-                    <CForm validated={true} onSubmit={this.onSubmit}>
-                      <h1></h1>
-                      <p className="text-medium-emphasis">Sign In to your account</p>
-
-                      <CInputGroup className="mb-3">
-                        <CInputGroupText>
-                          <CIcon icon={cibGmail} />
-                        </CInputGroupText>
-                        <CFormInput
-                          placeholder="email"
-                          autoComplete="email"
-                          name="email"
-                          type="email"
-                          defaultValue=""
-                          value={this.state.email}
-                          onChange={this.onChange}
-                          errors={errors.email}
-                          required
-                        />
-                      </CInputGroup>
-                      <CInputGroup className="mb-4">
-                        <CInputGroupText>
-                          <CIcon icon={cilLockLocked} />
-                        </CInputGroupText>
-                        <CFormInput
-                          name="password"
-                          type="password"
-                          placeholder="Password"
-                          autoComplete="current-password"
-                          value={this.state.password}
-                          onChange={this.onChange}
-                          errors={errors.password}
-                          required
-                        />
-                      </CInputGroup>
-
-                      <CRow>
-                        <CCol xs={6}>
-                          <CButton color="primary" className="px-4" type="submit">
-                            Login
-                          </CButton>
-                        </CCol>
-                      </CRow>
-                    </CForm>
-                  </CCardBody>
-                </CCard>
-                <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
-                  <CCardBody className="text-center">
-                    <div>
-                      <h2>Sign up</h2>
-                      <p>It is Quick and Easy to Sign Up</p>
-                      <Link to="/register">
-                        <CButton color="primary" className="mt-3" active tabIndex={-1}>
-                          Register Now!
+            <CCol md={5}>
+              <CCard className="p-4">
+                <CCardBody>
+                  <CForm validated={true} onSubmit={this.onSubmit}>
+                    <p className="text-high-emphasis">
+                      SIGN-IN to Your Account or {}
+                      <Link to="/register">REGISTER</Link>
+                      {} for a New One
+                    </p>
+                    <CInputGroup className="mb-3">
+                      <CInputGroupText>
+                        <CIcon icon={cibGmail} />
+                      </CInputGroupText>
+                      <CFormInput
+                        placeholder="Email"
+                        autoComplete="email"
+                        name="email"
+                        type="email"
+                        defaultValue=""
+                        value={this.state.email}
+                        onChange={this.onChange}
+                        invalid={errors.email}
+                        required
+                      />
+                      <CFormFeedback invalid>Please enter a valid email address</CFormFeedback>
+                    </CInputGroup>
+                    <CInputGroup className="mb-4">
+                      <CInputGroupText>
+                        <CIcon icon={cilLockLocked} />
+                      </CInputGroupText>
+                      <CFormInput
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        autoComplete="current-password"
+                        value={this.state.password}
+                        onChange={this.onChange}
+                        invalid={errors.password}
+                        required
+                      />
+                      <CFormFeedback invalid>Please enter your password</CFormFeedback>
+                    </CInputGroup>
+                    <CRow>
+                      <CCol xs={6}>
+                        <CButton color="light" className="px-4 btn-outline-primary" type="submit">
+                          Submit
                         </CButton>
-                      </Link>
-                    </div>
-                  </CCardBody>
-                </CCard>
-              </CCardGroup>
+                      </CCol>
+                    </CRow>
+                  </CForm>
+                </CCardBody>
+              </CCard>
             </CCol>
           </CRow>
         </CContainer>
