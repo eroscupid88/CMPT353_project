@@ -18,6 +18,7 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cibGmail, cilLockLocked } from '@coreui/icons'
+import isEmpty from '../../../validation/isEmpty'
 
 class Login extends Component {
   constructor(props) {
@@ -31,18 +32,19 @@ class Login extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
       console.log('Authenticate!!')
-      this.props.history.push('/dashboard')
+      this.props.history.push('/welcome')
     }
   }
+
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-    // if authenticate, /login cannot be call and push to dashboard instead
+    // if authenticate, /login cannot be call and push to welcome instead
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/welcome')
     }
-    // if see any errors, set props.error to be current state
-    if (nextProps.errors) {
+    // otherwise, if see any errors, set props.error to be current state and alert client
+    else if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
-      alert('Incorrect email and/or password.\n' + 'Please try again!')
+      alert('Incorrect email and/or password.\nPlease try again!')
     }
   }
 
@@ -68,11 +70,11 @@ class Login extends Component {
               <CCard className="p-4">
                 <CCardBody>
                   <CForm validated={true} onSubmit={this.onSubmit}>
-                    <p className="text-high-emphasis">
-                      SIGN-IN to Your Account or {}
+                    <h6 className="text-high-emphasis">
+                      SIGN IN to Your Account or {}
                       <Link to="/register">REGISTER</Link>
                       {} for a New One
-                    </p>
+                    </h6>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cibGmail} />
@@ -88,7 +90,7 @@ class Login extends Component {
                         invalid={errors.email}
                         required
                       />
-                      <CFormFeedback invalid>Please enter a valid email address</CFormFeedback>
+                      <CFormFeedback invalid>Please enter a valid email</CFormFeedback>
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -108,8 +110,8 @@ class Login extends Component {
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="light" className="px-4 btn-outline-primary" type="submit">
-                          Submit
+                        <CButton color="light" className="px-4 btn-outline-info" type="submit">
+                          Log In
                         </CButton>
                       </CCol>
                     </CRow>
