@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
-  CREATE_COMPANY,
-  GET_COMPANY, GET_CURRENT_COMPANY, GET_ERRORS, LOADING_COMPANY,
+
+   GET_CURRENT_COMPANY, GET_ERRORS, LOADING_COMPANY,
 } from './types'
 
 
