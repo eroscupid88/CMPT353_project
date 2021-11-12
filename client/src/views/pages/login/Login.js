@@ -71,9 +71,9 @@ class Login extends Component {
                 <CCardBody>
                   <CForm validated={true} onSubmit={this.onSubmit}>
                     <h6 className="text-high-emphasis">
-                      SIGN IN to Your Account or {}
+                      SIGN IN to your account or {}
                       <Link to="/register">REGISTER</Link>
-                      {} for a New One
+                      {} for a new one
                     </h6>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
