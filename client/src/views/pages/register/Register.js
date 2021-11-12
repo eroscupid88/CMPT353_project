@@ -8,16 +8,15 @@ import {
   CCol,
   CContainer,
   CForm,
+  CFormFeedback,
   CFormInput,
   CInputGroup,
   CInputGroupText,
   CRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {cibAboutMe, cibGmail, cilLockLocked, cilUser} from '@coreui/icons'
+import { cibGmail, cilLockLocked, cilUser } from '@coreui/icons'
 import PropTypes from 'prop-types'
-import {faUser} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Register extends Component {
   constructor(props) {
@@ -33,17 +32,17 @@ class Register extends Component {
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard')
+      this.props.history.push('/welcome')
     }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-    // if authenticate, /register cannot be call and push to dashboard instead
+    // if authenticate, /register cannot be call and push to welcome instead
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/dashboard')
-    }
-    if (nextProps.errors) {
+      this.props.history.push('/welcome')
+    } else if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
+      alert('Email had already been registered!')
     }
   }
   onSubmit = (event) => {
@@ -55,7 +54,15 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2,
     }
-    this.props.registerUser(newUser, this.props.history)
+    if (newUser.firstname.length < 2) {
+      alert('Firstname must contain more than 2 letters!')
+    } else if (newUser.lastname.length < 2) {
+      alert('Lastname must contain more than 2 letters!')
+    } else if (newUser.password !== newUser.password2) {
+      alert('Passwords do not match!')
+    } else {
+      this.props.registerUser(newUser, this.props.history)
+    }
   }
   onChange = (event) => {
     this.setState({
@@ -72,24 +79,26 @@ class Register extends Component {
               <CCard className="mx-4">
                 <CCardBody className="p-4">
                   <CForm validated={true} onSubmit={this.onSubmit}>
-                    <p className="text-high-emphasis">Enter New Account Information</p>
+                    <h3 className="text-high-emphasis text-center mb-4">New Account Information</h3>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
-                        <FontAwesomeIcon icon={faUser} />
+                        <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
-                        placeholder="firstname"
+                        placeholder="Firstname"
                         autoComplete="firstname"
                         name="firstname"
                         defaultValue=""
                         value={this.state.firstname}
                         onChange={this.onChange}
-                        errors={errors.firstname}
+                        invalid={errors.firstname}
                         required
                       />
-                    </CInputGroup><CInputGroup className="mb-3">
+                      <CFormFeedback invalid>Please enter your firstname</CFormFeedback>
+                    </CInputGroup>
+                    <CInputGroup className="mb-3">
                       <CInputGroupText>
-                        <FontAwesomeIcon icon={faUser} />
+                        <CIcon icon={cilUser} />
                       </CInputGroupText>
                       <CFormInput
                         placeholder="lastname"
@@ -98,22 +107,27 @@ class Register extends Component {
                         defaultValue=""
                         value={this.state.lastname}
                         onChange={this.onChange}
-                        errors={errors.lastname}
+                        invalid={errors.lastname}
                         required
                       />
+                      <CFormFeedback invalid>Please enter your lastname</CFormFeedback>
                     </CInputGroup>
                     <CInputGroup className="mb-3">
-                      <CInputGroupText>@</CInputGroupText>
+                      <CInputGroupText>
+                        <CIcon icon={cibGmail} />
+                      </CInputGroupText>
                       <CFormInput
                         placeholder="Email"
                         autoComplete="email"
                         name="email"
+                        type="email"
                         defaultValue=""
                         value={this.state.email}
                         onChange={this.onChange}
-                        errors={errors.email}
+                        invalid={errors.email}
                         required
                       />
+                      <CFormFeedback invalid>Please enter a valid email</CFormFeedback>
                     </CInputGroup>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
@@ -127,9 +141,10 @@ class Register extends Component {
                         placeholder="Password"
                         autoComplete="new-password"
                         onChange={this.onChange}
-                        errors={errors.password}
+                        invalid={errors.password}
                         required
                       />
+                      <CFormFeedback invalid>Please enter a password</CFormFeedback>
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -143,12 +158,13 @@ class Register extends Component {
                         placeholder="Re-enter Password"
                         autoComplete="new-password"
                         onChange={this.onChange}
-                        errors={errors.password2}
+                        invalid={errors.password2}
                         required
                       />
+                      <CFormFeedback invalid>Please re-enter the password</CFormFeedback>
                     </CInputGroup>
-                    <div className="d-grid">
-                      <CButton color="success" type="submit">
+                    <div className="text-center">
+                      <CButton color="light" className="px-4 btn-outline-info" type="submit">
                         Create Account
                       </CButton>
                     </div>
