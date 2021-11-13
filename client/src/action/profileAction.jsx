@@ -40,15 +40,12 @@ export const getCurrentProfile = () => (dispatch) => {
     )
 }
 // delete Profile
-export const deleteAccount = () => (dispatch) => {
+export const deleteAccount = (history) => (dispatch) => {
   if (window.confirm('Are you sure you want to delete your profile')) {
     axios
       .delete('/v1/profile')
       .then((result) => {
-        dispatch({
-          type: SET_CURRENT_USER,
-          payload: {},
-        })
+        history.push('/dashboard')
       })
       .catch((err) =>
         dispatch({

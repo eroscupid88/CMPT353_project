@@ -30,41 +30,69 @@ router.post(
       // Return any errors with 400 status
       return res.status(400).json(errors);
     }
-    const description = !isEmpty(req.body.description)
-      ? req.body.description
-      : '';
-    const newCompany = new Company({
-      _id: mongoose.Types.ObjectId(),
-      name: req.body.name,
-      owner: req.user[0].id,
-      description: description,
-    });
-    // create new company
-    newCompany
-      .save()
-      .then((result) => {
-        // Update
-        Profile.findOneAndUpdate(
-          { user: req.user[0].id },
-          { company: result.id },
-          { new: true }
-        ).then((profile) => res.status(200).json(profile)).catch(err=>res.status(404).json(err));
-      })
-      .catch((error) => {
-        res.status(404).json(error);
-      });
+    let companyFields= {}
+    companyFields.owner = req.user[0].id;
+    companyFields.name = req.body.name;
+    if (req.body.description) companyFields.description = req.body.description;
+    Company.findOne({owner: req.user[0].id}).then(result =>{
+        if(result){
+            Company.findOneAndUpdate(
+                {owner: req.user[0].id},
+                { $set: companyFields },
+                { new: true }
+            ).then(company=> res.status(200).json(company))
+        }else{
+            // create new company
+                new Company({
+                    _id: mongoose.Types.ObjectId(),
+                    name: req.body.name,
+                    owner: req.user[0].id,
+                    description: req.body.description,
+                })
+                .save()
+                .then((result) => {
+                    // Update
+                    Profile.findOneAndUpdate(
+                        { user: req.user[0].id },
+                        { company: result.id },
+                        { new: true }
+                    ).then((profile) => res.status(200).json(profile)).catch(err=>res.status(404).json(err));
+                })
+                .catch((error) => {
+                    res.status(404).json(error);
+                });
+        }
+    }
+    )
+
+
   }
 );
 /**
- * Rest API to get a company
+ * Rest API to get a company invoke by getCurrentCompany
  */
-router.get('/', (req, res) => {
-  Company.find()
+router.get('/',passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+  Company.findOne({owner: req.user[0].id})
     .then((company) => res.json(company))
     .catch((err) =>
       res.status(404).json({ nocompanyfound: 'No company found ' })
     );
 });
+
+/**
+ * Rest API to get all companies invoke by getCompanies
+ */
+router.get('/all',
+    (req, res) => {
+        Company.find()
+            .then((company) => res.json(company))
+            .catch((err) =>
+                res.status(404).json({ nocompanyfound: 'No company found ' })
+            );
+    });
+
+
 
 /**
  * rest API to get company by id
@@ -77,6 +105,7 @@ router.get('/:id', (req, res) => {
         name: company.name,
         description: company.description,
         total_employee: company.staff.length + 1,
+        total_customer: company.customer.length
       })
     )
     .catch((err) =>
@@ -89,22 +118,16 @@ router.get('/:id', (req, res) => {
 /**
  * Rest API to delete company
  */
+
 router.delete(
-  '/:id',
-  // passport.authenticate('jwt', { session: false }),
+  '/',
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Profile.findOne({ user: req.user[0].id }).then((user) =>
-      Company.findById(req.params.id)
+      Company.findOne({owner: req.user[0].id})
         .then((company) => {
-          // check for post owner
-          if (company.owner.toString() !== user.id)
-            return res.status(401).json({
-              notauthorized: 'User not authorized',
-            });
+
           company.remove().then(() => res.status(204).json({ success: true }));
-        })
-        .catch((err) => res.status(404).json(err))
-    );
+        }).catch(err=>{res.status(404).json(err)})
   }
 );
 
@@ -120,35 +143,7 @@ router.post(
       .populate('User')
       .then(
         (company) => {} // find user
-        // Company.findOne(req.params.id)
-        //   .then((post) => {
-        //     // filter to find out if user already like it or not
-        //
-        //     // explain tim ra id of like roi turn to be string because req.user[0].id is a string, neu that id chinh la id dcua user va length> 0 like da ton tai> fail
-        //     if (
-        //       post.likes.filter((like) => like.user.toString() === req.user[0].id)
-        //         .length === 0
-        //     ) {
-        //       const removeIndex = post.dislikes
-        //         .map((item) => item.user.toString())
-        //         .indexOf(req.user[0].id);
-        //       // splice out of array and remove it
-        //       post.dislikes.splice(removeIndex, 1);
-        //
-        //       // add user id to likes array
-        //       post.likes.unshift({ user: req.user[0].id });
-        //
-        //       post.save().then((post) => res.json(post));
-        //     } else if (
-        //       post.likes.filter((like) => like.user.toString() === req.user[0].id)
-        //         .length > 0
-        //     ) {
-        //       return res
-        //         .status(400)
-        //         .json({ alreadyliked: 'User already liked this post' });
-        //     }
-        //   })
-        //   .catch((err) => res.status(404).json(err))
+       // need to be done
       )
       .catch((err) => {
         res.json({
@@ -157,5 +152,8 @@ router.post(
       });
   }
 );
+/**
+ * REST API to accept customer
+ */
 
 module.exports = router;

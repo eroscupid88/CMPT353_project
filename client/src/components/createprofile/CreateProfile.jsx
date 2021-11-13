@@ -56,7 +56,6 @@ class CreateProfile extends Component {
     this.props.createProfile(profileData, this.props.history)
   }
   render() {
-    const {auth} = this.state
     const { errors, displaySocialInputs } = this.state
     // select options for status
     let socialInputs
