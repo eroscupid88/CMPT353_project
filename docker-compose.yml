@@ -23,7 +23,7 @@ services:
     container_name: ${PROJECT_NAME}_mongo-express
     restart: always
     ports:
-      - 8089:8089
+      - "8089:8089"
     environment:
       ME_CONFIG_MONGODB_URL: mongodb://mongodb:27017/
     networks:
@@ -63,9 +63,9 @@ services:
       - my-db:/usr/share/elasticsearch/data
     ports:
       #       Cluster communication
-      - 9300:9300
+      - "9300:9300"
       #       REST communication
-      - 9200:9200
+      - "9200:9200"
     networks:
       app:
         aliases:
@@ -76,7 +76,7 @@ services:
     environment:
       ELASTICSEARCH_URL: "http://elasticsearch:9300"
     ports:
-      - 5601:5601
+      - "5601:5601"
     networks:
       app:
         aliases:
@@ -93,6 +93,22 @@ services:
       app:
         aliases:
           - "logstash"
+
+  # team members
+  mysql:
+    image: mysql:latest
+    container_name: cpmt353_project_team
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./server/mysql-init/team-init.sql:/docker-entrypoint-initdb.d/team-init.sql
+      - team-db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: project
+      MYSQL_DATABASE: team
+
+
   # client
 #  client:
 #    build: ${CLIENT_BUILD_LOCATION}
@@ -201,4 +217,6 @@ volumes:
   my-db:
     driver: local
   db:
+    driver: local
+  team-db:
     driver: local
