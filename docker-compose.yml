@@ -100,13 +100,17 @@ services:
     container_name: cpmt353_project_team
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - ./server/mysql-init/team-init.sql:/docker-entrypoint-initdb.d/team-init.sql
       - team-db:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: project
       MYSQL_DATABASE: team
+    networks:
+      app:
+        aliases:
+          - mysql
 
 
   # client
