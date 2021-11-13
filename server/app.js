@@ -21,7 +21,7 @@ const userRoutes = require("./routes/API/users");
 
 const profileRoutes = require("./routes/API/profiles");
 
-const bookingRoutes = require("./routes/API/bookings");
+const bookingRoutes = require("./routes/API/requests");
 
 const companyRoute = require("./routes/API/companys");
 
