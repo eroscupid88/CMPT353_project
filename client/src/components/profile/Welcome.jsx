@@ -27,16 +27,7 @@ class Welcome extends Component {
     this.props.getCurrentProfile()
     this.props.getCurrentCompany()
   }
-  showDeleteMenu() {
-    this.setState({
-      wantDelete: true
-    });
-  }
-  closeDeleteMenu() {
-    this.setState({
-      wantDelete: false
-    })
-  }
+
   onDeleteClick = (event) => {
     this.props.deleteAccount(this.props.history)
   }
@@ -48,13 +39,10 @@ class Welcome extends Component {
   render() {
     const { profile, loading } = this.props.profile
     const {company} = this.props.company
-    const { wantDelete } = this.state;
-    const deleteClass = wantDelete ? 'toBeDeleted' : '';
+
     let dashboardContent
     let deleteCompanyButton
     let deleteProfileButton
-
-
     if(!isEmpty(company)){
       deleteCompanyButton = (<button onClick={this.onDeleteCompany.bind(this)} className="btn btn-danger">
         Delete My Company
