@@ -8,6 +8,7 @@ import CIcon from '@coreui/icons-react'
 import { withRouter } from 'react-router-dom'
 import { cibGithub, cibLinkedin, cibYoutube, cibInstagram, cibTwitter } from '@coreui/icons'
 import { createProfile } from '../../action/profileAction'
+import isEmpty from "../../validation/isEmpty";
 
 class CreateProfile extends Component {
   constructor() {
@@ -24,6 +25,11 @@ class CreateProfile extends Component {
       youtube: '',
       instagram: '',
       errors: {},
+    }
+  }
+  componentDidMount() {
+    if(isEmpty(this.props.profile.profile)){
+      this.props.history.push('/edit-profile')
     }
   }
 
@@ -223,5 +229,6 @@ CreateProfile.propTypes = {
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
+  profile: state.profile,
 })
 export default connect(mapStateToProps, { createProfile })(withRouter(CreateProfile))
