@@ -7,7 +7,7 @@
     "changelog": "auto-changelog --starting-version 3.0.0 --commit-limit false --hide-credit",
     "eject": "react-scripts eject",
     "lint": "eslint \"src/**/*.js\"",
-    "start": "react-scripts start",
+    "start": "rm -rf node_modules/eslint; react-scripts start",
     "test": "react-scripts test",
     "test:cov": "npm test -- --coverage --watchAll=false",
     "test:debug": "react-scripts --inspect-brk test --runInBand"
@@ -30,7 +30,6 @@
     "axios": "^0.24.0",
     "chart.js": "^3.5.1",
     "classnames": "^2.3.1",
-    "cmpt353team": "file:../server",
     "core-js": "^3.18.3",
     "enzyme": "^3.11.0",
     "jwt-decode": "^3.1.2",
