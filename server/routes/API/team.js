@@ -6,6 +6,7 @@ router.get("/team", (req, res) => {
   let con = mysql.createConnection({
     host: "localhost",
     user: "root",
+    port: 3307,
     database: "team",
     password: "project",
   });
