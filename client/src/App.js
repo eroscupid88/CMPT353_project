@@ -7,6 +7,8 @@ import Profile from './components/profile/Profile'
 import Welcome from './components/profile/Welcome'
 import EditProfile from './components/profile/EditProfile'
 import CreateCompany from "./components/profile/CreateCompany";
+import EditCompany from "./components/profile/EditCompany";
+import Organizations from "./components/organization/Organizations";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -44,12 +46,17 @@ class App extends Component {
             <PrivateRoute exact path="/create-company" component={CreateCompany} />
           </Switch>
           <Switch>
+            <PrivateRoute exact path="/edit-company" component={EditCompany} />
+          </Switch>
+          <Switch>
             <PrivateRoute exact path="/create-profile" component={CreateProfile} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/edit-profile" component={EditProfile} />
           </Switch>
-          {/*<Route path="/dashboard" name="Home" component={DefaultLayout} />*/}
+          <Switch>
+            <PrivateRoute exact path="/organization" component={Organizations} />
+          </Switch>
         </Router>
       </React.Suspense>
     )

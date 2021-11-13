@@ -1,14 +1,14 @@
-import React ,{Component} from 'react'
+import React, {Component} from "react";
 import {CButton, CForm, CFormInput, CInputGroup, CInputGroupText} from "@coreui/react";
 import CIcon from "@coreui/icons-react";
-import {cibGithub, cibTwitter} from "@coreui/icons";
+import {cibTwitter} from "@coreui/icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAddressBook, faUser} from "@fortawesome/free-solid-svg-icons";
-import {connect} from "react-redux";
+import {faAddressBook} from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
-import {createCompany} from "../../action/companyAction";
-
-class CreateCompany extends Component {
+import {connect} from "react-redux";
+import {createCompany, getCurrentCompany} from "../../action/companyAction";
+import isEmpty from "../../validation/isEmpty";
+class EditCompany extends Component {
   constructor(props) {
     super(props);
     this.state={
@@ -18,10 +18,22 @@ class CreateCompany extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.getCurrentCompany()
+  }
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({errors: nextProps.errors})
+      this.setState({ errors: nextProps.errors })
     }
+    if (nextProps.company.company) {
+      // if company field doesnt exist , make empty string
+      const company = nextProps.company.company
+      this.setState({
+        name: company.name,
+        description: company.description
+      })
+    }
+
   }
 
   onSubmit=(event) =>{
@@ -48,7 +60,7 @@ class CreateCompany extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-8 m-auto">
-                <h1 className="display-4 text-center">Create Company</h1>
+                <h1 className="display-4 text-center">Edit Company</h1>
                 <CForm onSubmit={this.onSubmit}>
                   <CInputGroup className="mb-3">
                     <CInputGroupText id="basic-addon1">
@@ -87,10 +99,11 @@ class CreateCompany extends Component {
         </div>
       </div>
 
-  )
+    )
   }
 }
-CreateCompany.propTypes = {
+EditCompany.propTypes = {
+  getCurrentCompany: PropTypes.func.isRequired,
   createCompany: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   company: PropTypes.object.isRequired,
@@ -101,4 +114,4 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
   company: state.company,
 })
-export default connect(mapStateToProps,{createCompany})(CreateCompany)
+export default connect(mapStateToProps,{createCompany,getCurrentCompany})(EditCompany)

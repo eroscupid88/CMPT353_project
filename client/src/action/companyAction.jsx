@@ -1,14 +1,16 @@
 import axios from 'axios'
 import {
-
-   GET_CURRENT_COMPANY, GET_ERRORS, LOADING_COMPANY,
+  DELETE_COMPANY,
+  GET_COMPANIES,
+  GET_CURRENT_COMPANY,
+  GET_ERRORS,
+  LOADING_COMPANY, SET_CURRENT_USER,
 } from './types'
 
 
 //create company
 
 export const createCompany = (data,history) => (dispatch) =>{
-  console.log(data)
   axios
     .post('/v1/company/', data)
     .then((result) => {
@@ -22,10 +24,24 @@ export const createCompany = (data,history) => (dispatch) =>{
     })
 }
 
+// get Company
+export const getCompanies = () =>(dispatch) =>{
+  axios.get('/v1/company/all').then(companies => dispatch({
+    type: GET_COMPANIES,
+    payload: companies.data
+  })).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    })
+  )
+}
+
+// get company with auth
 export const getCurrentCompany = () => dispatch => {
   dispatch(setCompanyLoading());
   axios
-    .get('/v1/company')
+    .get('/v1/company/')
     .then(result =>
       dispatch({
         type: GET_CURRENT_COMPANY,
@@ -39,6 +55,46 @@ export const getCurrentCompany = () => dispatch => {
       })
     );
 };
+
+// get company with id
+export const getCurrentCompanyById = () => dispatch => {
+  dispatch(setCompanyLoading());
+  axios
+    .get('/v1/company/a')
+    .then(result =>
+      dispatch({
+        type: GET_CURRENT_COMPANY,
+        payload: result.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
+
+//delete company
+export const deleteCompany = (history) => (dispatch) => {
+  if (window.confirm('Are you sure you want to delete your Company')) {
+    axios
+      .delete('/v1/company/')
+      .then((result) => {
+        dispatch({
+          type: DELETE_COMPANY
+        })
+        history.push('/dashboard')
+      })
+      .catch((err) =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data,
+        }),
+      )
+  }
+}
+
 
 // Company loading
 export const setCompanyLoading = () => {

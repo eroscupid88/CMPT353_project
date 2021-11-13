@@ -7,8 +7,8 @@ const companySchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, default: Date.now },
   description: { type: String, required: true },
-  staff: [{ type: Schema.Types.ObjectId, ref: 'User' }],
-  customer:[{ type: Schema.Types.ObjectId, ref: 'User' }],
+  staff: [{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],
+  customer:[{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],
 });
 
 module.exports = mongoose.model('Company', companySchema);
