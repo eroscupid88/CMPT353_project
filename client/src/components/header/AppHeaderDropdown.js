@@ -47,16 +47,13 @@ class AppHeaderDropdown extends Component {
         </CDropdownToggle>
         <CDropdownMenu className="pt-0" placement="bottom-end">
           <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
-          <CDropdownItem href="#">
-            <CIcon icon={cilEnvelopeOpen} className="me-2" />
-            Messages
-            <CBadge color="success" className="ms-2">
-              100
-            </CBadge>
-          </CDropdownItem>
-          <CDropdownItem href="#">
+          <CDropdownItem href="/profile/Kyle">
             <CIcon icon={cilUser} className="me-2" />
-            Profile
+            My Profile
+          </CDropdownItem>
+          <CDropdownItem href="/welcome">
+            <CIcon icon={cilSettings} className="me-2" />
+            Settings
           </CDropdownItem>
           <CDropdownDivider />
 
