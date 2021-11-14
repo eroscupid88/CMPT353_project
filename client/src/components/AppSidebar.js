@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
+import { cilSnowflake } from '@coreui/icons'
 
 import { AppSidebarNav } from './AppSidebarNav'
 
@@ -32,9 +33,10 @@ const AppSidebar = () => {
         dispatch({ type: SET, sidebarShow: visible })
       }}
     >
-      <CSidebarBrand className="d-none d-md-flex" to="/">
-        <CIcon className="sidebar-brand-full" icon={logoNegative} height={35} />
-        <CIcon className="sidebar-brand-narrow" icon={sygnet} height={35} />
+      <CSidebarBrand className="brand d-none d-lg-flex" to="/">
+        <h1>Nomosn</h1>
+        <CIcon icon={cilSnowflake} className="icon-xl icon" />
+        <h1>w</h1>
       </CSidebarBrand>
 
       <CSidebarNav>
