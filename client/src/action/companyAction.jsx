@@ -4,7 +4,9 @@ import {
   GET_COMPANIES,
   GET_CURRENT_COMPANY,
   GET_ERRORS,
-  LOADING_COMPANY, SET_CURRENT_USER,
+  LOADING_COMPANY,
+  SET_CURRENT_USER,
+  GET_CURRENT_COMPANY_BYSTAFF
 } from './types'
 
 
@@ -37,7 +39,7 @@ export const getCompanies = () =>(dispatch) =>{
   )
 }
 
-// get company with auth
+// get company with auth owner
 export const getCurrentCompany = () => dispatch => {
   dispatch(setCompanyLoading());
   axios
@@ -45,6 +47,25 @@ export const getCurrentCompany = () => dispatch => {
     .then(result =>
       dispatch({
         type: GET_CURRENT_COMPANY,
+        payload: result.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+
+
+};// get company with auth staff
+export const getCurrentCompanyByStaff = () => dispatch => {
+  dispatch(setCompanyLoading());
+  axios
+    .get('/v1/company/staff')
+    .then(result =>
+      dispatch({
+        type: GET_CURRENT_COMPANY_BYSTAFF,
         payload: result.data
       })
     )

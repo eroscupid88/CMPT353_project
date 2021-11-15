@@ -9,6 +9,7 @@ import EditProfile from './components/profile/EditProfile'
 import CreateCompany from "./components/profile/CreateCompany";
 import EditCompany from "./components/profile/EditCompany";
 import Organizations from "./components/organization/Organizations";
+import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
 
 const loading = (
   <div className="pt-3 text-center">
@@ -58,6 +59,9 @@ class App extends Component {
           </Switch>
           <Switch>
             <PrivateRoute exact path="/organization" component={Organizations} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/organization/staff" component={CompanyStaffsInfo}/>
           </Switch>
         </Router>
       </React.Suspense>

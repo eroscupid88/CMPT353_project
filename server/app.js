@@ -21,7 +21,7 @@ const userRoutes = require("./routes/API/users");
 
 const profileRoutes = require("./routes/API/profiles");
 
-const bookingRoutes = require("./routes/API/requests");
+const requestingRoutes = require("./routes/API/requests");
 
 const companyRoute = require("./routes/API/companys");
 
@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
 
 app.use("/v1/profile", profileRoutes);
 
-app.use("/v1/booking", bookingRoutes);
+app.use("/v1/requesting", requestingRoutes);
 
 app.use("/v1/company", companyRoute);
 

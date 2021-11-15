@@ -10,10 +10,6 @@ const ProfileSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  company: {
-    type: Schema.Types.ObjectId,
-    ref: 'Company',
-  },
   profileusername: {
     type: String,
     required: true,
@@ -48,7 +44,14 @@ const ProfileSchema = new Schema({
       type: String,
     },
   },
-
+  companies:[
+    {
+      company: {
+        type: Schema.Types.ObjectId,
+        ref: 'Company',
+        }
+    }
+  ],
   date: {
     type: Date,
     default: Date.now,

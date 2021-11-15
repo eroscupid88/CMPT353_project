@@ -31,8 +31,16 @@ const userSchema = new Schema({
   avatar: {
     type: String,
   },
-  companies: [{type: Schema.Types.ObjectId, ref: 'Company'}],
-  requesting: [{ type: Schema.Types.ObjectId, ref: 'Request' }]
+  company:{
+    type: Schema.Types.ObjectId,
+    ref: 'Company'},
+  requesting: [
+    {
+      request: {
+            type: Schema.Types.ObjectId,
+            ref: 'Request'
+          }
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema);
