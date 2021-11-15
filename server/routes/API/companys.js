@@ -11,6 +11,8 @@ const User = require('../../model/user');
 
 const Profile = require('../../model/profile');
 
+const Request = require('../../model/request');
+
 const passport = require('passport');
 
 const validateCompanyInputs = require('../../validation/company');
@@ -96,11 +98,18 @@ router.get('/',passport.authenticate('jwt', { session: false }),
  */
 router.get('/staff',passport.authenticate('jwt', { session: false }),
     (req, res) => {
+    const errors = {}
         // find company by auth user
         Company.findOne({id: req.user[0].company.id})
+            .populate({
+                path:'staff.user',
+                model: 'User'
+            })
             .then((company) => res.json(company))
-            .catch((err) =>
-                res.status(404).json({ nocompanyfound: 'No company found ' })
+            .catch((err) =>{
+                    errors.err = err
+                res.status(404).json(errors)
+            }
             );
     });
 
