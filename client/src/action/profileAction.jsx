@@ -85,3 +85,16 @@ export const clearCurrentProfile = () => {
     type: CLEAR_CURRENT_PROFILE,
   }
 }
+
+export const uploadImage = image => {
+  console.log(image)
+  const formData = new FormData();
+  formData.append('image', image);
+  console.log(formData)
+
+  return axios.post('/image-upload', formData)
+    .then(json => {
+      return json.data.imageUrl;
+    })
+    .catch(({response}) => Promise.reject(response.data.errors[0]))
+}

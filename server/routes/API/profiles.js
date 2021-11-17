@@ -1,10 +1,34 @@
 const router = require('express').Router();
 const passport = require('passport');
-
+const multer = require('multer');
 // load profile user  Model
 const Profile = require('../../model/profile');
 const User = require('../../model/user');
 const validateProfileInputs = require('../../validation/profile');
+const upload = require('../../middleware/image-upload');
+
+const singleUpload = upload.single('image');
+
+
+router.post('/image-upload',
+    passport.authenticate('jwt', { session: false }),
+    function(req, res) {
+    singleUpload(req, res, function(err) {
+        if (err) {
+            return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}]});
+        }
+        User.findOneAndUpdate(
+            {id:req.user[0].id},
+            {avatar:req.file.location},
+            { new: true }
+        ).then(
+            users => {
+                return res.json(users)
+        }).catch(err => {return res.send(err)})
+    });
+});
+
+
 
 /**
  * API to get profile

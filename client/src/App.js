@@ -38,8 +38,9 @@ class App extends Component {
           <Route exact path="/500" name="Page 500" component={Page500} />
           <Route exact path="/" name="Home Page" component={About} />
           <Route exact path="/about" name="About" component={About} />
-          <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
           <Switch>
+            <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
+          </Switch><Switch>
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
           </Switch>
           <Switch>

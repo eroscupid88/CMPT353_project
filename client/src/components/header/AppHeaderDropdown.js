@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import CIcon from '@coreui/icons-react'
+import PropTypes from 'prop-types'
+import { logoutUser } from '../../action/authAction'
+import {getCurrentProfile} from '../../action/profileAction'
+import isEmpty from '../../validation/isEmpty'
+
 import {
   CAvatar,
   CBadge,
@@ -22,10 +28,7 @@ import {
   cilTask,
   cilUser,
 } from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
-import PropTypes from 'prop-types'
-import { logoutUser } from '../../action/authAction'
-import {getCurrentProfile} from '../../action/profileAction'
+
 
 /**
  *
@@ -48,7 +51,7 @@ class AppHeaderDropdown extends Component {
     const { user } = this.props.auth
     const {profile,loading} = this.props.profile
     let dropdownItemForProfile
-    if (profile === null || loading) {
+    if (isEmpty(profile) || loading) {
       dropdownItemForProfile = ''
     } else {
 
