@@ -4,7 +4,6 @@ $enable-rtl: true;
 // Import CoreUI for React components library
 @import '@coreui/coreui/scss/coreui';
 
-
 @import 'layout';
 @import 'example';
 
@@ -12,3 +11,6 @@ $enable-rtl: true;
 @import 'about';
 @import "login";
 @import "welcome";
+@import 'login';
+@import 'profile';
+@import 'dashboard';

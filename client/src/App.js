@@ -9,6 +9,7 @@ import EditProfile from './components/profile/EditProfile'
 import CreateCompany from "./components/profile/CreateCompany";
 import EditCompany from "./components/profile/EditCompany";
 import Organizations from "./components/organization/Organizations";
+import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
 
 const loading = (
   <div className="pt-3 text-center">
@@ -37,10 +38,12 @@ class App extends Component {
           <Route exact path="/500" name="Page 500" component={Page500} />
           <Route exact path="/" name="Home Page" component={About} />
           <Route exact path="/about" name="About" component={About} />
-          <Route exact path="/welcome" name="Welcome" component={Welcome} />
           <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/welcome" name="Welcome" component={Welcome}  />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/create-company" component={CreateCompany} />
@@ -56,6 +59,9 @@ class App extends Component {
           </Switch>
           <Switch>
             <PrivateRoute exact path="/organization" component={Organizations} />
+          </Switch>
+          <Switch>
+            <PrivateRoute exact path="/organization/staff" component={CompanyStaffsInfo}/>
           </Switch>
         </Router>
       </React.Suspense>

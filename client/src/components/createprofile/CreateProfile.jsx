@@ -31,11 +31,20 @@ class CreateProfile extends Component {
     if(isEmpty(this.props.profile.profile)){
       this.props.history.push('/edit-profile')
     }
+    if (this.props.auth.isAuthenticated) {
+      this.setState({
+        firstname: this.props.auth.user.firstname,
+        lastname: this.props.auth.user.lastname,
+      })
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
+    }
+    if(nextProps.profile.profile){
+      this.props.history.push('/dashboard')
     }
   }
 

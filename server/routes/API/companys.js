@@ -11,6 +11,8 @@ const User = require('../../model/user');
 
 const Profile = require('../../model/profile');
 
+const Request = require('../../model/request');
+
 const passport = require('passport');
 
 const validateCompanyInputs = require('../../validation/company');
@@ -48,28 +50,38 @@ router.post(
                     name: req.body.name,
                     owner: req.user[0].id,
                     description: req.body.description,
+                    staff : {user: req.user[0].id}
                 })
                 .save()
                 .then((result) => {
-                    // Update
-                    Profile.findOneAndUpdate(
-                        { user: req.user[0].id },
-                        { company: result.id },
-                        { new: true }
-                    ).then((profile) => res.status(200).json(profile)).catch(err=>res.status(404).json(err));
+                    // Update user with new company
+                    User.findOneAndUpdate(
+                        {id: req.user[0].id},
+                        {company: result.id},
+                        {new: true}
+                    )
+                    // Update profile with new company
+                    Profile.findOne(
+                        {user: req.user[0].id}
+                    ).then(profile =>{
+                        const comp = {
+                            company : result
+                        }
+                        profile.companies.unshift(comp)
+                        profile.save().then(result =>res.status(200).json(result))
+                    }).catch(err => res.status(404).json(err))
+
                 })
                 .catch((error) => {
                     res.status(404).json(error);
                 });
-        }
-    }
-    )
 
-
+            }
+        })
   }
 );
 /**
- * Rest API to get a company invoke by getCurrentCompany
+ * Rest API to get a company invoke by getCurrentCompany (for onwer only)
  */
 router.get('/',passport.authenticate('jwt', { session: false }),
     (req, res) => {
@@ -80,12 +92,42 @@ router.get('/',passport.authenticate('jwt', { session: false }),
     );
 });
 
+
+/**
+ * Rest API to get a company invoke by getCurrentCompanyByStaff (for staffs only)
+ */
+router.get('/staff',passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+    const errors = {}
+        // find company by auth user
+        Company.findOne({id: req.user[0].company.id})
+            .populate({
+                path:'staff.user',
+                model: 'User'
+            })
+            .then((company) => res.json(company))
+            .catch((err) =>{
+                    errors.err = err
+                res.status(404).json(errors)
+            }
+            );
+    });
+
+
 /**
  * Rest API to get all companies invoke by getCompanies
  */
+
+// {company_name: company.name,
+//     company_onwer: company.owner,
+//     company_staff_number: company.staff.length + 1,
+//     company_staff_customer: company.customer.length,
+//     company_description: company.description}
+
 router.get('/all',
     (req, res) => {
-        Company.find()
+        Company
+            .find()
             .then((company) => res.json(company))
             .catch((err) =>
                 res.status(404).json({ nocompanyfound: 'No company found ' })
@@ -132,18 +174,32 @@ router.delete(
 );
 
 /**
- * REST API to hire staff
+ * REST API to get staffs and customer data from staff
  */
 
-router.post(
-  '/staff/:id',
+router.get(
+  '/:companyid/staff',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    Company.findOne({ owner: req.user[0].id })
+      const { companyid } = req.params;
+    Company.findOne({ id: companyid })
       .populate('User')
       .then(
-        (company) => {} // find user
-       // need to be done
+        (company) => {
+            if (
+                // check if auth user is employee or not. If not return null else return list of staffs and customers
+                company.staff.filter(
+                    staff => staff._id.toString() === req.user[0].id
+                ).length === 0
+            ){
+                return json.status(204).json(null)
+            }else{
+                return json.status(200).json({
+                    staffs: company.staff,
+                    customers: company.customer
+                })
+            }
+        }
       )
       .catch((err) => {
         res.json({
@@ -152,6 +208,23 @@ router.post(
       });
   }
 );
+
+// manage company by owner
+
+router.get('/ownermanagement',passport.authenticate('jwt', { session: false }), function(req, res) {
+    const owner = res.locals.user;
+    Company.where({ owner })
+        .populate('Request')
+        .exec(function(err, foundRequest) {
+            if (err) {
+                return res.status(422).send(err);
+            }
+            return res.json(foundRequest);
+        });
+});
+
+
+
 /**
  * REST API to accept customer
  */

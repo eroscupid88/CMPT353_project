@@ -1,5 +1,10 @@
 import React, { lazy, Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import {getCurrentCompanyByStaff} from '../../action/companyAction'
+import Loader from '../../components/common/Loader'
+import { CompanyByStaffList } from './CompanyByStaffList'
+import isEmpty from '../../validation/isEmpty'
 import {
   cibCcAmex,
   cibCcApplePay,
@@ -12,6 +17,7 @@ import {
   cilUser,
   cilGroup,
 } from '@coreui/icons'
+import {connect} from 'react-redux'
 import CIcon from '@coreui/icons-react'
 import avatar1 from 'src/assets/images/avatars/1.jpg'
 import avatar2 from 'src/assets/images/avatars/2.jpg'
@@ -31,8 +37,25 @@ import {
   CTableRow,
 } from '@coreui/react'
 
-class Dashboard extends Component {
+class CompanyStaffsInfo extends Component {
+  componentDidMount() {
+    this.props.getCurrentCompanyByStaff()
+  }
   render() {
+    let companyByStaffDetails
+    const {companyByStaff, loading} = this.props.company
+    const { errors} = this.props
+    if (!isEmpty(errors.error)){
+      companyByStaffDetails  =(<h1>no data</h1>)
+    }
+    else if (companyByStaff == null || loading){
+      companyByStaffDetails = <Loader />
+    }else{
+      if (Object.keys(companyByStaff).length > 0) {
+        console.log(companyByStaff.staff)
+        companyByStaffDetails = <CompanyByStaffList staffList = {companyByStaff.staff} />
+      }
+    }
     return (
       <>
         <CTable align="middle" className="mb-0 border" hover responsive>
@@ -48,38 +71,7 @@ class Dashboard extends Component {
             </CTableRow>
           </CTableHead>
           <CTableBody>
-            {tableExample.map((item, index) => (
-              <CTableRow v-for="item in tableItems" key={index}>
-                <CTableDataCell className="text-center">
-                  <Link to={item.user.profile}>
-                    <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
-                  </Link>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <div>{item.user.name}</div>
-                  <div className="small text-medium-emphasis">
-                    <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
-                    {item.user.registered}
-                  </div>
-                </CTableDataCell>
-                <CTableDataCell className="text-center">
-                  <CIcon size="xl" icon={item.role.type} title={item.role.name} />
-                </CTableDataCell>
-                <CTableDataCell className="text-center">
-                  <div className="small text-medium-emphasis">Last login</div>
-                  <strong>{item.activity}</strong>
-                </CTableDataCell>
-                {isOwner ? (
-                  <CTableDataCell>
-                    {item.user.currentUser ? null : (
-                      <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
-                    )}
-                  </CTableDataCell>
-                ) : (
-                  <CTableDataCell />
-                )}
-              </CTableRow>
-            ))}
+            {companyByStaffDetails}
           </CTableBody>
         </CTable>
       </>
@@ -162,4 +154,13 @@ const tableExample = [
     activity: 'Last week',
   },
 ]
-export default Dashboard
+CompanyStaffsInfo.propTypes = {
+  company: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  getCurrentCompanyByStaff: PropTypes.func.isRequired
+}
+const mapPropsToState = (state) =>({
+  company: state.company,
+  errors: state.errors
+})
+export default connect(mapPropsToState,{getCurrentCompanyByStaff})(CompanyStaffsInfo)

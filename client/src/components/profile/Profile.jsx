@@ -26,25 +26,14 @@ class Profile extends Component {
     } else {
       profileContent = (
         <div>
-          <div className="row">
-            <div className="col-md-6">
-              <Link to="/welcome" className="btn btn-light mb-3 float-left">
-                Back To Profiles
-              </Link>
-            </div>
-            <div className="col-md-6" />
-          </div>
           <ProfileHeader profile={profile} />
-          {profile.githubusername ? <ProfileGithubs username={profile.githubusername} /> : null}
         </div>
       )
     }
     return (
-      <div className="profile">
+      <div className="body-profile min-vh-100 d-flex align-items-center">
         <div className="container">
-          <div className="row">
-            <div className="col-md-12">{profileContent}</div>
-          </div>
+          <div className="row">{profileContent}</div>
         </div>
       </div>
     )

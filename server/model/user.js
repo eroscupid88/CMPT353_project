@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const {Schema} = require("mongoose");
 
 // Schema to create schema for User
-const userSchema = mongoose.Schema({
+const userSchema = new Schema({
   email: {
     type: String,
     required: true,
@@ -30,6 +31,16 @@ const userSchema = mongoose.Schema({
   avatar: {
     type: String,
   },
+  company:{
+    type: Schema.Types.ObjectId,
+    ref: 'Company'},
+  requesting: [
+    {
+      request: {
+            type: Schema.Types.ObjectId,
+            ref: 'Request'
+          }
+    }]
 });
 
 module.exports = mongoose.model('User', userSchema);
