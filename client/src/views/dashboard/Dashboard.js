@@ -86,7 +86,7 @@ class Dashboard extends Component {
     )
   }
 }
-const isOwner = false
+const isOwner = true
 
 const tableExample = [
   {
