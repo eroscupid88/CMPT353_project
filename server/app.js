@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const eurekaHelper = require("./eureka-helper");
+const cors = require('cors')
 
 //  use this for connect mongodb with an app
 // const mongoClient = require('mongodb').MongoClient;
@@ -21,7 +22,7 @@ const userRoutes = require("./routes/API/users");
 
 const profileRoutes = require("./routes/API/profiles");
 
-const bookingRoutes = require("./routes/API/requests");
+const requestingRoutes = require("./routes/API/requests");
 
 const companyRoute = require("./routes/API/companys");
 
@@ -33,6 +34,7 @@ require("./config/passport")(passport);
 app.use(passport.initialize());
 // path to HTML file
 app.use("/", express.static("public"));
+app.use(cors())
 // For LOGGER
 app.use(logger("dev"));
 // PASS COOKIES from HTTP
@@ -53,24 +55,13 @@ app.get("/", (req, res) => {
 
 app.use("/v1/profile", profileRoutes);
 
-app.use("/v1/booking", bookingRoutes);
+app.use("/v1/requesting", requestingRoutes);
 
 app.use("/v1/company", companyRoute);
 
 app.use("/uploads", express.static("uploads"));
 // eslint-disable-next-line consistent-return
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "PUT, POST, PATCH, DELETE, GET");
-    return res.status(200).json({});
-  }
-  next();
-});
+
 
 // if error first, it will response with status 500
 app.use((error, req, res, next) => {

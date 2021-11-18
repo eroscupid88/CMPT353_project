@@ -1,10 +1,33 @@
 const router = require('express').Router();
 const passport = require('passport');
-
+const multer = require('multer');
 // load profile user  Model
 const Profile = require('../../model/profile');
 const User = require('../../model/user');
 const validateProfileInputs = require('../../validation/profile');
+const upload = require('../../middleware/image-upload');
+
+const singleUpload = upload.single('image');
+
+
+router.post('/image-upload',
+    passport.authenticate('jwt', { session: false }),
+    function(req, res) {
+    singleUpload(req, res, function(err) {
+        if (err) {
+            return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}]});
+        }
+        User.findOneAndUpdate(
+            {id:req.user[0].id},
+            {avatar:req.file.location},
+            { new: true }
+        ).then(
+            users => {
+                return res.json(users)
+        }).catch(err => {return res.send(err)})
+    });
+});
+
 
 /**
  * API to get profile
@@ -54,7 +77,7 @@ router.get('/profileusername/:profileusername', (req, res) => {
 router.get('/all', (req, res) => {
   const errors = {};
   Profile.find()
-    .populate('user', ['avatar', 'name'])
+    .populate('user', ['avatar', 'firstname','lastname'])
     .then((profiles) => {
       if (!profiles) {
         errors.noprofile = 'There are no profiles';
@@ -138,12 +161,12 @@ router.post(
             errors.profileusername = 'That username already exists';
             res.status(400).json(errors);
           }
-
+        });
           // Save Profile
           new Profile(profileFields)
-            .save()
-            .then((profile) => res.json(profile));
-        });
+              .save()
+              .then((profile) => res.json(profile));
+
       }
     });
   }
