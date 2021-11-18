@@ -5,27 +5,17 @@ const requestingSchema = new Schema({
   id: {
     type: Schema.Types.ObjectId,
   },
-  register:{
-    type: String,
-    required: false
+  staffRequest: {
+      type:Boolean,
+      required: false
   },
-  createdAt: { type: Date, default: Date.now },
+  customerRequest: {
+      type:Boolean,
+      required: false
+  },
   company: { type: Schema.Types.ObjectId, ref: 'Company' },
-  staffrequest: {
-    user: {type: Schema.Types.ObjectId, ref: 'User'},
-    atype: {
-      type:Boolean,
-      required: false
-    }
-
-  },
-  customerrequest: {
-    user: {type: Schema.Types.ObjectId, ref: 'User'},
-    atype: {
-      type:Boolean,
-      required: false
-    }
-  }
+  user: {type: Schema.Types.ObjectId, ref: 'User'},
+  createdAt: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model('Request', requestingSchema);

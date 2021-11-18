@@ -7,6 +7,9 @@ const companySchema = new Schema({
   owner: { type: Schema.Types.ObjectId, ref: 'User' },
   createdAt: { type: Date, default: Date.now },
   description: { type: String, required: true },
+  requests: {
+    type: Schema.Types.ObjectId, ref: 'Request'
+  },
   staff: [{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],
   customer:[{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],
 });
