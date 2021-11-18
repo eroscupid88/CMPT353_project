@@ -1,0 +1,7 @@
+{
+  "name": "CMPT353Team",
+  "version": "1.0.0",
+  "devDependencies": {
+    "redux-form": "^8.3.7"
+  }
+}
