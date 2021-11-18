@@ -105,11 +105,9 @@ export const uploadImage = image => {
   console.log(image)
   let formData = new FormData();
   formData.append('image', image);
-  console.log(formData)
-
-  // return axios.post('/image-upload', formData)
-  //   .then(json => {
-  //     return json.data.imageUrl;
-  //   })
-  //   .catch(({response}) => Promise.reject(response.data.errors[0]))
+  return axios.post('/v1/profile/image-upload', formData)
+    .then(json => {
+      return json.data.imageUrl;
+    })
+    .catch(({response}) => Promise.reject(response.data.errors[0]))
 }
