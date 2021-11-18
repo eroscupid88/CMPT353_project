@@ -1,7 +1,7 @@
-import React,{Component} from "react";
-import {getProfiles} from '../../action/profileAction'
-import PropTypes from "prop-types";
-import Loader from "../common/Loader";
+import React, { Component } from 'react'
+import { getProfiles } from '../../action/profileAction'
+import PropTypes from 'prop-types'
+import Loader from '../common/Loader'
 import CompanyCustomersList from './CompanyCustomersList'
 import {
   CAvatar,
@@ -26,29 +26,29 @@ import {
   cilUser,
   cilGroup,
 } from '@coreui/icons'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
 
-class CompanyCustomersInfo extends Component{
+class CompanyCustomersInfo extends Component {
   constructor(props) {
-    super(props);
+    super(props)
   }
   componentDidMount() {
     // call getCompanies to get information of the companies
     this.props.getProfiles()
   }
-  render(){
+  render() {
     const { profiles, loading } = this.props.profile
     let customerDetails
-    if (profiles == null || loading){
+    if (profiles == null || loading) {
       customerDetails = <Loader />
-    }else{
+    } else {
       if (Object.keys(profiles).length > 0) {
         console.log(profiles)
-        customerDetails = <CompanyCustomersList profiles = {profiles} />
+        customerDetails = <CompanyCustomersList profiles={profiles} />
       }
     }
-    return(
+    return (
       <>
         <CTable align="middle" className="mb-0 border" hover responsive>
           <CTableHead color="light">
@@ -58,13 +58,10 @@ class CompanyCustomersInfo extends Component{
               </CTableHeaderCell>
               <CTableHeaderCell>People</CTableHeaderCell>
               <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Activity</CTableHeaderCell>
-              <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
+              <CTableHeaderCell className="text-center">Creation Date</CTableHeaderCell>
             </CTableRow>
           </CTableHead>
-          <CTableBody>
-            {customerDetails}
-          </CTableBody>
+          <CTableBody>{customerDetails}</CTableBody>
         </CTable>
       </>
     )
@@ -74,11 +71,10 @@ class CompanyCustomersInfo extends Component{
 const isOwner = false
 CompanyCustomersInfo.propTypes = {
   profile: PropTypes.object.isRequired,
-
 }
 
 const mapPropToState = (state) => ({
-  profile: state.profile
+  profile: state.profile,
 })
 
-export default connect(mapPropToState,{getProfiles})(CompanyCustomersInfo)
+export default connect(mapPropToState, { getProfiles })(CompanyCustomersInfo)
