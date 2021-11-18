@@ -1,28 +1,19 @@
-import React,{ Component } from 'react'
-import {CompanyCustomersCard} from './CompanyCustomersCard'
-import {
-  CTableRow,
-} from '@coreui/react'
+import React, { Component } from 'react'
+import { CompanyCustomersCard } from './CompanyCustomersCard'
+import { CTableRow } from '@coreui/react'
 
-export default class CompanyCustomersList extends Component{
+export default class CompanyCustomersList extends Component {
   renderCompaniesCustomerlist() {
     return this.props.profiles.map((profile, index) => {
       console.log(profile)
       return (
-        <CompanyCustomersCard key= {index}
-                            colNum='col-md-3 col-xs-6'
-                            customer={profile}/>
+        <CTableRow v-for="item in tableItems">
+          <CompanyCustomersCard key={index} colNum="col-md-3 col-xs-6" customer={profile} />
+        </CTableRow>
       )
-    });
+    })
   }
-  render(){
-    return(
-      <CTableRow v-for="item in tableItems">
-        {this.renderCompaniesCustomerlist()}
-      </CTableRow>
-
-      // </CTableRow>
-    )
+  render() {
+    return this.renderCompaniesCustomerlist()
   }
 }
-
