@@ -1,26 +1,34 @@
 import React, { Component } from 'react'
-import {Link, withRouter} from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getCurrentProfile, deleteAccount } from '../../action/profileAction'
-import { getCurrentCompany,deleteCompany  } from '../../action/companyAction'
+import { getCurrentCompany, deleteCompany } from '../../action/companyAction'
 import Loader from '../../components/common/Loader'
 import ProfileAction from './ProfileAction'
-import {CFormInput, CInputGroup, CInputGroupText} from "@coreui/react";
-import CIcon from "@coreui/icons-react";
-import {cibInstagram, cibLinkedin, cibTwitter, cibYoutube} from "@coreui/icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAddressBook} from "@fortawesome/free-solid-svg-icons";
-import isEmpty from "../../validation/isEmpty";
-
+import {
+  CCard,
+  CCol,
+  CContainer,
+  CFormInput,
+  CInputGroup,
+  CInputGroupText,
+  CLink,
+  CRow,
+} from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+import { cibInstagram, cibLinkedin, cibTwitter, cibYoutube } from '@coreui/icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
+import isEmpty from '../../validation/isEmpty'
 
 class Welcome extends Component {
   constructor(props) {
-    super(props);
-    this.state={
+    super(props)
+    this.state = {
       wantDelete: false,
       name: '',
-      errors: {}
+      errors: {},
     }
   }
   componentDidMount() {
@@ -31,27 +39,30 @@ class Welcome extends Component {
   onDeleteClick = (event) => {
     this.props.deleteAccount(this.props.history)
   }
-  onDeleteCompany = (event) =>{
+  onDeleteCompany = (event) => {
     this.props.deleteCompany(this.props.history)
   }
 
-
   render() {
     const { profile, loading } = this.props.profile
-    const {company} = this.props.company
+    const { company } = this.props.company
 
     let dashboardContent
     let deleteCompanyButton
     let deleteProfileButton
-    if(!isEmpty(company)){
-      deleteCompanyButton = (<button onClick={this.onDeleteCompany.bind(this)} className="btn btn-danger">
-        Delete My Company
-      </button>)
+    if (!isEmpty(company)) {
+      deleteCompanyButton = (
+        <button onClick={this.onDeleteCompany.bind(this)} className="btn btn-danger">
+          Delete My Company
+        </button>
+      )
     }
-    if(!isEmpty(profile)){
-      deleteProfileButton = (<button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
-        Delete My Profile
-      </button>)
+    if (!isEmpty(profile)) {
+      deleteProfileButton = (
+        <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
+          Delete My Profile
+        </button>
+      )
     }
 
     if (profile === null || loading) {
@@ -61,23 +72,22 @@ class Welcome extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <p className="lead text-muted">
-              Welcome to{' '}
-              <Link to={`profile/${profile.profileusername}`}>{profile.firstname} {profile.lastname}</Link>
-            </p>
-            <ProfileAction mycompany={this.props.company} user={this.props.auth}/>
+            <Link to={`profile/${profile.profileusername}`}>
+              <CLink className="lead link-info">
+                {profile.firstname} {profile.lastname}
+              </CLink>
+            </Link>
+            <ProfileAction mycompany={this.props.company} user={this.props.auth} />
             <div style={{ marginBottom: '60px' }} />
             {deleteProfileButton}
             {deleteCompanyButton}
           </div>
-
-
         )
       } else {
         // user is logged in but has no profile
         dashboardContent = (
           <div>
-            <p>you have not yet setup a profile, please add some info</p>
+            <p>No profile set up yet. Please create one</p>
             <Link to="/create-profile" className="btn btn-lg btn-info">
               Create Profile
             </Link>
@@ -87,15 +97,21 @@ class Welcome extends Component {
     }
 
     return (
-      <div className="dashboard">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1 className="display-4">Welcome To Setting</h1>
-              {dashboardContent}
-            </div>
-          </div>
-        </div>
+      <div className="welcome-bg min-vh-100 d-flex align-items-center">
+        <CContainer>
+          <CCol md={4}>
+            <CCard color="light" className="p-4">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-12">
+                    <h1 className="display-4">Welcome</h1>
+                    {dashboardContent}
+                  </div>
+                </div>
+              </div>
+            </CCard>
+          </CCol>
+        </CContainer>
       </div>
     )
   }
@@ -118,4 +134,9 @@ const mapStateToProps = (state) => ({
   company: state.company,
 })
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount,getCurrentCompany,deleteCompany })(withRouter(Welcome))
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  deleteAccount,
+  getCurrentCompany,
+  deleteCompany,
+})(withRouter(Welcome))
