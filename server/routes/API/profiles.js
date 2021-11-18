@@ -29,7 +29,6 @@ router.post('/image-upload',
 });
 
 
-
 /**
  * API to get profile
  */
@@ -78,7 +77,7 @@ router.get('/profileusername/:profileusername', (req, res) => {
 router.get('/all', (req, res) => {
   const errors = {};
   Profile.find()
-    .populate('user', ['avatar', 'name'])
+    .populate('user', ['avatar', 'firstname','lastname'])
     .then((profiles) => {
       if (!profiles) {
         errors.noprofile = 'There are no profiles';

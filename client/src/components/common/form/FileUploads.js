@@ -8,13 +8,17 @@ export default class FileUploads extends Component {
 
   constructor() {
     super();
+
     this.setupReader()
+
     this.state = {
       selectedFile: undefined,
       imageBase64: '',
       initialImageBase64: '',
+      croppedImage: {},
       pending: false,
-      status: 'INIT'
+      status: 'INIT',
+      crop: {}
     }
 
     this.onChange = this.onChange.bind(this);
@@ -38,6 +42,7 @@ export default class FileUploads extends Component {
       pending: false,
       status,
       selectedFile: undefined,
+      croppedImage: {},
       initialImageBase64: '',
       imageBase64: ''
     });
@@ -51,8 +56,13 @@ export default class FileUploads extends Component {
         file,
         initialImageBase64: ''
       });
+
       this.reader.readAsDataURL(file);
     }
+  }
+
+  onCropChange(crop) {
+    this.setState({ crop });
   }
 
   onImageLoaded(image) {
@@ -61,6 +71,29 @@ export default class FileUploads extends Component {
       this.resetToDefaultState('INIT');
       toast.error('Minimum width of an image is 950px and height 720px');
       return;
+    }
+
+    this.setState({
+      crop: makeAspectCrop({
+        x: 10,
+        y: 10,
+        aspect: 4 / 3,
+        width: 50,
+      }, image.width / image.height),
+    });
+  }
+
+  async onCropCompleted(crop, pixelCrop) {
+    const { selectedFile, initialImageBase64 } = this.state;
+
+    if (selectedFile && (pixelCrop.height > 0 && pixelCrop.width > 0)) {
+      const img = new Image();
+      img.src = initialImageBase64;
+
+      const croppedImage =  await getCroppedImg(img, pixelCrop, selectedFile.name);
+      this.setState({croppedImage});
+
+      this.reader.readAsDataURL(croppedImage);
     }
   }
 
@@ -76,7 +109,16 @@ export default class FileUploads extends Component {
     onChange(uploadedImage);
   }
 
+  uploadImage() {
+    const { croppedImage } = this.state;
 
+    if (croppedImage) {
+      this.setState({pending: true, status: 'INIT'});
+      uploadImage(croppedImage).then(
+        (uploadedImage) => { this.onSuccess(uploadedImage) },
+        (error) => { this.onError(error)})
+    }
+  }
 
   renderSpinningCircle() {
     const { pending } = this.state;
@@ -93,16 +135,18 @@ export default class FileUploads extends Component {
 
   renderImageStatus() {
     const { status } = this.state;
+
     if (status === 'OK') {
       return <div className='alert alert-success'> Image Uploaded Succesfuly! </div>
     }
+
     if (status === 'FAIL') {
       return <div className='alert alert-danger'> Image Upload Failed! </div>
     }
   }
 
   render() {
-    const { selectedFile, imageBase64, initialImageBase64 } = this.state;
+    const { selectedFile, imageBase64, crop, initialImageBase64 } = this.state;
 
     return (
       <div className='img-upload-container'>
@@ -122,6 +166,14 @@ export default class FileUploads extends Component {
         </button>
         }
 
+        { initialImageBase64 &&
+        <ReactCrop src={initialImageBase64}
+                   crop={crop}
+                   onChange={(crop) => this.onCropChange(crop)}
+                   onImageLoaded={(image) => this.onImageLoaded(image)}
+                   onComplete={(crop, pixelCrop) => this.onCropCompleted(crop, pixelCrop)} />
+        }
+
         { imageBase64 &&
         <div className='img-preview-container'>
           <div className='img-preview'
@@ -131,13 +183,43 @@ export default class FileUploads extends Component {
           {this.renderSpinningCircle()}
         </div>
         }
+
         {this.renderImageStatus()}
       </div>
     )
   }
 }
 
+function getCroppedImg(image, pixelCrop, fileName) {
 
+  const canvas = document.createElement('canvas');
+  canvas.width = pixelCrop.width;
+  canvas.height = pixelCrop.height;
+  const ctx = canvas.getContext('2d');
+
+  ctx.drawImage(
+    image,
+    pixelCrop.x,
+    pixelCrop.y,
+    pixelCrop.width,
+    pixelCrop.height,
+    0,
+    0,
+    pixelCrop.width,
+    pixelCrop.height
+  );
+
+  // As Base64 string
+  // const base64Image = canvas.toDataURL('image/jpeg');
+
+  // As a blob
+  return new Promise((resolve, reject) => {
+    canvas.toBlob(file => {
+      file.name = fileName;
+      resolve(file);
+    }, 'image/jpeg');
+  });
+}
 
 
 

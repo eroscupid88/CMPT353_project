@@ -12,44 +12,51 @@ import CIcon from '@coreui/icons-react'
 import isEmpty from '../../validation/isEmpty'
 import connect from 'react-redux/lib/connect/connect'
 import Loading from '../common/Loader'
-import { Field } from 'redux-form'
-// import {Field,Form }from 'react-final-form'
+import { Field, Form } from 'redux-form'
 import FileUploads from '../common/form/FileUploads'
 import {uploadImage} from '../../action/profileAction'
+import {UpLoadForm} from '../common/form/UpLoadForm'
+import {createForm} from '../common/form/createForm'
 
 class ProfileHeader extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      profile:{}
+      profile:{},
+      selectedFile: {}
     }
   }
   componentDidMount() {
     if (!isEmpty(this.props.profile)){
       this.setState({profile: this.props.profile})
-      console.log(this.state)
     }
   }
-  // UNSAFE_componentWillReceiveProps(nextProps) {
-  //   if (!isEmpty(nextProps.profile)) {
-  //     this.setState({profile: nextProps.profile})
-  //   }
-  // }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (!isEmpty(nextProps.profile)) {
+      this.setState({profile: nextProps.profile})
+    }
+  }
 
-   sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-   onSubmit = async (values) => {
-    await this.sleep(300);
-    window.alert(JSON.stringify(values, 0, 2));
-  };
+   onFileChange = (event) => {
+    event.preventDefault()
+     if (event.target.files && event.target.files[0]) {
+       let selectedFile = event.target.files[0];
+       this.setState({selectedFile})
+       console.log(this.state.selectedFile)
+       uploadImage(selectedFile)
+     }
+   };
+
 
   render() {
+
     if (isEmpty(this.state.profile)){
       return (< Loading />)
     }
     else {
+      const { handleSubmit } = this.props
       const { profile } = this.state
-      console.log(profile)
       return (
         <div>
           <div className="container emp-profile">
@@ -58,7 +65,10 @@ class ProfileHeader extends Component {
                   <div className="profile-img">
                     <img src={profile.user.avatar} alt="" />
                     <div className="file btn btn-lg btn-primary">
-                      image
+                      image here
+                      <div>
+                        <input type="file" name="image" onChange={this.onFileChange.bind(this)} />
+                      </div>
                     </div>
                   </div>
                 </div>

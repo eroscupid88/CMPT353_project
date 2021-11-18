@@ -10,6 +10,7 @@ import CreateCompany from "./components/profile/CreateCompany";
 import EditCompany from "./components/profile/EditCompany";
 import Organizations from "./components/organization/Organizations";
 import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
+import CompanyCustomersInfo  from "./components/profiles/CompanyCustomersInfo"
 
 const loading = (
   <div className="pt-3 text-center">
@@ -61,6 +62,10 @@ class App extends Component {
           <Switch>
             <PrivateRoute exact path="/organization" component={Organizations} />
           </Switch>
+          <Switch>
+            <PrivateRoute exact path="/organization/customer" component={CompanyCustomersInfo} />
+          </Switch>
+
           <Switch>
             <PrivateRoute exact path="/organization/staff" component={CompanyStaffsInfo}/>
           </Switch>

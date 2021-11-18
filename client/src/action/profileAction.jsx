@@ -3,8 +3,10 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
   GET_PROFILE,
+  GET_PROFILES,
   PROFILE_LOADING,
   SET_CURRENT_USER,
+
 } from './types'
 
 export const createProfile = (data, history) => (dispatch) => {
@@ -20,6 +22,19 @@ export const createProfile = (data, history) => (dispatch) => {
       })
     })
 }
+
+export const getProfiles =()=> (dispatch)=>{
+  axios.get('/v1/profile/all').then(profiles=> dispatch({
+    type: GET_PROFILES,
+    payload: profiles.data
+  })).catch((error) => {
+    dispatch({
+      type: GET_ERRORS,
+      payload: error.response.data,
+    })
+  })
+}
+
 // get current profile
 
 export const getCurrentProfile = () => (dispatch) => {
@@ -88,13 +103,13 @@ export const clearCurrentProfile = () => {
 
 export const uploadImage = image => {
   console.log(image)
-  const formData = new FormData();
+  let formData = new FormData();
   formData.append('image', image);
   console.log(formData)
 
-  return axios.post('/image-upload', formData)
-    .then(json => {
-      return json.data.imageUrl;
-    })
-    .catch(({response}) => Promise.reject(response.data.errors[0]))
+  // return axios.post('/image-upload', formData)
+  //   .then(json => {
+  //     return json.data.imageUrl;
+  //   })
+  //   .catch(({response}) => Promise.reject(response.data.errors[0]))
 }
