@@ -1,14 +1,13 @@
 import React from 'react'
 
-function Paragraph({ letter, first, second }) {
+function Paragraph({ header, first }) {
   return (
     <div className="block">
       <p>
-        <span className="first-character">{letter}</span>
-        {first}
+        <div className="first-character">{header}</div>
       </p>
       <p className="line-break margin-top-10" />
-      <p className="margin-top-10">{second}</p>
+      <p className="margin-top-10">{first}</p>
     </div>
   )
 }
