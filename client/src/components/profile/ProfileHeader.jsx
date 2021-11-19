@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { cibFacebook, cibGithub, cibLinkedin, cibInstagram, cibTwitter } from '@coreui/icons'
+import {
+  cibFacebook,
+  cibGithub,
+  cibLinkedin,
+  cibYoutube,
+  cibInstagram,
+  cibTwitter,
+} from '@coreui/icons'
 import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
 import isEmpty from '../../validation/isEmpty'
@@ -24,7 +31,7 @@ class ProfileHeader extends Component {
       this.setState({ profile: this.props.profile })
     }
   }
-  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (!isEmpty(nextProps.profile)) {
       this.setState({ profile: nextProps.profile })
     }
@@ -34,9 +41,9 @@ class ProfileHeader extends Component {
     event.preventDefault()
     if (event.target.files && event.target.files[0]) {
       let selectedFile = event.target.files[0]
-      uploadImage(selectedFile).then(() => window.location.reload())
       this.setState({ selectedFile })
       console.log(this.state.selectedFile)
+      uploadImage(selectedFile)
     }
   }
 
@@ -44,6 +51,7 @@ class ProfileHeader extends Component {
     if (isEmpty(this.state.profile)) {
       return <Loading />
     } else {
+      const { handleSubmit } = this.props
       const { profile } = this.state
       return (
         <div>
@@ -68,9 +76,14 @@ class ProfileHeader extends Component {
                 </div>
               </div>
               <div className="col-md-2">
-                <Link to="/edit-profile" className="btn btn-light mb-3 float-left">
-                  Edit Profile
-                </Link>
+                <span>
+                  <Link to="/edit-profile" className="btn btn-light mb-3 float-left">
+                    Edit Profile
+                  </Link>
+                  <Link to="/dashboard" className="btn btn-light mb-3 float-left">
+                    Go to Dashboard
+                  </Link>
+                </span>
               </div>
             </div>
             <div className="row">
