@@ -5,7 +5,6 @@ import {
   GET_PROFILE,
   GET_PROFILES,
   PROFILE_LOADING,
-  SET_CURRENT_USER,
 } from './types'
 
 export const createProfile = (data, history) => (dispatch) => {

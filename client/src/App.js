@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, HashRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './scss/style.scss'
 import PrivateRoute from './components/common/PrivateRoute'
-import CreateProfile from './components/createprofile/CreateProfile'
+import CreateProfile from './components/profile/CreateProfile'
 import Profile from './components/profile/Profile'
 import Welcome from './components/profile/Welcome'
 import EditProfile from './components/profile/EditProfile'
-import CreateCompany from "./components/profile/CreateCompany";
-import EditCompany from "./components/profile/EditCompany";
-import Organizations from "./components/organization/Organizations";
-import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
-import CompanyCustomersInfo  from "./components/profiles/CompanyCustomersInfo"
+import CreateCompany from './components/profile/CreateCompany'
+import EditCompany from './components/profile/EditCompany'
+import Organizations from './components/organization/Organizations'
+import CompanyStaffsInfo from './components/organization/CompanyStaffsInfo'
+import CompanyCustomersInfo from './components/profiles/CompanyCustomersInfo'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -41,11 +41,12 @@ class App extends Component {
           <Route exact path="/about" name="About" component={About} />
           <Switch>
             <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
-          </Switch><Switch>
+          </Switch>
+          <Switch>
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/welcome" name="Welcome" component={Welcome}  />
+            <PrivateRoute exact path="/welcome" name="Welcome" component={Welcome} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/create-company" component={CreateCompany} />
@@ -67,7 +68,7 @@ class App extends Component {
           </Switch>
 
           <Switch>
-            <PrivateRoute exact path="/organization/staff" component={CompanyStaffsInfo}/>
+            <PrivateRoute exact path="/organization/staff" component={CompanyStaffsInfo} />
           </Switch>
         </Router>
       </React.Suspense>

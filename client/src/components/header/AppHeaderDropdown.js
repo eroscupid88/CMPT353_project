@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
 import PropTypes from 'prop-types'
 import { logoutUser } from '../../action/authAction'
-import {getCurrentProfile} from '../../action/profileAction'
+import { getCurrentProfile } from '../../action/profileAction'
 import isEmpty from '../../validation/isEmpty'
 
 import {
   CAvatar,
-  CBadge,
   CDropdown,
   CDropdownDivider,
   CDropdownHeader,
@@ -17,26 +15,15 @@ import {
   CDropdownMenu,
   CDropdownToggle,
 } from '@coreui/react'
-import {
-  cilBell,
-  cilCreditCard,
-  cilCommentSquare,
-  cilEnvelopeOpen,
-  cilFile,
-  cilLockLocked,
-  cilSettings,
-  cilTask,
-  cilUser,
-} from '@coreui/icons'
-
+import { cilLockLocked, cilSettings, cilUser } from '@coreui/icons'
 
 /**
  *
  * Header working here
  */
 class AppHeaderDropdown extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
   }
 
   componentDidMount() {
@@ -49,21 +36,20 @@ class AppHeaderDropdown extends Component {
 
   render() {
     const { user } = this.props.auth
-    const {profile,loading} = this.props.profile
+    const { profile, loading } = this.props.profile
     let dropdownItemForProfile
     if (isEmpty(profile) || loading) {
       dropdownItemForProfile = ''
     } else {
-
       console.log(profile.profileusername)
       dropdownItemForProfile = (
-          <CDropdownItem href={`/profile/${profile.profileusername}`}>
-            {/*<Link to={`/profile/${profile.profileusername}`}>*/}
+        <CDropdownItem href={`/profile/${profile.profileusername}`}>
+          {/*<Link to={`/profile/${profile.profileusername}`}>*/}
           <CIcon icon={cilUser} className="me-2" />
           My Profile
-            {/*</Link>*/}
-          </CDropdownItem>
-    )
+          {/*</Link>*/}
+        </CDropdownItem>
+      )
     }
     return (
       <CDropdown variant="nav-item">
@@ -92,11 +78,11 @@ class AppHeaderDropdown extends Component {
 AppHeaderDropdown.propTypes = {
   auth: PropTypes.object.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  getCurrentProfile : PropTypes.func.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
 })
 
-export default connect(mapStateToProps, { logoutUser,getCurrentProfile })(AppHeaderDropdown)
+export default connect(mapStateToProps, { logoutUser, getCurrentProfile })(AppHeaderDropdown)
