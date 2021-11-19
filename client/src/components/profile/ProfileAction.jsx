@@ -7,34 +7,37 @@ const ProfileAction = (props) => {
   if (props.user.user.email === 'dillon@yahoo.com') {
     if (isEmpty(props.mycompany.company)) {
       companyItem = (
-        <Link to="/create-company" className="btn btn-light">
-          <i className="fas fa-user-circle text-info mr-1" /> Create Company
-        </Link>
+        <CCol xs={6}>
+          <Link to="/create-company">
+            <CButton color="light" className="px-3 btn-outline-info">
+              Create Company
+            </CButton>
+          </Link>
+        </CCol>
       )
     } else {
       companyItem = (
-        <Link to="/edit-company" className="btn btn-light">
-          <i className="fas fa-user-circle text-info mr-1" /> Edit Company
-        </Link>
+        <CCol xs={6}>
+          <Link to="/edit-company">
+            <CButton color="light" className="px-3 btn-outline-info">
+              Edit Company
+            </CButton>
+          </Link>
+        </CCol>
       )
     }
   }
 
   return (
-    // <div className="btn-group mb-4" role="group">
-    //   <Link to="/edit-profile" className="btn btn-light">
-    //     <i className="fas fa-user-circle text-info mr-1" /> Edit Profile
-    //   </Link>
-    //   {companyItem}
-    // </div>
     <CRow>
       <CCol xs={6}>
         <Link to="/edit-profile">
-          <CButton color="light" className="px-4 btn-outline-info">
+          <CButton color="light" className="px-3 btn-outline-info">
             Edit Profile
           </CButton>
         </Link>
       </CCol>
+      {companyItem}
     </CRow>
   )
 }

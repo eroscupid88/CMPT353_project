@@ -18,7 +18,6 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cibGmail, cilLockLocked } from '@coreui/icons'
-import isEmpty from '../../../validation/isEmpty'
 
 class Login extends Component {
   constructor(props) {

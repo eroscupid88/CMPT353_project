@@ -6,20 +6,7 @@ import { getCurrentProfile, deleteAccount } from '../../action/profileAction'
 import { getCurrentCompany, deleteCompany } from '../../action/companyAction'
 import Loader from '../../components/common/Loader'
 import ProfileAction from './ProfileAction'
-import {
-  CCard,
-  CCol,
-  CContainer,
-  CFormInput,
-  CInputGroup,
-  CInputGroupText,
-  CLink,
-  CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cibInstagram, cibLinkedin, cibTwitter, cibYoutube } from '@coreui/icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
+import { CButton, CCard, CCol, CContainer, CHeaderNav, CNavLink, CRow } from '@coreui/react'
 import isEmpty from '../../validation/isEmpty'
 
 class Welcome extends Component {
@@ -52,16 +39,28 @@ class Welcome extends Component {
     let deleteProfileButton
     if (!isEmpty(company)) {
       deleteCompanyButton = (
-        <button onClick={this.onDeleteCompany.bind(this)} className="btn btn-danger">
-          Delete My Company
-        </button>
+        <CCol xs={6}>
+          <CButton
+            color="danger"
+            className="px-3 btn-outline-light"
+            onClick={this.onDeleteCompany.bind(this)}
+          >
+            Delete Company
+          </CButton>
+        </CCol>
       )
     }
     if (!isEmpty(profile)) {
       deleteProfileButton = (
-        <button onClick={this.onDeleteClick.bind(this)} className="btn btn-danger">
-          Delete My Profile
-        </button>
+        <CCol xs={6}>
+          <CButton
+            color="danger"
+            className="px-3 btn-outline-light"
+            onClick={this.onDeleteClick.bind(this)}
+          >
+            Delete Profile
+          </CButton>
+        </CCol>
       )
     }
 
@@ -72,15 +71,25 @@ class Welcome extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <Link to={`profile/${profile.profileusername}`}>
-              <CLink className="lead link-info">
+            <CCol>
+              <Link to="/dashboard">
+                <CButton color="light" className="px-3 btn-outline-info">
+                  Dashboard
+                </CButton>
+              </Link>
+              <CNavLink
+                href={`profile/${profile.profileusername}`}
+                className="lead text-info welcome-link"
+              >
                 {profile.firstname} {profile.lastname}
-              </CLink>
-            </Link>
+              </CNavLink>
+            </CCol>
             <ProfileAction mycompany={this.props.company} user={this.props.auth} />
-            <div style={{ marginBottom: '60px' }} />
-            {deleteProfileButton}
-            {deleteCompanyButton}
+            <div style={{ marginBottom: '10px' }} />
+            <CRow>
+              {deleteProfileButton}
+              {deleteCompanyButton}
+            </CRow>
           </div>
         )
       } else {
