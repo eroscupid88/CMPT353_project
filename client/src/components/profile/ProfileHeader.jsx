@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { cibFacebook, cibGithub, cibLinkedin, cibInstagram, cibTwitter } from '@coreui/icons'
+import {
+  cibFacebook,
+  cibGithub,
+  cibLinkedin,
+  cibYoutube,
+  cibInstagram,
+  cibTwitter,
+} from '@coreui/icons'
 import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
 import isEmpty from '../../validation/isEmpty'
@@ -10,6 +17,7 @@ import FileUploads from '../common/form/FileUploads'
 import { uploadImage } from '../../action/profileAction'
 import { UpLoadForm } from '../common/form/UpLoadForm'
 import { createForm } from '../common/form/createForm'
+import { CButton } from '@coreui/react'
 
 class ProfileHeader extends Component {
   constructor(props) {
@@ -24,7 +32,7 @@ class ProfileHeader extends Component {
       this.setState({ profile: this.props.profile })
     }
   }
-  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (!isEmpty(nextProps.profile)) {
       this.setState({ profile: nextProps.profile })
     }
@@ -52,12 +60,12 @@ class ProfileHeader extends Component {
               <div className="col-md-4">
                 <div className="profile-img">
                   <img src={profile.user.avatar} alt="" />
-                  <div className="file btn btn-lg btn-primary">
-                    image here
+                  <CButton color="light" className="file btn-outline-info">
+                    Upload Image
                     <div>
                       <input type="file" name="image" onChange={this.onFileChange.bind(this)} />
                     </div>
-                  </div>
+                  </CButton>
                 </div>
               </div>
               <div className="col-md-6">
@@ -132,14 +140,6 @@ class ProfileHeader extends Component {
                       </div>
                       <div className="col-md-6">
                         <p>{profile.profileusername}</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <label>Name</label>
-                      </div>
-                      <div className="col-md-6">
-                        <p>{profile.firstname + ' ' + profile.lastname}</p>
                       </div>
                     </div>
                     <div className="row">
