@@ -17,6 +17,7 @@ import FileUploads from '../common/form/FileUploads'
 import { uploadImage } from '../../action/profileAction'
 import { UpLoadForm } from '../common/form/UpLoadForm'
 import { createForm } from '../common/form/createForm'
+import { CButton } from '@coreui/react'
 
 class ProfileHeader extends Component {
   constructor(props) {
@@ -41,9 +42,9 @@ class ProfileHeader extends Component {
     event.preventDefault()
     if (event.target.files && event.target.files[0]) {
       let selectedFile = event.target.files[0]
+      uploadImage(selectedFile).then(() => window.location.reload())
       this.setState({ selectedFile })
       console.log(this.state.selectedFile)
-      uploadImage(selectedFile)
     }
   }
 
@@ -51,7 +52,6 @@ class ProfileHeader extends Component {
     if (isEmpty(this.state.profile)) {
       return <Loading />
     } else {
-      const { handleSubmit } = this.props
       const { profile } = this.state
       return (
         <div>
@@ -60,12 +60,12 @@ class ProfileHeader extends Component {
               <div className="col-md-4">
                 <div className="profile-img">
                   <img src={profile.user.avatar} alt="" />
-                  <div className="file btn btn-lg btn-primary">
-                    image here
+                  <CButton color="light" className="file btn-outline-info">
+                    Upload Image
                     <div>
                       <input type="file" name="image" onChange={this.onFileChange.bind(this)} />
                     </div>
-                  </div>
+                  </CButton>
                 </div>
               </div>
               <div className="col-md-6">
