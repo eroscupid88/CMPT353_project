@@ -6,7 +6,6 @@ import {
   GET_PROFILES,
   PROFILE_LOADING,
   SET_CURRENT_USER,
-
 } from './types'
 
 export const createProfile = (data, history) => (dispatch) => {
@@ -23,16 +22,21 @@ export const createProfile = (data, history) => (dispatch) => {
     })
 }
 
-export const getProfiles =()=> (dispatch)=>{
-  axios.get('/v1/profile/all').then(profiles=> dispatch({
-    type: GET_PROFILES,
-    payload: profiles.data
-  })).catch((error) => {
-    dispatch({
-      type: GET_ERRORS,
-      payload: error.response.data,
+export const getProfiles = () => (dispatch) => {
+  axios
+    .get('/v1/profile/all')
+    .then((profiles) =>
+      dispatch({
+        type: GET_PROFILES,
+        payload: profiles.data,
+      }),
+    )
+    .catch((error) => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: error.response.data,
+      })
     })
-  })
 }
 
 // get current profile
@@ -101,13 +105,14 @@ export const clearCurrentProfile = () => {
   }
 }
 
-export const uploadImage = image => {
+export const uploadImage = (image) => {
   console.log(image)
-  let formData = new FormData();
-  formData.append('image', image);
-  return axios.post('/v1/profile/image-upload', formData)
-    .then(json => {
-      return json.data.imageUrl;
+  let formData = new FormData()
+  formData.append('image', image)
+  return axios
+    .post('/v1/profile/image-upload', formData)
+    .then((json) => {
+      return json.data.imageUrl
     })
-    .catch(({response}) => Promise.reject(response.data.errors[0]))
+    .catch(({ response }) => Promise.reject(response.data.errors[0]))
 }

@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
-import {
-  cibFacebook,
-  cibGithub,
-  cibLinkedin,
-  cibYoutube,
-  cibInstagram,
-  cibTwitter,
-} from '@coreui/icons'
+import { cibFacebook, cibGithub, cibLinkedin, cibInstagram, cibTwitter } from '@coreui/icons'
 import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
 import isEmpty from '../../validation/isEmpty'
@@ -31,7 +24,7 @@ class ProfileHeader extends Component {
       this.setState({ profile: this.props.profile })
     }
   }
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if (!isEmpty(nextProps.profile)) {
       this.setState({ profile: nextProps.profile })
     }
@@ -41,9 +34,9 @@ class ProfileHeader extends Component {
     event.preventDefault()
     if (event.target.files && event.target.files[0]) {
       let selectedFile = event.target.files[0]
+      uploadImage(selectedFile).then(() => window.location.reload())
       this.setState({ selectedFile })
       console.log(this.state.selectedFile)
-      uploadImage(selectedFile)
     }
   }
 
@@ -51,7 +44,6 @@ class ProfileHeader extends Component {
     if (isEmpty(this.state.profile)) {
       return <Loading />
     } else {
-      const { handleSubmit } = this.props
       const { profile } = this.state
       return (
         <div>
@@ -140,6 +132,14 @@ class ProfileHeader extends Component {
                       </div>
                       <div className="col-md-6">
                         <p>{profile.profileusername}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <label>Name</label>
+                      </div>
+                      <div className="col-md-6">
+                        <p>{profile.firstname + ' ' + profile.lastname}</p>
                       </div>
                     </div>
                     <div className="row">
