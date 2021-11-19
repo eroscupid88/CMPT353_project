@@ -68,9 +68,14 @@ class ProfileHeader extends Component {
                 </div>
               </div>
               <div className="col-md-2">
-                <Link to="/edit-profile" className="btn btn-light mb-3 float-left">
-                  Edit Profile
-                </Link>
+                <span>
+                  <Link to="/edit-profile" className="btn btn-light mb-3 float-left">
+                    Edit Profile
+                  </Link>
+                  <Link to="/dashboard" className="btn btn-light mb-3 float-left">
+                    Go to Dashboard
+                  </Link>
+                </span>
               </div>
             </div>
             <div className="row">
@@ -127,6 +132,14 @@ class ProfileHeader extends Component {
                       </div>
                       <div className="col-md-6">
                         <p>{profile.profileusername}</p>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-6">
+                        <label>Name</label>
+                      </div>
+                      <div className="col-md-6">
+                        <p>{profile.firstname + ' ' + profile.lastname}</p>
                       </div>
                     </div>
                     <div className="row">
