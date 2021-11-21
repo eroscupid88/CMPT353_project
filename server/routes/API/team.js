@@ -15,7 +15,7 @@ router.get("/team", (req, res) => {
     if (err) throw err;
     console.log("MySQL Database Connected!");
   });
-
+  
   let sql = "SELECT * FROM members ORDER BY id";
   con.query(sql, (err, data) => {
     if (err) throw err;

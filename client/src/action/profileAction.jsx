@@ -92,6 +92,24 @@ export const getProfileByProfileUsername = (profileusername) => (dispatch) => {
       }),
     )
 }
+
+export const getProfileById = (id) => (dispatch) => {
+  dispatch(setProfileLoading())
+  axios
+    .get(`/v1/profile/user/${id}`)
+    .then((res) =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data,
+      }),
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null,
+      }),
+    )
+}
 // Profile loading
 export const setProfileLoading = () => {
   return {
