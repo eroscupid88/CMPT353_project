@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import { logoutUser } from '../../action/authAction'
 import {getCurrentProfile} from '../../action/profileAction'
 import isEmpty from '../../validation/isEmpty'
+import Loader from '../common/Loader'
 
 import {
   CAvatar,
@@ -28,8 +29,6 @@ import {
   cilTask,
   cilUser,
 } from '@coreui/icons'
-
-
 /**
  *
  * Header working here
@@ -37,10 +36,24 @@ import {
 class AppHeaderDropdown extends Component {
   constructor() {
     super()
+    this.state = {
+      user : null
+    }
   }
 
   componentDidMount() {
+    this.setState({ user: this.props.auth.user })
+    console.log(this.state.user)
     this.props.getCurrentProfile()
+
+    }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.auth) {
+      this.setState({ user: nextProps.auth.user })
+      console.log("haha")
+      console.log(this.state.user)
+    }
   }
   onLogoutClick(event) {
     event.preventDefault()
@@ -48,20 +61,21 @@ class AppHeaderDropdown extends Component {
   }
 
   render() {
-    const { user } = this.props.auth
-    const {profile,loading} = this.props.profile
+    const { user} = this.props.auth
+    const {profile,loading } = this.props.profile
+    console.log(this.state.user)
+    // const {profile,loading} = this.props.profile
     let dropdownItemForProfile
+    let userItem
     if (isEmpty(profile) || loading) {
       dropdownItemForProfile = ''
     } else {
-
       console.log(profile.profileusername)
       dropdownItemForProfile = (
           <CDropdownItem href={`/profile/${profile.profileusername}`}>
-            {/*<Link to={`/profile/${profile.profileusername}`}>*/}
           <CIcon icon={cilUser} className="me-2" />
           My Profile
-            {/*</Link>*/}
+     
           </CDropdownItem>
     )
     }
@@ -91,12 +105,13 @@ class AppHeaderDropdown extends Component {
 
 AppHeaderDropdown.propTypes = {
   auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  getCurrentProfile : PropTypes.func.isRequired
+  getCurrentProfile : PropTypes.func.isRequired,
+  CAvatar: PropTypes.string
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
   profile: state.profile
 })
-
 export default connect(mapStateToProps, { logoutUser,getCurrentProfile })(AppHeaderDropdown)

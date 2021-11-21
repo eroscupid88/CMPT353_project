@@ -33,7 +33,8 @@ const userSchema = new Schema({
   },
   company:{
     type: Schema.Types.ObjectId,
-    ref: 'Company'},
+    ref: 'Company'
+  },
   requesting: [
     {
       request: {

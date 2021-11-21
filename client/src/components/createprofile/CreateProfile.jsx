@@ -28,14 +28,14 @@ class CreateProfile extends Component {
     }
   }
   componentDidMount() {
-    if(isEmpty(this.props.profile.profile)){
-      this.props.history.push('/edit-profile')
-    }
     if (this.props.auth.isAuthenticated) {
       this.setState({
         firstname: this.props.auth.user.firstname,
         lastname: this.props.auth.user.lastname,
       })
+    }
+    if(isEmpty(this.props.profile.profile)){
+      this.props.history.push('/edit-profile')
     }
   }
 
@@ -43,7 +43,7 @@ class CreateProfile extends Component {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
     }
-    if(nextProps.profile.profile){
+    else if(nextProps.profile.profile){
       this.props.history.push('/dashboard')
     }
   }

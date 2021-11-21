@@ -43,23 +43,28 @@ const _navOwner = [
     items: [
       {
         component: CNavItem,
-        name: 'Set up Application',
-        to: '/organization/startapp',
+        name: 'Application Request',
+        to: '/manage',
       },
       {
         component: CNavItem,
-        name: 'Hire Staff',
-        to: '/organization/hirestaff',
+        name: 'Show Staff',
+        to: '/staff',
       },
       {
         component: CNavItem,
-        name: 'Show Organization',
-        to: '/organization',
+        name: 'Show Customer',
+        to: '/customer',
       },
       {
         component: CNavItem,
         name: 'Edit Organization',
-        to: '/organization/edit',
+        to: '/edit-company',
+      },
+      {
+        component: CNavItem,
+        name: 'View Organization',
+        to: '/organization',
       },
     ],
   },

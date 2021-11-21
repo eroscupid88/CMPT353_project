@@ -56,10 +56,13 @@ router.post(
                 .then((result) => {
                     // Update user with new company
                     User.findOneAndUpdate(
-                        {id: req.user[0].id},
-                        {company: result.id},
+                        {email: req.user[0].email},
+                        {company:result._id},
                         {new: true}
-                    )
+                    ).then(user => console.log(user))
+                    // console.log(result)
+                    // console.log(req.user[0])
+
                     // Update profile with new company
                     Profile.findOne(
                         {user: req.user[0].id}
@@ -71,10 +74,8 @@ router.post(
                         profile.save().then(result =>res.status(200).json(result))
                     }).catch(err => res.status(404).json(err))
 
-                })
-                .catch((error) => {
-                    res.status(404).json(error);
-                });
+                }).catch(err => { res.status(404).json(err)})
+
 
             }
         })
@@ -98,31 +99,28 @@ router.get('/',passport.authenticate('jwt', { session: false }),
  */
 router.get('/staff',passport.authenticate('jwt', { session: false }),
     (req, res) => {
-    const errors = {}
+        const errors = {}
+        // check if user is a staff
         // find company by auth user
-        Company.findOne({id: req.user[0].company.id})
-            .populate({
-                path:'staff.user',
-                model: 'User'
-            })
-            .then((company) => res.json(company))
-            .catch((err) =>{
-                    errors.err = err
-                res.status(404).json(errors)
-            }
-            );
+        if (isEmpty(req.user[0].company.id)){
+            errors.company = "User is not a current staff"
+            return res.status(400).json(errors)
+        }
+        else
+        {
+            Company.findOne({id: req.user[0].company.id})
+                .populate({
+                    path:'staff.user',
+                    model: 'User'
+                })
+                .then((company) => res.json(company))
+                .catch((err) =>{
+                        errors.err = err
+                        res.status(404).json(errors)
+                    }
+                );
+        }
     });
-
-
-/**
- * Rest API to get all companies invoke by getCompanies
- */
-
-// {company_name: company.name,
-//     company_onwer: company.owner,
-//     company_staff_number: company.staff.length + 1,
-//     company_staff_customer: company.customer.length,
-//     company_description: company.description}
 
 router.get('/all',
     (req, res) => {
@@ -143,12 +141,7 @@ router.get('/:id', (req, res) => {
   const { id } = req.params;
   Company.findById(req.params.id)
     .then((company) =>
-      res.json({
-        name: company.name,
-        description: company.description,
-        total_employee: company.staff.length + 1,
-        total_customer: company.customer.length
-      })
+      res.json(company)
     )
     .catch((err) =>
       res.status(404).json({

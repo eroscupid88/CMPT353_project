@@ -8,12 +8,12 @@ import Loader from "../common/Loader";
 class Organizations extends Component{
   constructor(props) {
     super(props);
+
   }
   componentDidMount() {
     // call getCompanies to get information of the companies
     this.props.getCompanies()
   }
-
 
   render(){
 
@@ -24,7 +24,7 @@ class Organizations extends Component{
     }else{
       if (Object.keys(companies).length > 0) {
         console.log(companies)
-        companiesDetails = <CompanyList companies = {companies} />
+        companiesDetails = <CompanyList companies = {companies}/>
       }
     }
     return( (

@@ -67,21 +67,19 @@ export const getCurrentCompanyByStaff = () => dispatch => {
       dispatch({
         type: GET_CURRENT_COMPANY_BYSTAFF,
         payload: result.data
+      }),
+      errors => dispatch({
+        type: GET_ERRORS,
+        payload: errors.response.data,
       })
     )
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data,
-      })
-    );
-};
+    };
 
 // get company with id
-export const getCurrentCompanyById = () => dispatch => {
+export const getCurrentCompanyById = (_id) => dispatch => {
   dispatch(setCompanyLoading());
   axios
-    .get('/v1/company/a')
+    .get(`/v1/company/${_id}`)
     .then(result =>
       dispatch({
         type: GET_CURRENT_COMPANY,

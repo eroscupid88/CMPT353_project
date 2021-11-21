@@ -36,6 +36,7 @@ export function CompanyByStaffCard(props){
             <CAvatar size="md" src={props.staff.user.avatar} />
           </Link>
         </CTableDataCell>
+        
         <CTableDataCell>
           <div>{props.staff.user.firstname} {props.staff.user.lastname}</div>
           <div className="small text-medium-emphasis">

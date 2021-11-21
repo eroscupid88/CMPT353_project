@@ -11,6 +11,8 @@ import EditCompany from "./components/profile/EditCompany";
 import Organizations from "./components/organization/Organizations";
 import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
 import CompanyCustomersInfo  from "./components/profiles/CompanyCustomersInfo"
+import RequestManage from  './components/organization/request-manage/RequestManage'
+import Requesting from  './components/requestingstaff/Requesting'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -39,9 +41,12 @@ class App extends Component {
           <Route exact path="/500" name="Page 500" component={Page500} />
           <Route exact path="/" name="Home Page" component={About} />
           <Route exact path="/about" name="About" component={About} />
+          <Route exact path="/manage" name="About" component={RequestManage} />
+          <Route exact path="/organization/:_id" name="organization detail" component={Requesting} />
           <Switch>
             <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
-          </Switch><Switch>
+          </Switch>
+          <Switch>
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
           </Switch>
           <Switch>
@@ -63,11 +68,10 @@ class App extends Component {
             <PrivateRoute exact path="/organization" component={Organizations} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/organization/customer" component={CompanyCustomersInfo} />
+            <PrivateRoute exact path="/customer" component={CompanyCustomersInfo} />
           </Switch>
-
           <Switch>
-            <PrivateRoute exact path="/organization/staff" component={CompanyStaffsInfo}/>
+            <PrivateRoute exact path="/staff" component={CompanyStaffsInfo}/>
           </Switch>
         </Router>
       </React.Suspense>
