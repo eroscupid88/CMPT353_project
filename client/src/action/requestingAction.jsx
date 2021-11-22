@@ -9,8 +9,10 @@ export const createStaffRequest = (data) => (dispatch) => {
   axios
     .post('/v1/requesting',data)
     .then(res => {
-      alert("request has been sent to Organization")
-      console.log({aaa :res.data})
+      if(res.data){
+        alert("request has been sent to Organization")
+      }
+      console.log(res.data)
       // res.data
     })
     .catch((errors) =>
