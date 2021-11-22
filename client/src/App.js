@@ -13,6 +13,7 @@ import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
 import CompanyCustomersInfo  from "./components/profiles/CompanyCustomersInfo"
 import RequestManage from  './components/organization/request-manage/RequestManage'
 import Requesting from  './components/requestingstaff/Requesting'
+import OrganizationIntroduct from './components/organization/OrganizationIntroduct'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -36,6 +37,7 @@ class App extends Component {
       <React.Suspense fallback={loading}>
         <Router>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/test" component={OrganizationIntroduct} />
           <Route exact path="/register" name="Register Page" component={Register} />
           <Route exact path="/404" name="Page 404" component={Page404} />
           <Route exact path="/500" name="Page 500" component={Page500} />

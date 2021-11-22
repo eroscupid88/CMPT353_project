@@ -47,7 +47,12 @@ export const acceptRequest = (id) =>dispatch=>{
 export const denyRequest = (id) =>dispatch=>{
   axios
     .post(`/v1/requesting/denyrequest/${id}`)
-    .then(result => console.log(result))
+    .then(result =>{
+        alert("Denied application")
+        console.log(result)
+        window.location.reload();
+      }
+      )
     .catch()
 }
 
