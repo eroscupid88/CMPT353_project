@@ -23,12 +23,7 @@ const _navOwner = [
         component: CNavItem,
         name: 'Home',
         to: '/about',
-      },
-      {
-        component: CNavItem,
-        name: 'Profile',
-        to: '/profile',
-      },
+      }
     ],
   },
   {
@@ -41,6 +36,16 @@ const _navOwner = [
     to: '/organization',
     icon: <CIcon icon={cilBank} customClassName="nav-icon" />,
     items: [
+      {
+        component: CNavItem,
+        name: 'View Organization',
+        to: '/organization',
+      },
+      {
+        component: CNavItem,
+        name: 'Edit Organization',
+        to: '/edit-company',
+      },
       {
         component: CNavItem,
         name: 'Application Request',
@@ -56,16 +61,8 @@ const _navOwner = [
         name: 'Show Customer',
         to: '/customer',
       },
-      {
-        component: CNavItem,
-        name: 'Edit Organization',
-        to: '/edit-company',
-      },
-      {
-        component: CNavItem,
-        name: 'View Organization',
-        to: '/organization',
-      },
+
+
     ],
   },
   {

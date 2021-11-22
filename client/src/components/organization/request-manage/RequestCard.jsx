@@ -26,7 +26,7 @@ class RequestCard extends Component {
     this.props.acceptRequest(id)
   };
   onDenyRequestClick = id => {
-    window.location.reload();
+    this.props.denyRequest(id)
     // this.props.location
   };
   render(){
