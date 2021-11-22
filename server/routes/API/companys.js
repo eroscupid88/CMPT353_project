@@ -164,19 +164,19 @@ router.delete(
               model: 'Request'
           })
         .then((company) => {
-            // company.staff
-            //     .map(item => {
-            //         User.findOneAndUpdate({_id: item.user},{"$set":{"company": null}})
-            //             .exec((err,success)=>{
-            //                 if(err) {
-            //                     return res.status(400).json(err)
-            //                 }
-            //                 else{
-            //                     // console.log(success)
-            //                 }
-            //
-            //             })
-            //     })
+            company.staff
+                .map(item => {
+                    User.findOneAndUpdate({_id: item.user},{"$set":{"company": null}})
+                        .exec((err,success)=>{
+                            if(err) {
+                                return res.status(400).json(err)
+                            }
+                            else{
+                                // console.log(success)
+                            }
+
+                        })
+                })
             company.requests
                 .map(item => {
                     console.log(item)
