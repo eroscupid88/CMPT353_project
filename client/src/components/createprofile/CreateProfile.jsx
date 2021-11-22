@@ -34,17 +34,14 @@ class CreateProfile extends Component {
         lastname: this.props.auth.user.lastname,
       })
     }
-    if(isEmpty(this.props.profile.profile)){
+    if(!isEmpty(this.props.profile.profile)){
       this.props.history.push('/edit-profile')
     }
   }
-
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
-    }
-    else if(nextProps.profile.profile){
-      this.props.history.push('/dashboard')
+      alert(nextProps.errors.profileusername)
     }
   }
 

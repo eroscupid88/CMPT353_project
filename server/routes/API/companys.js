@@ -159,8 +159,33 @@ router.delete(
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
       Company.findOne({owner: req.user[0].id})
+          .populate({
+              path:'requests._id',
+              model: 'Request'
+          })
         .then((company) => {
+            // company.staff
+            //     .map(item => {
+            //         User.findOneAndUpdate({_id: item.user},{"$set":{"company": null}})
+            //             .exec((err,success)=>{
+            //                 if(err) {
+            //                     return res.status(400).json(err)
+            //                 }
+            //                 else{
+            //                     // console.log(success)
+            //                 }
+            //
+            //             })
+            //     })
+            company.requests
+                .map(item => {
+                    console.log(item)
+                    User.findOneAndUpdate(
+                        {_id: item._id.user},
+                        {requesting: []},
+                        {new: true}).then(user=>console.log("user is: "+user))
 
+                })
           company.remove().then(() => res.status(204).json({ success: true }));
         }).catch(err=>{res.status(404).json(err)})
   }

@@ -29,7 +29,6 @@ class Welcome extends Component {
   onDeleteCompany = (event) => {
     this.props.deleteCompany(this.props.history)
   }
-
   render() {
     const { profile, loading } = this.props.profile
     const { company } = this.props.company
@@ -71,19 +70,7 @@ class Welcome extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <CCol>
-              <Link to="/dashboard">
-                <CButton color="light" className="px-3 btn-outline-info">
-                  Dashboard
-                </CButton>
-              </Link>
-              <CNavLink
-                href={`profile/${profile.profileusername}`}
-                className="lead text-info welcome-link"
-              >
-                {profile.firstname} {profile.lastname}
-              </CNavLink>
-            </CCol>
+
             <ProfileAction mycompany={this.props.company} user={this.props.auth} />
             <div style={{ marginBottom: '10px' }} />
             <CRow>
@@ -113,7 +100,21 @@ class Welcome extends Component {
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
-                    <h1 className="display-4">Welcome</h1>
+
+                    <CCol>
+                      <Link to="/dashboard">
+                        <CButton color="light" className="px-3 btn-outline-info">
+                          Dashboard
+                        </CButton>
+                      </Link>
+
+                    </CCol>
+                    <h1 className="display-6">Welcome { !isEmpty(profile) ? (<CNavLink
+                      href={`profile/${profile.profileusername}`}
+                      className="lead text-info welcome-link"
+                    >
+                      <p>{profile.firstname} {profile.lastname}</p>
+                    </CNavLink>): null }</h1>
                     {dashboardContent}
                   </div>
                 </div>

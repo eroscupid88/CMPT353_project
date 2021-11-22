@@ -23,12 +23,11 @@ class RequestCard extends Component {
     super(props);
   }
   onAcceptRequestClick = id => {
-    this.props.acceptRequest(id,this.props.history)
-
+    this.props.acceptRequest(id)
   };
   onDenyRequestClick = id => {
-    console.log(id)
-    // dosomething when deny request
+    window.location.reload();
+    // this.props.location
   };
   render(){
     let { request } = this.props;
@@ -69,7 +68,6 @@ RequestCard.propTypes = {
   acceptRequest: PropTypes.func.isRequired,
   denyRequest: PropTypes.func.isRequired,
   request: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({

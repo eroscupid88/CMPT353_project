@@ -19,7 +19,6 @@ class RequestManage extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors.company) {
-
       this.props.history.push('/dashboard')
     }
   }
@@ -34,7 +33,7 @@ class RequestManage extends Component {
       showRequest = null
     }
     else {
-        showRequest = <RequestList requests={requests}/>
+        showRequest = <RequestList requests={requests} />
     }
     return (<h1>{showRequest}</h1>)
 

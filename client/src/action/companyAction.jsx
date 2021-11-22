@@ -16,7 +16,7 @@ export const createCompany = (data,history) => (dispatch) =>{
   axios
     .post('/v1/company/', data)
     .then((result) => {
-      history.push('/dashboard')
+      history.push('/welcome')
     })
     .catch((error) => {
       dispatch({
@@ -103,7 +103,7 @@ export const deleteCompany = (history) => (dispatch) => {
         dispatch({
           type: DELETE_COMPANY
         })
-        history.push('/dashboard')
+        window.location.reload();
       })
       .catch((err) =>
         dispatch({
@@ -112,6 +112,7 @@ export const deleteCompany = (history) => (dispatch) => {
         }),
       )
   }
+
 }
 
 

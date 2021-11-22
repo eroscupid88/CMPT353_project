@@ -104,6 +104,10 @@ router.get('/',
             })
         }
 })
+
+
+
+// API accept request from customer to be staff
 router.post(
     '/acceptrequest/:id',
     passport.authenticate('jwt', { session: false }),
@@ -137,16 +141,49 @@ router.post(
                         }
                     )
                 })
-
-
-
-
                 // splice comment out of array
-                // post.comments.splice(removeIndex, 1);
+              
                 res.json(foundRequest)
             })
             .catch(err => {return res.status(444).json(err)})
 
-    }
-    )
+    })
+
+
+// rest API call to deny request
+router.post(
+    '/denyrequest/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req,res)=>{
+        const {id} = req.params
+        Request
+            .findById({_id: id})
+            .then((foundRequest) =>{
+                Company.findOne({_id: foundRequest.company},(err,company) =>{
+                    if(err) {
+                        return res.status(400).json(err)
+                    }
+                    const removeIndex = company.requests
+                        .map(item => item._id.toString())
+                        .indexOf(id);
+                    // splice request out of array
+                    company.requests.splice(removeIndex, 1);
+                    company.save().then(result =>console.log(result))
+                    //update User
+                    User.findOne(
+                        {_id: foundRequest.user},(err,user)=>{
+                            if(err){
+                                return res.status(400).json(err)
+                            }
+                            // remove the request
+                            user.requesting.splice(0, 1);
+                            user.save().then(result => console.log(result))
+                        }
+                    )
+                })
+                res.json(foundRequest)
+            })
+            .catch(err => {return res.status(444).json(err)})
+
+    })
 module.exports = router;
