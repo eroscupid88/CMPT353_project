@@ -65,6 +65,7 @@ class CompanyCard extends Component {
                   </button>}
 
                 </div>
+
                 <div className="user-actions">
                   <button className="btn btn-small follow-btn" type="button"><i className="icon plus-icon">
                     <svg>xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1"
@@ -74,6 +75,9 @@ class CompanyCard extends Component {
                     </svg>
                   </i><span>Follow</span></button>
                 </div>
+              </div>
+              <div className="row-wrapper"><span>Description:          {this.state.company.description}        </span>
+
               </div>
               <div className="row-wrapper"><span>Total Customer {!isEmpty(this.props.profiles) ? (this.props.profiles.length): ''} • </span>
                 <Link to={'/customer'}> See All</Link>
