@@ -229,16 +229,33 @@ router.get(
 
 // manage company by owner
 
-router.get('/ownermanagement',passport.authenticate('jwt', { session: false }), function(req, res) {
-    const owner = res.locals.user;
-    Company.where({ owner })
-        .populate('Request')
-        .exec(function(err, foundRequest) {
-            if (err) {
-                return res.status(422).send(err);
-            }
-            return res.json(foundRequest);
-        });
+router.put('/:id',passport.authenticate('jwt', { session: false }), function(req, res) {
+    const errors = {}
+    const id = req.params.id
+    const user = req.user[0]
+    Company
+        .findById({_id: user.company})
+        .then(company=>{
+            // get remove index
+            const removeIndex = company.staff
+                .map(item => item.user.toString())
+                .indexOf(id);
+            User.findOneAndUpdate(
+                {_id: id},
+                {"company": null},
+                {new: true}
+            ).then(result => console.log(result))
+
+            // splice comment out of array
+            company.staff.splice(removeIndex, 1);
+            company.save().then(result => res.json(result))
+        })
+        .catch(err =>{
+            errors.removeerrors = err
+            return res.status(400).json(errors)
+        })
+
+
 });
 
 

@@ -112,10 +112,26 @@ export const deleteCompany = (history) => (dispatch) => {
         }),
       )
   }
-
 }
 
+export const removeStaff = (id) => (dispatch) => {
+  if (window.confirm('Are you sure you want to remove your staff ?')) {
+    // console.log(id)
+    axios
+      .put(`/v1/company/${id}`)
+      .then(result =>{
+        console.log(result)
+        window.location.reload()
+        }
+      )
+      .catch(err =>dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      }))
+  }
 
+
+}
 // Company loading
 export const setCompanyLoading = () => {
   return {
