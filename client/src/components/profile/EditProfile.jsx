@@ -171,18 +171,18 @@ class EditProfile extends Component {
               <div className="col-md-8 m-auto">
                 <h1 className="display-4 text-center">Edit Your Profile</h1>
                 <CForm onSubmit={this.onSubmit}>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <FontAwesomeIcon icon={faUser} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="* Profile username"
-                      name="profileusername"
-                      value={this.state.profileusername}
-                      onChange={this.onChange}
-                      errors={errors.profileusername}
-                    />
-                  </CInputGroup>
+                  {/*<CInputGroup className="mb-3">*/}
+                  {/*  <CInputGroupText id="basic-addon1">*/}
+                  {/*    <FontAwesomeIcon icon={faUser} />*/}
+                  {/*  </CInputGroupText>*/}
+                  {/*  <CFormInput*/}
+                  {/*    placeholder="* Profile username"*/}
+                  {/*    name="profileusername"*/}
+                  {/*    value={this.state.profileusername}*/}
+                  {/*    onChange={this.onChange}*/}
+                  {/*    errors={errors.profileusername}*/}
+                  {/*  />*/}
+                  {/*</CInputGroup>*/}
 
                   <CInputGroup className="mb-3">
                     <CInputGroupText id="basic-addon1">

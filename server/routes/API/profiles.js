@@ -155,22 +155,25 @@ router.post(
           { user: req.user[0].id },
           { $set: profileFields },
           { new: true }
-        ).then((profile) => {res.json(profile)});
+        ).then((profile) => { res.json(profile)});
       } else {
           // Check if handle exists
-          Profile.findOne({
-              profileusername: profileFields.profileusername,
-          }).then((found) => {
-              if (found) {
-                  errors.profileusername = 'That username already exists';
-                  return res.status(400).json(errors);
-              }
-          });
-      }})
-        // Save Profile
-        new Profile(profileFields)
-            .save()
-            .then((profile) =>  { res.status(200).json(profile)});
+          Profile.findOne({profileusername: profileFields.profileusername,})
+              .then((found) => {
+                  if (found) {
+                      errors.profileusername = 'That username already exists';
+                      console.log(found)
+                      return res.status(400).json(errors);
+                  }
+                  else{
+                      // Save Profile
+                      new Profile(profileFields).save().then((profile) => res.json(profile));
+                  }
+
+            });
+
+         }})
+
   }
 );
 

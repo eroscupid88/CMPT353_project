@@ -19,13 +19,13 @@ class Requesting extends Component {
   }
   componentDidMount() {
     if (this.props.match.params._id) {
-      console.log(this.props.match.params._id)
       this.props.getCurrentCompanyById(this.props.match.params._id)
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if (!isEmpty(nextProps.errors)) {
       this.setState({ errors: nextProps.errors })
+      alert(nextProps.errors.request)
     }
     if (!isEmpty(nextProps.company.company)) {
       this.setState({ company: nextProps.company.company })

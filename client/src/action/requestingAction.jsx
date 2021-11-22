@@ -9,6 +9,7 @@ export const createStaffRequest = (data) => (dispatch) => {
   axios
     .post('/v1/requesting',data)
     .then(res => {
+      alert("request has been sent to Organization")
       console.log({aaa :res.data})
       // res.data
     })
@@ -32,15 +33,15 @@ export const getAllRequests = () => (dispatch) => {
       payload: errors.response.data
     }))
 }
-export const acceptRequest = (id,history) =>dispatch=>{
+export const acceptRequest = (id) =>dispatch=>{
   axios
     .post(`/v1/requesting/acceptrequest/${id}`)
     .then(result => {
-      history.push('/staff')
+        alert("Accepted application")
         console.log(result)
-    }
+        window.location.reload();
 
-      )
+    })
     .catch()
 }
 export const denyRequest = (id) =>dispatch=>{
