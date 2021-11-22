@@ -61,8 +61,6 @@ const _navOwner = [
         name: 'Show Customer',
         to: '/customer',
       },
-
-
     ],
   },
   {

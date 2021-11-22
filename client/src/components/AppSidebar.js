@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 import { connect  } from 'react-redux'
-
+import {getCurrentCompany} from '../action/companyAction'
+import PropTypes from "prop-types";
 import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilSnowflake } from '@coreui/icons'
+import isEmpty from '../validation/isEmpty'
 
 import { AppSidebarNav } from './AppSidebarNav'
 import SimpleBar from 'simplebar-react'
@@ -15,8 +17,29 @@ import navigationStaff from '../_navStaff'
 import { SET } from '../action/types'
 
 class AppSidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      user : null
+    }
+
+  }
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.setState({
+        user: this.props.auth.user
+      })
+    }
+    // call getCurrentCompany
+    this.props.getCurrentCompany()
+  }
   render(){
-    const isOwner = true
+    const {company} = this.props.company
+    let isOwner = false
+    if(!isEmpty(company)&& (!isEmpty(this.state.user))){
+      isOwner = ((company.owner === this.state.user.userId))
+    }
+
     return (
       <CSidebar
         position="fixed"
@@ -41,5 +64,15 @@ class AppSidebar extends Component {
     )
   }
 }
+AppSidebar.propTypes = {
+  company: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  getCurrentCompany: PropTypes.func.isRequired
+}
 
-export default connect()(AppSidebar)
+const mapPropToState = (state) => ({
+  company: state.company,
+  auth: state.auth
+})
+
+export default connect(mapPropToState,{getCurrentCompany})(AppSidebar)

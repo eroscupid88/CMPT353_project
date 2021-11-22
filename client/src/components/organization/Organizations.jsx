@@ -25,10 +25,7 @@ class Organizations extends Component{
     if (companies == null || loading){
       companiesDetails = <Loader />
     }else{
-      if (Object.keys(companies).length > 0) {
-        console.log(companies)
         companiesDetails = <CompanyList companies = {companies} profiles={profiles} />
-      }
     }
     return( (
       <section id="companies">
@@ -41,7 +38,8 @@ class Organizations extends Component{
 Organizations.propTypes = {
   company: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
-  getCompanies: PropTypes.func.isRequired
+  getCompanies: PropTypes.func.isRequired,
+  getProfiles: PropTypes.func.isRequired
 }
 
 const mapPropToState = (state) => ({

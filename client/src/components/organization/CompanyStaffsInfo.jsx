@@ -55,12 +55,11 @@ class CompanyStaffsInfo extends Component {
   render() {
     let companyByStaffDetails
     const {companyByStaff, loading} = this.props.company
-    console.log(companyByStaff)
     const { errors } = this.state
     if (!isEmpty(errors)){
       companyByStaffDetails  =''
     }
-    else if (companyByStaff == null || loading){
+    else if (isEmpty(companyByStaff) || loading){
       companyByStaffDetails = <Loader />
     }else{
       if (Object.keys(companyByStaff).length > 0) {

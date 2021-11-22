@@ -42,7 +42,6 @@ class EditCompany extends Component {
       name : this.state.name,
       description: this.state.description
     }
-    console.log(data)
     this.props.createCompany(data,this.props.history)
 
   }

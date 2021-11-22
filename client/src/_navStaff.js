@@ -23,12 +23,7 @@ const _navStaff = [
         component: CNavItem,
         name: 'Home',
         to: '/about',
-      },
-      {
-        component: CNavItem,
-        name: 'Profile',
-        to: '/profile',
-      },
+      }
     ],
   },
   {
@@ -36,10 +31,27 @@ const _navStaff = [
     name: 'Actions',
   },
   {
-    component: CNavItem,
-    name: 'Show Organization',
+    component: CNavGroup,
+    name: 'Organization',
     to: '/organization',
     icon: <CIcon icon={cilBank} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: 'View Organization',
+        to: '/organization',
+      },
+      {
+        component: CNavItem,
+        name: 'Show Staff',
+        to: '/staff',
+      },
+      {
+        component: CNavItem,
+        name: 'Show Customer',
+        to: '/customer',
+      },
+    ],
   },
   {
     component: CNavItem,

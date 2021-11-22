@@ -17,6 +17,7 @@ import {
   CTableRow,
 
 } from '@coreui/react'
+
 class RequestCard extends Component {
 
   constructor(props) {
@@ -27,7 +28,6 @@ class RequestCard extends Component {
   };
   onDenyRequestClick = id => {
     this.props.denyRequest(id)
-    // this.props.location
   };
   render(){
     let { request } = this.props;
@@ -36,7 +36,6 @@ class RequestCard extends Component {
       <CTableDataCell className="text-center">
         <CAvatar size="md" src={request.avatar}/>
          {request.firstname} {request.lastname}
-
           <button
             onClick={this.onAcceptRequestClick.bind(this, request._id)}
             type="button"
@@ -51,10 +50,6 @@ class RequestCard extends Component {
           </button>
 
       </CTableDataCell>
-      <CTableDataCell className="text-center">
-
-      </CTableDataCell>
-
     </>
 
 

@@ -43,7 +43,6 @@ class AppHeaderDropdown extends Component {
 
   componentDidMount() {
     this.setState({ user: this.props.auth.user })
-    console.log(this.state.user)
     this.props.getCurrentProfile()
 
     }
@@ -51,8 +50,6 @@ class AppHeaderDropdown extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.auth) {
       this.setState({ user: nextProps.auth.user })
-      console.log("haha")
-      console.log(this.state.user)
     }
   }
   onLogoutClick(event) {
@@ -63,19 +60,14 @@ class AppHeaderDropdown extends Component {
   render() {
     const { user} = this.props.auth
     const {profile,loading } = this.props.profile
-    console.log(this.state.user)
-    // const {profile,loading} = this.props.profile
     let dropdownItemForProfile
-    let userItem
     if (isEmpty(profile) || loading) {
       dropdownItemForProfile = ''
     } else {
-      console.log(profile.profileusername)
       dropdownItemForProfile = (
           <CDropdownItem href={`/profile/${profile.profileusername}`}>
           <CIcon icon={cilUser} className="me-2" />
           My Profile
-     
           </CDropdownItem>
     )
     }
