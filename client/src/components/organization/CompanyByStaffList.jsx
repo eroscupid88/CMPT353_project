@@ -9,12 +9,6 @@ export class CompanyByStaffList extends Component {
     })
   }
   render() {
-    return (
-      // <CTableRow v-for="item in tableItems" key={index}>
-
-      <CTableRow v-for="item in tableItems">{this.renderCompaniesStafflist()}</CTableRow>
-
-      // </CTableRow>
-    )
+    return <>{this.renderCompaniesStafflist()}</>
   }
 }
