@@ -195,37 +195,6 @@ router.delete(
  * REST API to get staffs and customer data from staff
  */
 
-router.get(
-  '/:companyid/staff',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-      const { companyid } = req.params;
-    Company.findOne({ id: companyid })
-      .populate('User')
-      .then(
-        (company) => {
-            if (
-                // check if auth user is employee or not. If not return null else return list of staffs and customers
-                company.staff.filter(
-                    staff => staff._id.toString() === req.user[0].id
-                ).length === 0
-            ){
-                return json.status(204).json(null)
-            }else{
-                return json.status(200).json({
-                    staffs: company.staff,
-                    customers: company.customer
-                })
-            }
-        }
-      )
-      .catch((err) => {
-        res.json({
-          noowner: 'you does not own a company',
-        });
-      });
-  }
-);
 
 // manage company by owner
 
@@ -257,6 +226,24 @@ router.put('/:id',passport.authenticate('jwt', { session: false }), function(req
 
 
 });
+
+
+/**
+ * Rest API to get a company invoke by getCurrentCompanyByStaff (for staffs only)
+ */
+router.get('/donation',passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const errors = {}
+        // check if user is a staff
+        // find company by auth user
+            Company.find()
+                .then((company) => res.json(company[0]))
+                .catch((err) =>{
+                        errors.err = err
+                        res.status(404).json(errors)
+                    }
+                );
+        })
 
 
 

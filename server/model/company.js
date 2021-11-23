@@ -18,6 +18,16 @@ const companySchema = new Schema({
           ref: 'User'
       }
   }],
+    donation: [{
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
+        amount:{
+            type: Number,
+            default: 0
+        }
+    }],
   customer:[{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],
 });
 
