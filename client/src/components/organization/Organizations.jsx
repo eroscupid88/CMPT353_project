@@ -1,15 +1,15 @@
-import React,{Component} from "react";
-import {connect} from "react-redux";
-import {getCompanies} from '../../action/companyAction'
-import {getProfiles} from '../../action/profileAction'
-import PropTypes from "prop-types";
-import CompanyList from "./CompanyList";
-import Loader from "../common/Loader";
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getCompanies } from '../../action/companyAction'
+import { getProfiles } from '../../action/profileAction'
+import PropTypes from 'prop-types'
+import CompanyList from './CompanyList'
+import Loader from '../common/Loader'
+import { AppFooter, AppHeader, AppSidebar } from '../index'
 
-class Organizations extends Component{
+class Organizations extends Component {
   constructor(props) {
-    super(props);
-
+    super(props)
   }
   componentDidMount() {
     // call getCompanies to get information of the companies
@@ -17,35 +17,41 @@ class Organizations extends Component{
     this.props.getProfiles()
   }
 
-  render(){
-
+  render() {
     const { companies, loading } = this.props.company
     const { profiles } = this.props.profile
     let companiesDetails
-    if (companies == null || loading){
+    if (companies == null || loading) {
       companiesDetails = <Loader />
-    }else{
-        companiesDetails = <CompanyList companies = {companies} profiles={profiles} />
+    } else {
+      companiesDetails = <CompanyList companies={companies} profiles={profiles} />
     }
-    return( (
-      <section id="companies">
-        <h1 className="page-title">Hope a better World</h1>
-        {companiesDetails}
-      </section>
-    ))
+    return (
+      <div>
+        <AppSidebar />
+        <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+          <AppHeader />
+          <div className="body flex-grow-1 px-3">
+            <section id="companies" className="min-vh-100">
+              {companiesDetails}
+            </section>
+          </div>
+          <AppFooter />
+        </div>
+      </div>
+    )
   }
 }
 Organizations.propTypes = {
   company: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   getCompanies: PropTypes.func.isRequired,
-  getProfiles: PropTypes.func.isRequired
+  getProfiles: PropTypes.func.isRequired,
 }
 
 const mapPropToState = (state) => ({
   company: state.company,
-  profile: state.profile
+  profile: state.profile,
 })
 
-export default connect(mapPropToState
-, {getCompanies,getProfiles})(Organizations)
+export default connect(mapPropToState, { getCompanies, getProfiles })(Organizations)

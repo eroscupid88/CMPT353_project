@@ -23,7 +23,7 @@ const _navStaff = [
         component: CNavItem,
         name: 'Home',
         to: '/about',
-      }
+      },
     ],
   },
   {

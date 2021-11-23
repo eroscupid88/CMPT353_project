@@ -70,7 +70,7 @@ class About extends Component {
             header="A Group Of Engineering Students"
             first="We are from the University of Saskatchewan and currently
               enrolled in the 2021 class of CMPT353. This class entails the learning
-              development of all components in a working website, Fullstack Development, 
+              development of all components in a working website, Fullstack Development,
               and as a project given from our professors we came together to create this
                small sized project in the span of 1 month."
           />
@@ -85,15 +85,14 @@ class About extends Component {
         <section>
           <Paragraph
             header="A Center for Organizations"
-            first="This project was designed in order to assist and create a central hub 
-              for an organization to use and operate within. It provides an owner and several staff 
+            first="This project was designed in order to assist and create a central hub
+              for an organization to use and operate within. It provides an owner and several staff
               the ability to see its customers or the organization and provide actions such as
                hiring staff to be held within the website. This project was designed using a multitude
               of languages and libraries/packages. It also contains a three stage architecture where
               the website communicates between a webserver and database. As a whole this project
               contains the collective knowledge of CSS, HTML, Javascript, NodeJS, MongoDB, React,
-              Redux, and Heroku.
-              "
+              Redux, and Heroku."
           />
         </section>
 

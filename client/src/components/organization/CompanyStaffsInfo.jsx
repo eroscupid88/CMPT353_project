@@ -1,7 +1,7 @@
 import React, { lazy, Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import {getCurrentCompanyByStaff} from '../../action/companyAction'
+import { getCurrentCompanyByStaff } from '../../action/companyAction'
 import Loader from '../../components/common/Loader'
 import { CompanyByStaffList } from './CompanyByStaffList'
 import isEmpty from '../../validation/isEmpty'
@@ -17,7 +17,7 @@ import {
   cilUser,
   cilGroup,
 } from '@coreui/icons'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
 import avatar1 from 'src/assets/images/avatars/1.jpg'
 import avatar2 from 'src/assets/images/avatars/2.jpg'
@@ -39,9 +39,9 @@ import {
 
 class CompanyStaffsInfo extends Component {
   constructor(props) {
-    super(props);
-    this.state={
-      errors: {}
+    super(props)
+    this.state = {
+      errors: {},
     }
   }
   componentDidMount() {
@@ -54,17 +54,16 @@ class CompanyStaffsInfo extends Component {
   }
   render() {
     let companyByStaffDetails
-    const {companyByStaff, loading} = this.props.company
+    const { companyByStaff, loading } = this.props.company
     const { errors } = this.state
-    if (!isEmpty(errors)){
-      companyByStaffDetails  =''
-    }
-    else if (isEmpty(companyByStaff) || loading){
+    if (!isEmpty(errors)) {
+      companyByStaffDetails = ''
+    } else if (isEmpty(companyByStaff) || loading) {
       companyByStaffDetails = <Loader />
-    }else{
+    } else {
       if (Object.keys(companyByStaff).length > 0) {
         console.log(companyByStaff.staff)
-        companyByStaffDetails = <CompanyByStaffList staffList = {companyByStaff.staff} />
+        companyByStaffDetails = <CompanyByStaffList staffList={companyByStaff.staff} />
       }
     }
     return (
@@ -81,9 +80,7 @@ class CompanyStaffsInfo extends Component {
               <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
             </CTableRow>
           </CTableHead>
-          <CTableBody>
-            {companyByStaffDetails}
-          </CTableBody>
+          <CTableBody>{companyByStaffDetails}</CTableBody>
         </CTable>
       </>
     )
@@ -94,10 +91,10 @@ const isOwner = false
 CompanyStaffsInfo.propTypes = {
   company: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  getCurrentCompanyByStaff: PropTypes.func.isRequired
+  getCurrentCompanyByStaff: PropTypes.func.isRequired,
 }
-const mapPropsToState = (state) =>({
+const mapPropsToState = (state) => ({
   company: state.company,
-  errors: state.errors
+  errors: state.errors,
 })
-export default connect(mapPropsToState,{getCurrentCompanyByStaff})(CompanyStaffsInfo)
+export default connect(mapPropsToState, { getCurrentCompanyByStaff })(CompanyStaffsInfo)
