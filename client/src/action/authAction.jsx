@@ -1,16 +1,15 @@
 import axios from 'axios'
-import {GET_ERRORS, REGISTER_USER, SET_CURRENT_USER} from './types'
+import { GET_ERRORS, REGISTER_USER, SET_CURRENT_USER } from './types'
 import jwt_decode from 'jwt-decode'
 import setAuthToken from '../utilities/setAuthToken'
 export const registerUser = (userData, history) => (dispatch) => {
   axios
     .post('/v1/user/register', userData)
-    .then((result) => {
+    .then(() => {
       dispatch({
-        type: REGISTER_USER
+        type: REGISTER_USER,
       })
       history.push('/login')
-
     })
     .catch((error) => {
       dispatch({
