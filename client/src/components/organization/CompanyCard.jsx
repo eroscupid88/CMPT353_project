@@ -4,6 +4,7 @@ import isEmpty from '../../validation/isEmpty'
 import PropTypes from "prop-types"
 import  { connect } from 'react-redux'
 import {createStaffRequest} from '../../action/requestingAction'
+import {Donation} from '../../components/organization/donation/Donation'
 class CompanyCard extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +64,7 @@ class CompanyCard extends Component {
                   {isOwner ? null :<button className="btn browse-jobs-btn" onClick={this.onRequest.bind(this)}>
                     Apply for Jobs
                   </button>}
+                  <Donation />
 
                 </div>
 
