@@ -43,6 +43,12 @@ class AppSidebar extends Component {
     return (
       <CSidebar
         position="fixed"
+        // unfoldable="unfoldable"
+        // visible="sidebarShow"
+        // // onVisibleChange={(visible) => {
+        // //   dispatch({ type: 'set', sidebarShow: visible })
+        // // }}
+
       >
         <CSidebarBrand className="brand d-none d-lg-flex" to="/">
           <h1>Nomosn</h1>

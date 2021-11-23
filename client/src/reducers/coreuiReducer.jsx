@@ -4,10 +4,10 @@ const initialState = {
   sidebarShow: true,
   sidebarUnfoldable: false,
 }
-export default function (state = initialState, { type, ...rest }) {
-  switch (type) {
+export default function (state = initialState,  action ){
+  switch (action.type) {
     case SET:
-      return { ...state, ...rest }
+      return { ...state, sidebarShow: '' }
     default:
       return state
   }
