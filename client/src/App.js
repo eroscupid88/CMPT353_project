@@ -6,9 +6,9 @@ import CreateProfile from './components/createprofile/CreateProfile'
 import Profile from './components/profile/Profile'
 import Welcome from './components/profile/Welcome'
 import EditProfile from './components/profile/EditProfile'
-import CreateCompany from "./components/profile/CreateCompany";
-import EditCompany from "./components/profile/EditCompany";
-import Organizations from "./components/organization/Organizations";
+import CreateCompany from "./components/profile/CreateCompany"
+import EditCompany from "./components/profile/EditCompany"
+import Organizations from "./components/organization/Organizations"
 import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
 import CompanyCustomersInfo  from "./components/profiles/CompanyCustomersInfo"
 import RequestManage from  './components/organization/request-manage/RequestManage'
