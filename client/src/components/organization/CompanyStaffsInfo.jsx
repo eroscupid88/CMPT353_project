@@ -1,5 +1,4 @@
-import React, { lazy, Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { getCurrentCompanyByStaff } from '../../action/companyAction'
 import Loader from '../../components/common/Loader'
@@ -36,6 +35,7 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+import { AppContent, AppFooter, AppHeader, AppSidebar } from '../index'
 
 class CompanyStaffsInfo extends Component {
   constructor(props) {
@@ -67,22 +67,31 @@ class CompanyStaffsInfo extends Component {
       }
     }
     return (
-      <>
-        <CTable align="middle" className="mb-0 border" hover responsive>
-          <CTableHead color="light">
-            <CTableRow>
-              <CTableHeaderCell className="text-center">
-                <CIcon icon={cilPeople} />
-              </CTableHeaderCell>
-              <CTableHeaderCell>People</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Activity</CTableHeaderCell>
-              <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
-            </CTableRow>
-          </CTableHead>
-          <CTableBody>{companyByStaffDetails}</CTableBody>
-        </CTable>
-      </>
+      <div>
+        <AppSidebar />
+        <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+          <AppHeader />
+          <div className="body flex-grow-1 px-3">
+            <>
+              <CTable align="middle" className="mb-0 border" hover responsive>
+                <CTableHead color="light">
+                  <CTableRow>
+                    <CTableHeaderCell className="text-center">
+                      <CIcon icon={cilPeople} />
+                    </CTableHeaderCell>
+                    <CTableHeaderCell>People</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Activity</CTableHeaderCell>
+                    <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>{companyByStaffDetails}</CTableBody>
+              </CTable>
+            </>
+          </div>
+          <AppFooter />
+        </div>
+      </div>
     )
   }
 }

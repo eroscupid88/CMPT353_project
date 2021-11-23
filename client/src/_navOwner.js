@@ -1,30 +1,30 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cilBank, cilDollar, cilSpeedometer, cilStar } from '@coreui/icons'
+import { cibDashlane, cibDraugiemLv, cibHuawei, cilBank, cilDollar } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _navOwner = [
   {
     component: CNavTitle,
-    name: 'Options',
+    name: 'Pages',
+  },
+  {
+    component: CNavItem,
+    name: 'About Us',
+    to: '/about',
+    icon: <CIcon icon={cibDraugiemLv} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: 'Welcome',
+    to: '/welcome',
+    icon: <CIcon icon={cibHuawei} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
     name: 'Dashboard',
     to: '/dashboard',
-    icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavGroup,
-    name: 'Pages',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Home',
-        to: '/about',
-      }
-    ],
+    icon: <CIcon icon={cibDashlane} customClassName="nav-icon" />,
   },
   {
     component: CNavTitle,
@@ -66,7 +66,7 @@ const _navOwner = [
   {
     component: CNavItem,
     name: 'Donate',
-    to: '/donate',
+    to: '/donation',
     icon: <CIcon icon={cilDollar} customClassName="nav-icon" />,
   },
 ]

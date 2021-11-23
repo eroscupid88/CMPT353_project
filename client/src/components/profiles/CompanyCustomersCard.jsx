@@ -31,7 +31,7 @@ export function CompanyCustomersCard(props) {
     <>
       <CTableDataCell className="text-center">
         <Link to="/dashboard">
-          <CAvatar size="md" src={props.customer.user.avatar} />
+          <CAvatar className="profile-img" size="lg" src={props.customer.user.avatar} />
         </Link>
       </CTableDataCell>
       <CTableDataCell>
