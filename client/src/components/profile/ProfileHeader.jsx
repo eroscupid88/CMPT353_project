@@ -92,7 +92,7 @@ class ProfileHeader extends Component {
                   <p>GITHUB</p>
                   {profile.githubusername ? (
                     <a href={profile.githubusername} target="_blank" rel="noopener noreferrer">
-                      <CIcon icon={cibGithub} className="icon-xxl" />
+                      <CIcon icon={cibGithub} className="github icon-xxl" />
                     </a>
                   ) : (
                     <p>N/A</p>

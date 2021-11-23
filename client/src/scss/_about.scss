@@ -1,6 +1,11 @@
 // Whole team members section (bottom most)
 /**************************/
-html {background-color: black}
+html {
+  background-color: black;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 .ourTeam-bg {
   font-family: tahoma, serif;
@@ -22,52 +27,74 @@ html {background-color: black}
   text-align: center;
   overflow: hidden;
   position: relative;
+  .picture {
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+    margin-bottom: 70px;
+    z-index: 1;
+    position: relative;
+    border-radius: 50%;
+    background-color: #023e7d;
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: 50%;
+      transform: scale(1);
+      transition: all 0.9s ease 0s;
+    }
+    &::before {
+      content: '';
+      width: 100%;
+      height: 0;
+      position: absolute;
+      bottom: 135%;
+      right: 0;
+      left: 0;
+      opacity: 0.9;
+      transform: scale(3);
+      transition: all 0.3s linear 0s;
+    }
+    &::after {
+      content: '';
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+  .social {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    bottom: 170px;
+    left: 0;
+    transition: all 0.5s ease 0s;
+    li {
+      display: inline-block;
+      a {
+        display: block;
+        padding: 5px;
+        transition: all 0.3s ease 0s;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
-.our-team .picture {
-  display: inline-block;
-  height: 150px;
-  width: 150px;
-  margin-bottom: 70px;
-  z-index: 1;
-  position: relative;
-  border-radius: 50%;
-  background-color: #023e7d;
-}
-
-.our-team .picture::before {
-  content: '';
-  width: 100%;
-  height: 0;
-  position: absolute;
-  bottom: 135%;
-  right: 0;
-  left: 0;
-  opacity: 0.9;
-  transform: scale(3);
-  transition: all 0.3s linear 0s;
-}
-
-.our-team .picture::after {
-  content: '';
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-
-.our-team .picture img {
-  width: 100%;
-  height: auto;
-  border-radius: 50%;
-  transform: scale(1);
-  transition: all 0.9s ease 0s;
-}
-.our-team:hover .picture img {
-  box-shadow: 0 0 0 7px whitesmoke;
-  transform: scale(0.85);
+.our-team:hover {
+  .picture img {
+    box-shadow: 0 0 0 7px whitesmoke;
+    transform: scale(0.85);
+  }
+  .social {
+    padding-top: 5px;
+    bottom: 95px;
+    left: 0;
+  }
 }
 
 .our-team h4 {
@@ -75,32 +102,6 @@ html {background-color: black}
   font-size: 15px;
   color: #4e5052;
   text-transform: capitalize;
-}
-
-.our-team .social {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  bottom: 170px;
-  left: 0;
-  transition: all 0.5s ease 0s;
-}
-
-.our-team:hover .social {
-  padding-top: 5px;
-  bottom: 95px;
-  left: 0;
-}
-
-.our-team .social li {
-  display: inline-block;
-}
-.our-team .social li a {
-  display: block;
-  padding: 5px;
-  transition: all 0.3s ease 0s;
-  text-decoration: none;
 }
 
 /* Set a specific color for each social profile */
@@ -115,20 +116,20 @@ html {background-color: black}
   background: #f7f5ec;
   color: black;
   border-radius: 50%;
-}
-.github:hover {
-  background: black;
-  color: #f7f5ec;
+  &:hover {
+    background: black;
+    color: #f7f5ec;
+  }
 }
 
 .linkedIn {
   background: #f7f5ec;
   color: #0077b5;
   border-radius: 10px;
-}
-.linkedIn:hover {
-  background: #0077b5;
-  color: #f7f5ec;
+  &:hover {
+    background: #0077b5;
+    color: #f7f5ec;
+  }
 }
 
 /* Override UGG site */
@@ -211,17 +212,6 @@ html {background-color: black}
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: white;
-}
-.first-character {
-  text-align: center;
-  font-weight: 400;
-  font-size: 42px;
-  line-height: 64px;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-left: 3px;
-  font-family: 'Source Sans Pro', sans-serif;
   color: white;
 }
 
