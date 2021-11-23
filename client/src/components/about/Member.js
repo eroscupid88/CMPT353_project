@@ -15,12 +15,12 @@ function Member({ pic, name, github, linkedin }) {
         </div>
         <ul className="social">
           <li>
-            <a href={github} target="_blank" aria-hidden="true">
+            <a href={github} target="_blank" rel="noreferrer" aria-hidden="true">
               <CIcon className="icon github" icon={cibGithub} size="xxl" />
             </a>
           </li>
           <li>
-            <a href={linkedin} target="_blank" aria-hidden="true">
+            <a href={linkedin} target="_blank" rel="noreferrer" aria-hidden="true">
               <CIcon className="icon linkedIn" icon={cibLinkedin} size="xxl" />
             </a>
           </li>

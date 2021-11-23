@@ -1,19 +1,20 @@
-import React,{ useState, useEffect } from 'react'
-import  {useDispatch, useSelector} from 'react-redux'
-import {getCompanies} from '../../../action/companyAction'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCompanies } from '../../../action/companyAction'
 import isEmpty from '../../../validation/isEmpty'
 import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton } from '@coreui/react'
 
 export const Donation = () => {
   const [total, setTotal] = React.useState(0);
   const [displayState, setDisplayState] = React.useState(false);
+
   useEffect(() => {
     dispatch(getCompanies())
   }, [])
   const dispatch = useDispatch()
-  const currentCompany = useSelector(state => state.company)
+  const currentCompany = useSelector((state) => state.company)
   let companyDonation = null
-  if(!isEmpty(currentCompany.companies)) {
+  if (!isEmpty(currentCompany.companies)) {
     console.log(currentCompany.companies[0])
     companyDonation =
       (
@@ -26,6 +27,7 @@ export const Donation = () => {
             }
         </div>
       )
+
   }
   console.log({displayState})
   const onChange = (event) => {
@@ -63,7 +65,7 @@ export const Donation = () => {
       {displayState}
       {showDonation}
     </>
+
   )
 
 }
-
