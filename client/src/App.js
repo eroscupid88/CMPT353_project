@@ -12,6 +12,8 @@ import Organizations from "./components/organization/Organizations";
 import CompanyStaffsInfo  from "./components/organization/CompanyStaffsInfo"
 import CompanyCustomersInfo  from "./components/profiles/CompanyCustomersInfo"
 import RequestManage from  './components/organization/request-manage/RequestManage'
+import Requesting from './components/requestingstaff/Requesting'
+import OrganizationIntroduct from './components/organization/OrganizationIntroduct'
 import {Donation} from './components/organization/donation/Donation'
 
 const loading = (
