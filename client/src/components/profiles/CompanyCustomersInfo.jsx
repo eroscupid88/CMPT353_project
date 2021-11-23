@@ -28,6 +28,7 @@ import {
 } from '@coreui/icons'
 import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
+import { AppContent, AppFooter, AppHeader, AppSidebar } from '../index'
 
 class CompanyCustomersInfo extends Component {
   constructor(props) {
@@ -43,24 +44,33 @@ class CompanyCustomersInfo extends Component {
     if (profiles == null || loading) {
       customerDetails = <Loader />
     } else {
-        customerDetails = <CompanyCustomersList profiles={profiles} />
+      customerDetails = <CompanyCustomersList profiles={profiles} />
     }
     return (
-      <>
-        <CTable align="middle" className="mb-0 border" hover responsive>
-          <CTableHead color="light">
-            <CTableRow>
-              <CTableHeaderCell className="text-center">
-                <CIcon icon={cilPeople} />
-              </CTableHeaderCell>
-              <CTableHeaderCell>People</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Creation Date</CTableHeaderCell>
-            </CTableRow>
-          </CTableHead>
-          <CTableBody>{customerDetails}</CTableBody>
-        </CTable>
-      </>
+      <div>
+        <AppSidebar />
+        <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+          <AppHeader />
+          <div className="body flex-grow-1 px-3">
+            <>
+              <CTable align="middle" className="mb-0 border" hover responsive>
+                <CTableHead color="light">
+                  <CTableRow>
+                    <CTableHeaderCell className="text-center">
+                      <CIcon icon={cilPeople} />
+                    </CTableHeaderCell>
+                    <CTableHeaderCell>People</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Creation Date</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>{customerDetails}</CTableBody>
+              </CTable>
+            </>
+          </div>
+          <AppFooter />
+        </div>
+      </div>
     )
   }
 }

@@ -1,40 +1,11 @@
-/* @include transition(all,2s,ease-out); */
-@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
-  -webkit-transition: $what $time $how;
-  -moz-transition:    $what $time $how;
-  -ms-transition:     $what $time $how;
-  -o-transition:      $what $time $how;
-  transition:         $what $time $how;
-}
-
-html {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-body-organization {
-  background: #F0F0F0;
+.body-organization {
   font-family: 'DM Sans', sans-serif;
   color: #2a2a32;
   display: flex;
   justify-content: center;
-  margin-top: 7rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
   padding: 1em;
-}
-*, *::after, *::before {
-  -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
-  box-sizing: inherit;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  vertical-align: text-bottom;
-
 }
 
 .profile-card-hover {
@@ -58,7 +29,7 @@ img {
         img {
           width: 100px;
           height: 100px;
-          margin-right: .8em;
+          margin-right: 0.8em;
         }
       }
       .row-wrapper {
@@ -72,8 +43,7 @@ img {
           color: #9ba1ad;
           font-size: 14px;
           font-weight: 300;
-          margin: .4em 0 1.2em;
-
+          margin: 0.4em 0 1.2em;
         }
         .browse-jobs-btn {
           padding: 4px 15px;
@@ -94,7 +64,7 @@ img {
       .user-actions {
         margin-bottom: auto;
         .follow-btn {
-          border: 1px solid rgba(66, 146, 244, .3);
+          border: 1px solid rgba(66, 146, 244, 0.3);
           background: transparent;
           padding: 6px 14px 5px 13px;
           display: flex;
@@ -116,9 +86,8 @@ img {
           }
           span {
             color: #4292f4;
-            margin-left: .2em;
+            margin-left: 0.2em;
             @include transition(all, 200ms, ease);
-
           }
           &:hover {
             background: #4292f4;
@@ -139,7 +108,7 @@ img {
         font-size: 15px;
       }
       .friends-avatars {
-        margin: .8em 0;
+        margin: 0.8em 0;
         a {
           img {
             height: 37px;
@@ -172,5 +141,4 @@ img {
       }
     }
   }
-
 }

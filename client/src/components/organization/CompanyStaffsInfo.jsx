@@ -1,7 +1,6 @@
-import React, { lazy, Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {getCurrentCompanyByStaff} from '../../action/companyAction'
+import { getCurrentCompanyByStaff } from '../../action/companyAction'
 import Loader from '../../components/common/Loader'
 import { CompanyByStaffList } from './CompanyByStaffList'
 import isEmpty from '../../validation/isEmpty'
@@ -17,7 +16,7 @@ import {
   cilUser,
   cilGroup,
 } from '@coreui/icons'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
 import avatar1 from 'src/assets/images/avatars/1.jpg'
 import avatar2 from 'src/assets/images/avatars/2.jpg'
@@ -36,12 +35,13 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+import { AppContent, AppFooter, AppHeader, AppSidebar } from '../index'
 
 class CompanyStaffsInfo extends Component {
   constructor(props) {
-    super(props);
-    this.state={
-      errors: {}
+    super(props)
+    this.state = {
+      errors: {},
     }
   }
   componentDidMount() {
@@ -54,38 +54,44 @@ class CompanyStaffsInfo extends Component {
   }
   render() {
     let companyByStaffDetails
-    const {companyByStaff, loading} = this.props.company
+    const { companyByStaff, loading } = this.props.company
     const { errors } = this.state
-    if (!isEmpty(errors)){
-      companyByStaffDetails  =''
-    }
-    else if (isEmpty(companyByStaff) || loading){
+    if (!isEmpty(errors)) {
+      companyByStaffDetails = ''
+    } else if (isEmpty(companyByStaff) || loading) {
       companyByStaffDetails = <Loader />
-    }else{
+    } else {
       if (Object.keys(companyByStaff).length > 0) {
         console.log(companyByStaff.staff)
-        companyByStaffDetails = <CompanyByStaffList staffList = {companyByStaff.staff} />
+        companyByStaffDetails = <CompanyByStaffList staffList={companyByStaff.staff} />
       }
     }
     return (
-      <>
-        <CTable align="middle" className="mb-0 border" hover responsive>
-          <CTableHead color="light">
-            <CTableRow>
-              <CTableHeaderCell className="text-center">
-                <CIcon icon={cilPeople} />
-              </CTableHeaderCell>
-              <CTableHeaderCell>People</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
-              <CTableHeaderCell className="text-center">Activity</CTableHeaderCell>
-              <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
-            </CTableRow>
-          </CTableHead>
-          <CTableBody>
-            {companyByStaffDetails}
-          </CTableBody>
-        </CTable>
-      </>
+      <div>
+        <AppSidebar />
+        <div className="wrapper d-flex flex-column min-vh-100 bg-light">
+          <AppHeader />
+          <div className="body flex-grow-1 px-3">
+            <>
+              <CTable align="middle" className="mb-0 border" hover responsive>
+                <CTableHead color="light">
+                  <CTableRow>
+                    <CTableHeaderCell className="text-center">
+                      <CIcon icon={cilPeople} />
+                    </CTableHeaderCell>
+                    <CTableHeaderCell>People</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Activity</CTableHeaderCell>
+                    <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
+                  </CTableRow>
+                </CTableHead>
+                <CTableBody>{companyByStaffDetails}</CTableBody>
+              </CTable>
+            </>
+          </div>
+          <AppFooter />
+        </div>
+      </div>
     )
   }
 }
@@ -94,10 +100,10 @@ const isOwner = false
 CompanyStaffsInfo.propTypes = {
   company: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  getCurrentCompanyByStaff: PropTypes.func.isRequired
+  getCurrentCompanyByStaff: PropTypes.func.isRequired,
 }
-const mapPropsToState = (state) =>({
+const mapPropsToState = (state) => ({
   company: state.company,
-  errors: state.errors
+  errors: state.errors,
 })
-export default connect(mapPropsToState,{getCurrentCompanyByStaff})(CompanyStaffsInfo)
+export default connect(mapPropsToState, { getCurrentCompanyByStaff })(CompanyStaffsInfo)
