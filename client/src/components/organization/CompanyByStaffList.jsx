@@ -1,29 +1,14 @@
-import React,{ Component } from 'react'
-import {CompanyByStaffCard} from './CompanyByStaffCard'
-import {
-  CTableRow,
-} from '@coreui/react'
+import React, { Component } from 'react'
+import { CompanyByStaffCard } from './CompanyByStaffCard'
+import { CTableRow } from '@coreui/react'
 
-export class CompanyByStaffList extends Component{
+export class CompanyByStaffList extends Component {
   renderCompaniesStafflist() {
     return this.props.staffList.map((staff, index) => {
-      return (
-        <CompanyByStaffCard key= {index}
-                            colNum='col-md-3 col-xs-6'
-                            staff={staff}/>
-      )
-    });
+      return <CompanyByStaffCard key={index} colNum="col-md-3 col-xs-6" staff={staff} />
+    })
   }
-  render(){
-    return(
-        // <CTableRow v-for="item in tableItems" key={index}>
-
-      <CTableRow v-for="item in tableItems">
-        {this.renderCompaniesStafflist()}
-      </CTableRow>
-
-        // </CTableRow>
-    )
+  render() {
+    return <>{this.renderCompaniesStafflist()}</>
   }
 }
-
