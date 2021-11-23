@@ -43,10 +43,7 @@ class CompanyCustomersInfo extends Component {
     if (profiles == null || loading) {
       customerDetails = <Loader />
     } else {
-      if (Object.keys(profiles).length > 0) {
-        console.log(profiles)
         customerDetails = <CompanyCustomersList profiles={profiles} />
-      }
     }
     return (
       <>

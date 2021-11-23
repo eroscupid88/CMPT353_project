@@ -14,10 +14,10 @@ export const createProfile = (data, history) => (dispatch) => {
       history.push('/dashboard')
     })
     .catch((error) => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: error.response.data,
-      })
+        dispatch({
+          type: GET_ERRORS,
+          payload: error.response.data
+        })
     })
 }
 
@@ -78,6 +78,24 @@ export const getProfileByProfileUsername = (profileusername) => (dispatch) => {
   dispatch(setProfileLoading())
   axios
     .get(`/v1/profile/profileusername/${profileusername}`)
+    .then((res) =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data,
+      }),
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: null,
+      }),
+    )
+}
+
+export const getProfileById = (id) => (dispatch) => {
+  dispatch(setProfileLoading())
+  axios
+    .get(`/v1/profile/user/${id}`)
     .then((res) =>
       dispatch({
         type: GET_PROFILE,

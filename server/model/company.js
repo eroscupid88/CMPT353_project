@@ -12,7 +12,12 @@ const companySchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'Request'}
   }],
-  staff: [{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],
+  staff: [{
+      user: {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+      }
+  }],
   customer:[{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],
 });
 

@@ -1,15 +1,13 @@
 import React, { Component } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-
+import { connect  } from 'react-redux'
+import {getCurrentCompany} from '../action/companyAction'
+import PropTypes from "prop-types";
 import { CSidebar, CSidebarBrand, CSidebarNav, CSidebarToggler } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilSnowflake } from '@coreui/icons'
+import isEmpty from '../validation/isEmpty'
 
 import { AppSidebarNav } from './AppSidebarNav'
-
-import { logoNegative } from 'src/assets/brand/logo-negative'
-import { sygnet } from 'src/assets/brand/sygnet'
-
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
 
@@ -18,43 +16,63 @@ import navigationOwner from '../_navOwner'
 import navigationStaff from '../_navStaff'
 import { SET } from '../action/types'
 
-const AppSidebar = () => {
-  const dispatch = useDispatch()
-  const unfoldable = useSelector((state) => state.sidebarUnfoldable)
-  const sidebarShow = useSelector((state) => state.sidebarShow)
-  const isOwner = true
+class AppSidebar extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      user : null
+    }
 
-  return (
-    <CSidebar
-      position="fixed"
-      unfoldable={unfoldable}
-      visible={sidebarShow}
-      onVisibleChange={(visible) => {
-        dispatch({ type: SET, sidebarShow: visible })
-      }}
-    >
-      <CSidebarBrand className="brand d-none d-lg-flex" to="/">
-        <h1>Nomosn</h1>
-        <CIcon icon={cilSnowflake} className="icon-xl icon" />
-        <h1>w</h1>
-      </CSidebarBrand>
+  }
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.setState({
+        user: this.props.auth.user
+      })
+    }
+    // call getCurrentCompany
+    this.props.getCurrentCompany()
+  }
+  render(){
+    const {company} = this.props.company
+    let isOwner = false
+    if(!isEmpty(company)&& (!isEmpty(this.state.user))){
+      isOwner = ((company.owner === this.state.user.userId))
+    }
 
-      <CSidebarNav>
-        <SimpleBar>
-          {isOwner ? (
-            <AppSidebarNav items={navigationOwner} />
-          ) : (
-            <AppSidebarNav items={navigationStaff} />
-          )}
-        </SimpleBar>
-      </CSidebarNav>
+    return (
+      <CSidebar
+        position="fixed"
+      >
+        <CSidebarBrand className="brand d-none d-lg-flex" to="/">
+          <h1>Nomosn</h1>
+          <CIcon icon={cilSnowflake} className="icon-xl icon" />
+          <h1>w</h1>
+        </CSidebarBrand>
 
-      <CSidebarToggler
-        className="d-none d-lg-flex"
-        onClick={() => dispatch({ type: SET, sidebarUnfoldable: !unfoldable })}
-      />
-    </CSidebar>
-  )
+        <CSidebarNav>
+          <SimpleBar>
+            {isOwner ? (
+              <AppSidebarNav items={navigationOwner} />
+            ) : (
+              <AppSidebarNav items={navigationStaff} />
+            )}
+          </SimpleBar>
+        </CSidebarNav>
+
+      </CSidebar>
+    )
+  }
+}
+AppSidebar.propTypes = {
+  company: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired,
+  getCurrentCompany: PropTypes.func.isRequired
 }
 
-export default React.memo(AppSidebar)
+const mapPropToState = (state) => ({
+  company: state.company,
+  auth: state.auth
+})
+
+export default connect(mapPropToState,{getCurrentCompany})(AppSidebar)

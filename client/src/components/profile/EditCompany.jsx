@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { CButton, CForm, CFormInput, CInputGroup, CInputGroupText } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cibTwitter } from '@coreui/icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { createCompany, getCurrentCompany } from '../../action/companyAction'
-
+import React, {Component} from "react";
+import {CButton, CForm, CFormInput, CInputGroup, CInputGroupText} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import {cibTwitter} from "@coreui/icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAddressBook} from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {createCompany, getCurrentCompany} from "../../action/companyAction";
+import isEmpty from "../../validation/isEmpty";
 class EditCompany extends Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      name: '',
+    super(props);
+    this.state={
+      name : '',
       description: '',
-      errors: {},
+      errors: {}
     }
   }
 
@@ -30,27 +30,28 @@ class EditCompany extends Component {
       const company = nextProps.company.company
       this.setState({
         name: company.name,
-        description: company.description,
+        description: company.description
       })
     }
+
   }
 
-  onSubmit = (event) => {
+  onSubmit=(event) =>{
     event.preventDefault()
     const data = {
-      name: this.state.name,
-      description: this.state.description,
+      name : this.state.name,
+      description: this.state.description
     }
-    console.log(data)
-    this.props.createCompany(data, this.props.history)
+    this.props.createCompany(data,this.props.history)
+
   }
   onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     })
   }
-  render() {
-    const { errors } = this.state
+  render(){
+    const {errors} = this.state
     console.log(errors)
     return (
       <div>
@@ -96,6 +97,7 @@ class EditCompany extends Component {
           </div>
         </div>
       </div>
+
     )
   }
 }
@@ -104,11 +106,11 @@ EditCompany.propTypes = {
   createCompany: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   company: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 }
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
   company: state.company,
 })
-export default connect(mapStateToProps, { createCompany, getCurrentCompany })(EditCompany)
+export default connect(mapStateToProps,{createCompany,getCurrentCompany})(EditCompany)

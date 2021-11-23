@@ -5,6 +5,7 @@ import authReducer from './authReducer'
 import profileReducer from './profileReducer'
 import companyReducer from './companyReducer'
 import teamReducer from './teamReducer'
+import requestingReducer from './requestingReducer'
 export default combineReducers({
   coreui: coreuiReducer,
   errors: errorReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   profile: profileReducer,
   company: companyReducer,
   team: teamReducer,
+  request: requestingReducer
 })

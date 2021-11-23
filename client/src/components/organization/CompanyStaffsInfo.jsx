@@ -38,17 +38,28 @@ import {
 } from '@coreui/react'
 
 class CompanyStaffsInfo extends Component {
+  constructor(props) {
+    super(props);
+    this.state={
+      errors: {}
+    }
+  }
   componentDidMount() {
     this.props.getCurrentCompanyByStaff()
+  }
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors })
+    }
   }
   render() {
     let companyByStaffDetails
     const {companyByStaff, loading} = this.props.company
-    const { errors} = this.props
-    if (!isEmpty(errors.error)){
-      companyByStaffDetails  =(<h1>no data</h1>)
+    const { errors } = this.state
+    if (!isEmpty(errors)){
+      companyByStaffDetails  =''
     }
-    else if (companyByStaff == null || loading){
+    else if (isEmpty(companyByStaff) || loading){
       companyByStaffDetails = <Loader />
     }else{
       if (Object.keys(companyByStaff).length > 0) {
@@ -80,80 +91,6 @@ class CompanyStaffsInfo extends Component {
 }
 const isOwner = false
 
-const tableExample = [
-  {
-    avatar: { src: avatar1, status: 'success' },
-    user: {
-      profile: '/about',
-      name: 'Yiorgos Avraamu',
-      currentUser: true,
-      registered: 'Jan 1, 2021',
-    },
-    role: { name: 'Owner', type: cilGroup },
-    payment: { name: 'Mastercard', icon: cibCcMastercard },
-    activity: '10 sec ago',
-  },
-  {
-    avatar: { src: avatar2, status: 'danger' },
-    user: {
-      profile: '/about',
-      name: 'Avram Tarasios',
-      currentUser: false,
-      registered: 'Jan 1, 2021',
-    },
-    role: { name: 'Staff', type: cilUser },
-    payment: { name: 'Visa', icon: cibCcVisa },
-    activity: '5 minutes ago',
-  },
-  {
-    avatar: { src: avatar3, status: 'warning' },
-    user: {
-      profile: '/about',
-      name: 'Quintin Ed',
-      currentUser: false,
-      registered: 'Jan 1, 2021',
-    },
-    role: { name: 'Staff', type: cilUser },
-    payment: { name: 'Stripe', icon: cibCcStripe },
-    activity: '1 hour ago',
-  },
-  {
-    avatar: { src: avatar4, status: 'secondary' },
-    user: {
-      profile: '/about',
-      name: 'Enéas Kwadwo',
-      currentUser: false,
-      registered: 'Jan 1, 2021',
-    },
-    role: { name: 'Staff', type: cilUser },
-    payment: { name: 'PayPal', icon: cibCcPaypal },
-    activity: 'Last month',
-  },
-  {
-    avatar: { src: avatar5, status: 'success' },
-    user: {
-      profile: '/about',
-      name: 'Agapetus Tadeáš',
-      currentUser: false,
-      registered: 'Jan 1, 2021',
-    },
-    role: { name: 'Staff', type: cilUser },
-    payment: { name: 'Google Wallet', icon: cibCcApplePay },
-    activity: 'Last week',
-  },
-  {
-    avatar: { src: avatar6, status: 'danger' },
-    user: {
-      profile: '/about',
-      name: 'Friderik Dávid',
-      currentUser: false,
-      registered: 'Jan 1, 2021',
-    },
-    role: { name: 'Staff', type: cilUser },
-    payment: { name: 'Amex', icon: cibCcAmex },
-    activity: 'Last week',
-  },
-]
 CompanyStaffsInfo.propTypes = {
   company: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,

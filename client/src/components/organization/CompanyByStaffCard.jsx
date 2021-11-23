@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
+import {removeStaff} from '../../action/companyAction'
 import {
   CAvatar,
   CButton,
@@ -28,14 +29,15 @@ import {
 
 export function CompanyByStaffCard(props){
   const dispatch = useDispatch()
-  console.log(props.staff)
+  const currentUser = useSelector(state => state.auth)
+  const currentCompany = useSelector(state => state.company)
+  let isOwner = ((currentUser.user.userId)=== (currentCompany.companyByStaff.owner))
     return(
       <>
         <CTableDataCell className="text-center">
-          <Link to='/dashboard'>
             <CAvatar size="md" src={props.staff.user.avatar} />
-          </Link>
         </CTableDataCell>
+
         <CTableDataCell>
           <div>{props.staff.user.firstname} {props.staff.user.lastname}</div>
           <div className="small text-medium-emphasis">
@@ -54,12 +56,13 @@ export function CompanyByStaffCard(props){
           <div className="small text-medium-emphasis">Last login</div>
           {/*<strong>{item.activity}</strong>*/}
         </CTableDataCell>
-        {/*{isOwner ? (*/}
+        {isOwner ? (
           <CTableDataCell>
-            <span id="deleteStaff" onClick={() => {}}>
-              <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
+            <span id="deleteStaff" onClick={() => dispatch(removeStaff(props.staff.user._id))}>
+              <CIcon size="xl" icon={cilUserX} title="Remove Staff"/>
               </span>
-          </CTableDataCell>
+          </CTableDataCell>):''
+        }
       </>
       )
 }

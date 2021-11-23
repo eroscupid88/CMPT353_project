@@ -23,6 +23,7 @@ router.post('/image-upload',
             { new: true }
         ).then(
             users => {
+                console.log(users)
                 return res.json(users)
         }).catch(err => {return res.send(err)})
     });
@@ -97,19 +98,21 @@ router.get('/all', (req, res) => {
 router.get('/user/:user_id', (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.params.user_id })
-    .populate('user', ['name', 'avatar'])
+    .populate('user', ['firstname','lastname', 'avatar'])
     .then((profile) => {
       if (!profile) {
         errors.noprofile = 'There is no profile for this user';
-        res.status(404).json(errors);
+        return res.status(404).json(errors);
       }
-      res.json(profile);
+      return res.json(profile);
     })
-    .catch((err) =>
-      res.status(404).json({
-        err,
-        profile: 'there is no profile for this user',
-      })
+    .catch((err) =>{ return res.status(404).json({
+            err,
+            profile: 'there is no profile for this user',
+        })
+
+    }
+
     );
 });
 
@@ -145,30 +148,32 @@ router.post(
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
     // find profile of the user.
     Profile.findOne({ user: req.user[0].id }).then((result) => {
+        // if found a profile
       if (result) {
         // Update
         Profile.findOneAndUpdate(
           { user: req.user[0].id },
           { $set: profileFields },
           { new: true }
-        ).then((profile) => res.json(profile));
+        ).then((profile) => { res.json(profile)});
       } else {
-        // Check if handle exists
-        Profile.findOne({
-          profileusername: profileFields.profileusername,
-        }).then((found) => {
-          if (found) {
-            errors.profileusername = 'That username already exists';
-            res.status(400).json(errors);
-          }
-        });
-          // Save Profile
-          new Profile(profileFields)
-              .save()
-              .then((profile) => res.json(profile));
+          // Check if handle exists
+          Profile.findOne({profileusername: profileFields.profileusername,})
+              .then((found) => {
+                  if (found) {
+                      errors.profileusername = 'That username already exists';
+                      console.log(found)
+                      return res.status(400).json(errors);
+                  }
+                  else{
+                      // Save Profile
+                      new Profile(profileFields).save().then((profile) => res.json(profile));
+                  }
 
-      }
-    });
+            });
+
+         }})
+
   }
 );
 

@@ -3,19 +3,19 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton } from '@coreui/react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAddressBook, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faAddressBook, faNetworkWired, faUser } from '@fortawesome/free-solid-svg-icons'
 import CIcon from '@coreui/icons-react'
 import { withRouter } from 'react-router-dom'
 import { cibGithub, cibLinkedin, cibYoutube, cibInstagram, cibTwitter } from '@coreui/icons'
 import { createProfile } from '../../action/profileAction'
-import isEmpty from '../../validation/isEmpty'
+import isEmpty from "../../validation/isEmpty";
 
 class CreateProfile extends Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = {
-      firstname: '',
-      lastname: '',
+      firstname:'',
+      lastname:'',
       profileusername: '',
       location: '',
       githubusername: '',
@@ -28,23 +28,20 @@ class CreateProfile extends Component {
     }
   }
   componentDidMount() {
-    if (!isEmpty(this.props.profile.profile)) {
-      this.props.history.push('/edit-profile')
-    }
     if (this.props.auth.isAuthenticated) {
       this.setState({
         firstname: this.props.auth.user.firstname,
         lastname: this.props.auth.user.lastname,
       })
     }
+    if(!isEmpty(this.props.profile.profile)){
+      this.props.history.push('/edit-profile')
+    }
   }
-
-  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
-    }
-    if (nextProps.profile.profile) {
-      this.props.history.push('/dashboard')
+      alert(nextProps.errors.profileusername)
     }
   }
 

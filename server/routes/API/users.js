@@ -50,6 +50,7 @@ router.post('/register', (req, res, next) => {
           date: req.body.date,
           avatar: defaultAvatar,
           password: hash,
+          company: null
         })
           .save()
           .then((result) => {
@@ -107,6 +108,8 @@ router.post('/login', (req, res, next) => {
             firstname: user[0].firstname,
             lastname: user[0].lastname,
             avatar: user[0].avatar,
+            company: user[0].company,
+            requesting: user[0].requesting
           };
           const token = jwt.sign(payload, process.env.JWT_KEY, {
             expiresIn: 3600,

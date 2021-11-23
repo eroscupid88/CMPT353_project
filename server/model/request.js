@@ -5,6 +5,15 @@ const requestingSchema = new Schema({
   id: {
     type: Schema.Types.ObjectId,
   },
+    avatar: {
+        type: String
+    },
+    firstname: {
+      type: String
+    },
+    lastname: {
+      type: String
+    },
   staffRequest: {
       type:Boolean,
       required: false
@@ -13,6 +22,7 @@ const requestingSchema = new Schema({
       type:Boolean,
       required: false
   },
+
   company: { type: Schema.Types.ObjectId, ref: 'Company' },
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   createdAt: { type: Date, default: Date.now },

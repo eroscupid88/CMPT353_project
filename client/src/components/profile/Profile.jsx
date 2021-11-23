@@ -16,6 +16,7 @@ class Profile extends Component {
       this.props.history.push('/404')
     }
   }
+  
   render() {
     const { profile, loading } = this.props.profile
     let profileContent = ''
