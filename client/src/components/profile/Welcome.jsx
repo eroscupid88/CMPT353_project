@@ -6,7 +6,7 @@ import { getCurrentProfile, deleteAccount } from '../../action/profileAction'
 import { getCurrentCompany, deleteCompany } from '../../action/companyAction'
 import Loader from '../../components/common/Loader'
 import ProfileAction from './ProfileAction'
-import { CButton, CCard, CCol, CContainer, CHeaderNav, CNavLink, CRow } from '@coreui/react'
+import { CButton, CCard, CCol, CContainer, CNavLink, CRow } from '@coreui/react'
 import isEmpty from '../../validation/isEmpty'
 
 class Welcome extends Component {
@@ -70,7 +70,6 @@ class Welcome extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-
             <ProfileAction mycompany={this.props.company} user={this.props.auth} />
             <div style={{ marginBottom: '10px' }} />
             <CRow>
@@ -94,27 +93,28 @@ class Welcome extends Component {
 
     return (
       <div className="welcome-bg min-vh-100 d-flex align-items-center">
+        <Link to="/dashboard">
+          <button className="button dashboard-button">Dashboard</button>
+        </Link>
         <CContainer>
           <CCol md={4}>
             <CCard color="light" className="p-4">
               <div className="container">
                 <div className="row">
                   <div className="col-md-12">
-
-                    <CCol>
-                      <Link to="/dashboard">
-                        <CButton color="light" className="px-3 btn-outline-info">
-                          Dashboard
-                        </CButton>
-                      </Link>
-
-                    </CCol>
-                    <h1 className="display-6">Welcome { !isEmpty(profile) ? (<CNavLink
-                      href={`profile/${profile.profileusername}`}
-                      className="lead text-info welcome-link"
-                    >
-                      <p>{profile.firstname} {profile.lastname}</p>
-                    </CNavLink>): null }</h1>
+                    <h1 className="display-5 text-center">
+                      Welcome{' '}
+                      {!isEmpty(profile) ? (
+                        <CNavLink
+                          href={`profile/${profile.profileusername}`}
+                          className="text-info user-link"
+                        >
+                          <p>
+                            {profile.firstname} {profile.lastname}
+                          </p>
+                        </CNavLink>
+                      ) : null}
+                    </h1>
                     {dashboardContent}
                   </div>
                 </div>
