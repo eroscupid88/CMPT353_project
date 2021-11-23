@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import isEmpty from '../../validation/isEmpty'
-import { CButton, CCol, CLink, CRow } from '@coreui/react'
+import { CButton, CCol, CRow } from '@coreui/react'
 const ProfileAction = (props) => {
   let companyItem
   if (props.user.user.email === 'dillon@yahoo.com') {

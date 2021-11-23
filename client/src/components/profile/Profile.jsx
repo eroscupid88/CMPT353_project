@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 import ProfileHeader from './ProfileHeader'
-import ProfileGithubs from './ProfileGithubs'
 import Loader from '../common/Loader'
 import { getProfileByProfileUsername } from '../../action/profileAction'
 
@@ -13,7 +11,7 @@ class Profile extends Component {
       this.props.getProfileByProfileUsername(this.props.match.params.profileusername)
     }
   }
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.profile.profile === null && this.props.profile.loading) {
       this.props.history.push('/404')
     }

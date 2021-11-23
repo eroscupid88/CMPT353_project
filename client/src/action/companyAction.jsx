@@ -6,13 +6,12 @@ import {
   GET_ERRORS,
   LOADING_COMPANY,
   SET_CURRENT_USER,
-  GET_CURRENT_COMPANY_BYSTAFF
+  GET_CURRENT_COMPANY_BYSTAFF,
 } from './types'
-
 
 //create company
 
-export const createCompany = (data,history) => (dispatch) =>{
+export const createCompany = (data, history) => (dispatch) => {
   axios
     .post('/v1/company/', data)
     .then((result) => {
@@ -27,72 +26,75 @@ export const createCompany = (data,history) => (dispatch) =>{
 }
 
 // get Company
-export const getCompanies = () =>(dispatch) =>{
-  axios.get('/v1/company/all').then(companies => dispatch({
-    type: GET_COMPANIES,
-    payload: companies.data
-  })).catch(err =>
-    dispatch({
-      type: GET_ERRORS,
-      payload: err.response.data,
-    })
-  )
+export const getCompanies = () => (dispatch) => {
+  axios
+    .get('/v1/company/all')
+    .then((companies) =>
+      dispatch({
+        type: GET_COMPANIES,
+        payload: companies.data,
+      }),
+    )
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      }),
+    )
 }
 
 // get company with auth owner
-export const getCurrentCompany = () => dispatch => {
-  dispatch(setCompanyLoading());
+export const getCurrentCompany = () => (dispatch) => {
+  dispatch(setCompanyLoading())
   axios
     .get('/v1/company/')
-    .then(result =>
+    .then((result) =>
       dispatch({
         type: GET_CURRENT_COMPANY,
-        payload: result.data
-      })
+        payload: result.data,
+      }),
     )
-    .catch(err =>
+    .catch((err) =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
-      })
-    );
-
-
-};// get company with auth staff
-export const getCurrentCompanyByStaff = () => dispatch => {
-  dispatch(setCompanyLoading());
-  axios
-    .get('/v1/company/staff')
-    .then(result =>
+      }),
+    )
+} // get company with auth staff
+export const getCurrentCompanyByStaff = () => (dispatch) => {
+  dispatch(setCompanyLoading())
+  axios.get('/v1/company/staff').then(
+    (result) =>
       dispatch({
         type: GET_CURRENT_COMPANY_BYSTAFF,
-        payload: result.data
+        payload: result.data,
       }),
-      errors => dispatch({
+    (errors) =>
+      dispatch({
         type: GET_ERRORS,
         payload: errors.response.data,
-      })
-    )
-    };
+      }),
+  )
+}
 
 // get company with id
-export const getCurrentCompanyById = (_id) => dispatch => {
-  dispatch(setCompanyLoading());
+export const getCurrentCompanyById = (_id) => (dispatch) => {
+  dispatch(setCompanyLoading())
   axios
     .get(`/v1/company/${_id}`)
-    .then(result =>
+    .then((result) =>
       dispatch({
         type: GET_CURRENT_COMPANY,
-        payload: result.data
-      })
+        payload: result.data,
+      }),
     )
-    .catch(err =>
+    .catch((err) =>
       dispatch({
         type: GET_ERRORS,
         payload: err.response.data,
-      })
-    );
-};
+      }),
+    )
+}
 
 //delete company
 export const deleteCompany = (history) => (dispatch) => {
@@ -101,9 +103,9 @@ export const deleteCompany = (history) => (dispatch) => {
       .delete('/v1/company/')
       .then((result) => {
         dispatch({
-          type: DELETE_COMPANY
+          type: DELETE_COMPANY,
         })
-        window.location.reload();
+        window.location.reload()
       })
       .catch((err) =>
         dispatch({
@@ -119,22 +121,21 @@ export const removeStaff = (id) => (dispatch) => {
     // console.log(id)
     axios
       .put(`/v1/company/${id}`)
-      .then(result =>{
+      .then((result) => {
         console.log(result)
         window.location.reload()
-        }
+      })
+      .catch((err) =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: err.response.data,
+        }),
       )
-      .catch(err =>dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      }))
   }
-
-
 }
 // Company loading
 export const setCompanyLoading = () => {
   return {
-    type: LOADING_COMPANY
-  };
-};
+    type: LOADING_COMPANY,
+  }
+}
