@@ -34,36 +34,33 @@ export function CompanyByStaffCard(props) {
   let isOwner = currentUser.user.userId === currentCompany.companyByStaff.owner
   return (
     <>
-      <CTableDataCell className="text-center">
-        <CAvatar size="md" src={props.staff.user.avatar} />
-      </CTableDataCell>
-
-      <CTableDataCell>
-        <div>
-          {props.staff.user.firstname} {props.staff.user.lastname}
-        </div>
-        <div className="small text-medium-emphasis">
-          {/*<span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}*/}
-          {/*{item.user.registered}*/}
-          register
-        </div>
-      </CTableDataCell>
-      <CTableDataCell className="text-center">
-        <CIcon size="xl" icon={cilGroup} title="owner" />
-      </CTableDataCell>
-      <CTableDataCell className="text-center">
-        <div className="small text-medium-emphasis">Last login</div>
-        {/*<strong>{item.activity}</strong>*/}
-      </CTableDataCell>
-      {isOwner ? (
-        <CTableDataCell>
-          <span id="deleteStaff" onClick={() => dispatch(removeStaff(props.staff.user._id))}>
-            <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
-          </span>
+      <CTableRow>
+        <CTableDataCell className="text-center">
+          <CAvatar size="md" src={props.staff.user.avatar} />
         </CTableDataCell>
-      ) : (
-        ''
-      )}
+
+        <CTableDataCell>
+          <div>
+            {props.staff.user.firstname} {props.staff.user.lastname}
+          </div>
+          <div className="small text-medium-emphasis">register</div>
+        </CTableDataCell>
+        <CTableDataCell className="text-center">
+          <CIcon size="xl" icon={cilGroup} title="owner" />
+        </CTableDataCell>
+        <CTableDataCell className="text-center">
+          <div className="small text-medium-emphasis">Last login</div>
+        </CTableDataCell>
+        {isOwner ? (
+          <CTableDataCell>
+            <span id="deleteStaff" onClick={() => dispatch(removeStaff(props.staff.user._id))}>
+              <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
+            </span>
+          </CTableDataCell>
+        ) : (
+          ''
+        )}
+      </CTableRow>
     </>
   )
 }
