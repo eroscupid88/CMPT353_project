@@ -43,22 +43,28 @@ export function CompanyByStaffCard(props) {
           <div>
             {props.staff.user.firstname} {props.staff.user.lastname}
           </div>
-          <div className="small text-medium-emphasis">register</div>
+          <div className="small text-medium-emphasis">
+            {props.staff.user._id === currentCompany.companyByStaff.owner ? 'Owner' : 'Staff'}
+          </div>
         </CTableDataCell>
         <CTableDataCell className="text-center">
-          <CIcon size="xl" icon={cilGroup} title="owner" />
+          <CIcon
+            size="xl"
+            icon={props.staff.user._id === currentCompany.companyByStaff.owner ? cilGroup : cilUser}
+            title={props.staff.user._id === currentCompany.companyByStaff.owner ? 'Owner' : 'Staff'}
+          />
         </CTableDataCell>
         <CTableDataCell className="text-center">
-          <div className="small text-medium-emphasis">Last login</div>
+          <div className="small text-large-emphasis">{props.staff.user.date}</div>
         </CTableDataCell>
-        {isOwner ? (
+        {isOwner && props.staff.user._id != currentUser.user.userId ? (
           <CTableDataCell>
             <span id="deleteStaff" onClick={() => dispatch(removeStaff(props.staff.user._id))}>
               <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
             </span>
           </CTableDataCell>
         ) : (
-          ''
+          <CTableDataCell></CTableDataCell>
         )}
       </CTableRow>
     </>
