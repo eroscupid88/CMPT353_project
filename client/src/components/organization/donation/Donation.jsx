@@ -25,11 +25,8 @@ export const Donation = () => {
       </div>
     )
   }
-
   const onChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    })
+    setTotal(event.currentTarget.value)
   }
   let showDonation = (
     <div>
