@@ -23,9 +23,19 @@ const companySchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
+        firstname:{
+            type:String
+        },
+        lastname:{
+            type:String
+        },
         amount:{
             type: Number,
             default: 0
+        },
+        date: {
+            type: Date,
+            default: Date.now,
         }
     }],
   customer:[{user:{ type: Schema.Types.ObjectId, ref: 'User' }}],

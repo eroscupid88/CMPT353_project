@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
 import PropTypes from 'prop-types'
 import { logoutUser } from '../../action/authAction'
-import {getCurrentProfile} from '../../action/profileAction'
+import { getCurrentProfile } from '../../action/profileAction'
 import isEmpty from '../../validation/isEmpty'
 import Loader from '../common/Loader'
 
@@ -37,15 +37,14 @@ class AppHeaderDropdown extends Component {
   constructor() {
     super()
     this.state = {
-      user : null
+      user: null,
     }
   }
 
   componentDidMount() {
     this.setState({ user: this.props.auth.user })
     this.props.getCurrentProfile()
-
-    }
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.auth) {
@@ -58,18 +57,18 @@ class AppHeaderDropdown extends Component {
   }
 
   render() {
-    const { user} = this.props.auth
-    const {profile,loading } = this.props.profile
+    const { user } = this.props.auth
+    const { profile, loading } = this.props.profile
     let dropdownItemForProfile
     if (isEmpty(profile) || loading) {
       dropdownItemForProfile = ''
     } else {
       dropdownItemForProfile = (
-          <CDropdownItem href={`/profile/${profile.profileusername}`}>
+        <CDropdownItem href={`/profile/${profile.profileusername}`}>
           <CIcon icon={cilUser} className="me-2" />
           My Profile
-          </CDropdownItem>
-    )
+        </CDropdownItem>
+      )
     }
     return (
       <CDropdown variant="nav-item">
@@ -79,7 +78,7 @@ class AppHeaderDropdown extends Component {
         <CDropdownMenu className="pt-0" placement="bottom-end">
           <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>
           {dropdownItemForProfile}
-          <CDropdownItem href="/welcome">
+          <CDropdownItem href="/setting">
             <CIcon icon={cilSettings} className="me-2" />
             Settings
           </CDropdownItem>
@@ -99,11 +98,11 @@ AppHeaderDropdown.propTypes = {
   auth: PropTypes.object.isRequired,
   profile: PropTypes.object.isRequired,
   logoutUser: PropTypes.func.isRequired,
-  getCurrentProfile : PropTypes.func.isRequired,
-  CAvatar: PropTypes.string
+  getCurrentProfile: PropTypes.func.isRequired,
+  CAvatar: PropTypes.string,
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
 })
-export default connect(mapStateToProps, { logoutUser,getCurrentProfile })(AppHeaderDropdown)
+export default connect(mapStateToProps, { logoutUser, getCurrentProfile })(AppHeaderDropdown)

@@ -9,7 +9,7 @@
 }
 
 .profile-card-hover {
-  width: 672px;
+  width: 700px;
   background: #fff;
   border-radius: 10px;
   box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.0784313725490196);
@@ -20,7 +20,7 @@
     position: relative;
     .about-company {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       border-bottom: 1px solid #f4f4f4;
       margin-bottom: 1em;
@@ -29,12 +29,11 @@
         img {
           width: 100px;
           height: 100px;
-          margin-right: 0.8em;
         }
       }
       .row-wrapper {
         display: block;
-        padding-right: 1em;
+        width: 400px;
         .profile-card__company-name {
           font-weight: 700;
           font-size: 22px;
@@ -141,4 +140,8 @@
       }
     }
   }
+}
+
+.donation-field {
+  padding-bottom: -2px;
 }

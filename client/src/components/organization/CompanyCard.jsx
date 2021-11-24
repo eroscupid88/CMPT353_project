@@ -3,7 +3,8 @@ import isEmpty from '../../validation/isEmpty'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createStaffRequest } from '../../action/requestingAction'
-import { CLink } from '@coreui/react'
+import { CButton, CLink } from '@coreui/react'
+import { Donation } from './donation/Donation'
 class CompanyCard extends Component {
   constructor(props) {
     super(props)
@@ -13,6 +14,7 @@ class CompanyCard extends Component {
       customerRequest: false,
       errors: {},
       company: props.company,
+      total: 0
     }
   }
 
@@ -24,9 +26,19 @@ class CompanyCard extends Component {
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-    if (!isEmpty(nextProps.errors.request)) {
+    if (!isEmpty(nextProps.errors)) {
       this.setState({ errors: nextProps.errors })
+    }
+    if (!isEmpty(nextProps.company)) {
+      this.setState({
+        company:nextProps.company
+      })
+    }
+    if (nextProps.errors.request){
       alert(nextProps.errors.request)
+    }
+    if (nextProps.errors.currency){
+      alert(nextProps.errors.currency)
     }
   }
 
@@ -62,10 +74,15 @@ class CompanyCard extends Component {
                 <div className="profile-card__company-name">{this.state.company.name}</div>
                 <p className="profile-card__company-bio">• Saskatoon, Saskatchewan •</p>
                 {isOwner ? null : (
-                  <button className="btn browse-jobs-btn" onClick={this.onRequest.bind(this)}>
-                    Apply for Jobs
+                  <button
+                    className="browse-jobs-btn"
+                    type="button"
+                    onClick={this.onRequest.bind(this)}
+                  >
+                    Apply for Staff
                   </button>
                 )}
+                <Donation companyId = {this.state.company._id} errors = {this.state.errors}/>
               </div>
 
               <div className="user-actions" />

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types'
 import CompanyList from './CompanyList'
 import Loader from '../common/Loader'
 import { AppFooter, AppHeader, AppSidebar } from '../index'
+import DefaultLayout from '../../layout/DefaultLayout'
 
 class Organizations extends Component {
   constructor(props) {
@@ -26,20 +27,7 @@ class Organizations extends Component {
     } else {
       companiesDetails = <CompanyList companies={companies} profiles={profiles} />
     }
-    return (
-      <div>
-        <AppSidebar />
-        <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-          <AppHeader />
-          <div className="body flex-grow-1 px-3">
-            <section id="companies" className="min-vh-100">
-              {companiesDetails}
-            </section>
-          </div>
-          <AppFooter />
-        </div>
-      </div>
-    )
+    return <DefaultLayout content={companiesDetails} />
   }
 }
 Organizations.propTypes = {
