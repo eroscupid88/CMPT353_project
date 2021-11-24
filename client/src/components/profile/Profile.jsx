@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import ProfileHeader from './ProfileHeader'
 import Loader from '../common/Loader'
 import { getProfileByProfileUsername } from '../../action/profileAction'
+import DefaultLayout from 'src/layout/DefaultLayout'
 
 class Profile extends Component {
   componentDidMount() {
@@ -16,7 +17,7 @@ class Profile extends Component {
       this.props.history.push('/404')
     }
   }
-  
+
   render() {
     const { profile, loading } = this.props.profile
     let profileContent = ''
@@ -30,11 +31,15 @@ class Profile extends Component {
       )
     }
     return (
-      <div className="body-profile min-vh-100 d-flex align-items-center">
-        <div className="container">
-          <div className="row">{profileContent}</div>
-        </div>
-      </div>
+      <DefaultLayout
+        content={
+          <div className="min-vh-100 d-flex align-items-center">
+            <div className="container">
+              <div className="row">{profileContent}</div>
+            </div>
+          </div>
+        }
+      />
     )
   }
 }

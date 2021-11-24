@@ -27,6 +27,7 @@ import {
 } from '@coreui/icons'
 
 export function CompanyCustomersCard(props) {
+  console.log(props)
   return (
     <>
       <CTableDataCell className="text-center">
