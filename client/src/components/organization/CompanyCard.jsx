@@ -3,8 +3,8 @@ import isEmpty from '../../validation/isEmpty'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createStaffRequest } from '../../action/requestingAction'
-import { CLink } from '@coreui/react'
-import {Donation } from '../../components/organization/donation/Donation'
+import { CButton, CLink } from '@coreui/react'
+import { Donation } from './donation/Donation'
 class CompanyCard extends Component {
   constructor(props) {
     super(props)
@@ -74,8 +74,12 @@ class CompanyCard extends Component {
                 <div className="profile-card__company-name">{this.state.company.name}</div>
                 <p className="profile-card__company-bio">• Saskatoon, Saskatchewan •</p>
                 {isOwner ? null : (
-                  <button className="btn browse-jobs-btn" onClick={this.onRequest.bind(this)}>
-                    Apply for Jobs
+                  <button
+                    className="browse-jobs-btn"
+                    type="button"
+                    onClick={this.onRequest.bind(this)}
+                  >
+                    Apply for Staff
                   </button>
                 )}
                 <Donation companyId = {this.state.company._id} errors = {this.state.errors}/>

@@ -13,51 +13,51 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-export const ShowDonation = ()=>{
+export const ShowDonation = () => {
   const [total, setTotal] = React.useState(0)
   const currentCompany = useSelector((state) => state.company)
   const dispatch = useDispatch()
-  useEffect(()=>{
+  useEffect(() => {
     dispatch(getCurrentCompanyByStaff())
-  },[])
-  let totalAmout=0
-console.log(currentCompany)
-  return(
+  }, [])
+  let totalAmout = 0
+  console.log(currentCompany)
+  return (
     <div>
       <AppSidebar />
       <div className="wrapper d-flex flex-column min-vh-100 bg-light">
         <AppHeader />
         <div className="body flex-grow-1 px-3">
           <p>Show Donation</p>
-          {!currentCompany.companyByStaff ? null : currentCompany.companyByStaff.donation.map(
-            (someitem,index)=> {
-              // {someitem.amount? setTotal(total+someitem.amount): setTotal(total)}
-              totalAmout=totalAmout+someitem.amount
-              return (
-                <>
-                  <CTableRow key={index}>
-                    <CTableDataCell>
-                      <span>{someitem.firstname} {someitem.lastname} has donated: $</span>
-                      <span>   </span>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        <span> </span>{ someitem.amount}
-                      </div>
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      <div>
-                        {' '} at {someitem.date}
-                      </div>
-                    </CTableDataCell>
-                  </CTableRow>
-                </>)
-            })}
-
+          {!currentCompany.companyByStaff
+            ? null
+            : currentCompany.companyByStaff.donation.map((someitem, index) => {
+                // {someitem.amount? setTotal(total+someitem.amount): setTotal(total)}
+                totalAmout = totalAmout + someitem.amount
+                return (
+                  <>
+                    <CTableRow key={index}>
+                      <CTableDataCell>
+                        <span>
+                          {someitem.firstname} {someitem.lastname} has donated: $
+                        </span>
+                        <span> </span>
+                      </CTableDataCell>
+                      <CTableDataCell>
+                        <div>
+                          <span> </span>
+                          {someitem.amount}
+                        </div>
+                      </CTableDataCell>
+                      <CTableDataCell>
+                        <div> at {someitem.date}</div>
+                      </CTableDataCell>
+                    </CTableRow>
+                  </>
+                )
+              })}
         </div>
-        <div>
-          Total of ${totalAmout} has been donate to organization
-        </div>
+        <div>Total of ${totalAmout} has been donate to organization</div>
         <AppFooter />
       </div>
     </div>
