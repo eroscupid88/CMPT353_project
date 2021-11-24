@@ -31,9 +31,7 @@ export const Donation = () => {
   }
 
   const onChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    })
+    setTotal(event.currentTarget.value)
   }
   let showDonation = (
       <div>
@@ -45,7 +43,7 @@ export const Donation = () => {
           <CFormInput
             placeholder="Donation Amount"
             value={total}
-            onChange={()=>{}}
+            onChange={onChange}
           />
           <CButton color="success" type="submit">
             Donate
