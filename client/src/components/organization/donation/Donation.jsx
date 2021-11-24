@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCompanies } from '../../../action/companyAction'
 import isEmpty from '../../../validation/isEmpty'
 import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton } from '@coreui/react'
-import { AppContent, AppFooter, AppHeader, AppSidebar } from '../../index'
+
 
 export const Donation = () => {
   const [total, setTotal] = React.useState(0)

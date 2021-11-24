@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { AppContent, AppFooter, AppHeader, AppSidebar } from '../../index'
 export const ShowDonation = ()=>{
   return(
     <div>
