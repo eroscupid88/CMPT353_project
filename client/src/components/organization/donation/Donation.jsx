@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getCompanies } from '../../../action/companyAction'
 import isEmpty from '../../../validation/isEmpty'
-import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton } from '@coreui/react'
-
+import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton, CRow, CCol } from '@coreui/react'
 
 export const Donation = () => {
   const [total, setTotal] = React.useState(0)
@@ -29,11 +28,9 @@ export const Donation = () => {
     setTotal(event.currentTarget.value)
   }
   let showDonation = (
-    <div>
-      <CInputGroup className="mb-3">
-        <CInputGroupText id="basic-addon1">
-          <p>Total Amount</p>
-        </CInputGroupText>
+    <div className="col pt-2">
+      <CInputGroup className="donation-field">
+        <CInputGroupText id="basic-addon1">Amount</CInputGroupText>
         <CFormInput placeholder="Donation Amount" value={total} onChange={() => {}} />
         <CButton color="success" type="submit">
           Donate
@@ -42,22 +39,28 @@ export const Donation = () => {
     </div>
   )
   return (
+    // <CForm onSubmit={() => {}}>
+    //   <CRow className="justify-content-center">
+    //     <CCol className="donate-btn">
+    <div className="row">
+      <div className="col-4">
+        <button
+          className="browse-jobs-btn mt-3"
+          type="button"
+          onClick={() => {
+            setDisplayState(!displayState)
+            console.log({ displayState })
+          }}
+        >
+          Donate Here!
+        </button>
+      </div>
+      {displayState ? showDonation : ''}
+    </div>
 
-          <>
-            <CForm onSubmit={() => {}}>
-              <button
-                className="btn btn-light m-5"
-                type="button"
-                onClick={() => {
-                  setDisplayState(!displayState)
-                  console.log({ displayState })
-                }}
-              >
-                Donate Here!
-              </button>
-              {displayState ? showDonation : ''}
-            </CForm>
-          </>
-
+    // {/*    </CCol>*/}
+    // {/*    <CCol></CCol>*/}
+    // {/*  </CRow>*/}
+    // {/*</CForm>*/}
   )
 }
