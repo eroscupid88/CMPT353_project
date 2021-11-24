@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getCompanies } from '../../../action/companyAction'
 import isEmpty from '../../../validation/isEmpty'
 import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton } from '@coreui/react'
-import { AppContent, AppFooter, AppHeader, AppSidebar } from '../../index'
+
 
 export const Donation = () => {
   const [total, setTotal] = React.useState(0)
@@ -42,11 +42,7 @@ export const Donation = () => {
     </div>
   )
   return (
-    <div>
-      <AppSidebar />
-      <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-        <AppHeader />
-        <div className="body flex-grow-1 px-3">
+
           <>
             <CForm onSubmit={() => {}}>
               <button
@@ -62,9 +58,6 @@ export const Donation = () => {
               {displayState ? showDonation : ''}
             </CForm>
           </>
-        </div>
-        <AppFooter />
-      </div>
-    </div>
+
   )
 }
