@@ -81,7 +81,7 @@ class CompanyStaffsInfo extends Component {
                     </CTableHeaderCell>
                     <CTableHeaderCell>People</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Activity</CTableHeaderCell>
+                    <CTableHeaderCell className="text-center">Created At</CTableHeaderCell>
                     <CTableHeaderCell>{isOwner ? 'Options' : ''}</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
