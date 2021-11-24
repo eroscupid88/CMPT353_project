@@ -38,10 +38,6 @@ export function CompanyCustomersCard(props) {
         <div>
           {props.customer.user.firstname} {props.customer.user.lastname}
         </div>
-        <div className="small text-medium-emphasis">Customer</div>
-      </CTableDataCell>
-      <CTableDataCell className="text-center">
-        <CIcon size="xl" icon={cilGroup} title="customer" />
       </CTableDataCell>
       <CTableDataCell className="text-center">
         <div className="small text-medium-emphasis">Created at</div>

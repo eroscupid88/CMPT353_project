@@ -31,14 +31,14 @@ class Login extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
       console.log('Authenticate!!')
-      this.props.history.push('/welcome')
+      this.props.history.push('/setting')
     }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     // if authenticate, /login cannot be call and push to welcome instead
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/welcome')
+      this.props.history.push('/setting')
     }
     // otherwise, if see any errors, set props.error to be current state and alert client
     else if (nextProps.errors) {

@@ -52,7 +52,7 @@ class App extends Component {
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
           </Switch>
           <Switch>
-            <PrivateRoute exact path="/welcome" name="Welcome" component={Welcome} />
+            <PrivateRoute exact path="/setting" name="Setting" component={Welcome} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/create-company" component={CreateCompany} />

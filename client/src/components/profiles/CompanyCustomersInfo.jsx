@@ -60,7 +60,6 @@ class CompanyCustomersInfo extends Component {
                       <CIcon icon={cilPeople} />
                     </CTableHeaderCell>
                     <CTableHeaderCell>People</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Role</CTableHeaderCell>
                     <CTableHeaderCell className="text-center">Creation Date</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
