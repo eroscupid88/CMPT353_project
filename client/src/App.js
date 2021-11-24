@@ -42,8 +42,6 @@ class App extends Component {
           <Route exact path="/500" name="Page 500" component={Page500} />
           <Route exact path="/" name="Home Page" component={About} />
           <Route exact path="/about" name="About" component={About} />
-          <Route exact path="/test" name="About" component={Donation} />
-          <Route exact path="/donation" name="Donation" component={ShowDonation} />
           <Switch>
             <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
           </Switch>
@@ -76,6 +74,9 @@ class App extends Component {
           </Switch>
           <Switch>
             <PrivateRoute exact path="/staff" component={CompanyStaffsInfo} />
+          </Switch>
+          <Switch>
+            <Route exact path="/donation" name="Donation" component={ShowDonation} />
           </Switch>
         </Router>
       </React.Suspense>

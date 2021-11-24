@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCompanies } from '../../../action/companyAction'
+import { getCurrentCompanyByStaff } from '../../../action/companyAction'
 import { AppContent, AppFooter, AppHeader, AppSidebar } from '../../index'
 import {
   CAvatar,
@@ -13,11 +13,13 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-export const ShowDonation = ({props})=>{
+export const ShowDonation = ()=>{
   const [total, setTotal] = React.useState(0)
   const currentCompany = useSelector((state) => state.company)
-  // useEffect(() => {
-  // }, [props])
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    dispatch(getCurrentCompanyByStaff())
+  },[])
   let totalAmout=0
 console.log(currentCompany)
   return(
@@ -27,30 +29,31 @@ console.log(currentCompany)
         <AppHeader />
         <div className="body flex-grow-1 px-3">
           <p>Show Donation</p>
-          {!currentCompany.company ? null : currentCompany.company.donation.map(
+          {!currentCompany.companyByStaff ? null : currentCompany.companyByStaff.donation.map(
             (someitem,index)=> {
               // {someitem.amount? setTotal(total+someitem.amount): setTotal(total)}
               totalAmout=totalAmout+someitem.amount
-            return (
-              <>
-              <CTableRow key={index}>
-                <CTableDataCell>
-                    <span>{someitem.firstname} {someitem.lastname} has donated: $</span>
-                    <span>   </span>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <div>
-                    <span> </span>{ someitem.amount}
-                  </div>
-                </CTableDataCell>
-                <CTableDataCell>
-                  <div>
-                    {' '} at {someitem.date}
-                  </div>
-                </CTableDataCell>
-              </CTableRow>
-              </>)
-          })}
+              return (
+                <>
+                  <CTableRow key={index}>
+                    <CTableDataCell>
+                      <span>{someitem.firstname} {someitem.lastname} has donated: $</span>
+                      <span>   </span>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <div>
+                        <span> </span>{ someitem.amount}
+                      </div>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <div>
+                        {' '} at {someitem.date}
+                      </div>
+                    </CTableDataCell>
+                  </CTableRow>
+                </>)
+            })}
+
         </div>
         <div>
           Total of ${totalAmout} has been donate to organization
