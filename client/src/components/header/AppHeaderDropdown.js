@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import CIcon from '@coreui/icons-react'
 import PropTypes from 'prop-types'
 import { logoutUser } from '../../action/authAction'
 import { getCurrentProfile } from '../../action/profileAction'
 import isEmpty from '../../validation/isEmpty'
-import Loader from '../common/Loader'
 
 import {
   CAvatar,
-  CBadge,
   CDropdown,
   CDropdownDivider,
   CDropdownHeader,
@@ -18,24 +15,14 @@ import {
   CDropdownMenu,
   CDropdownToggle,
 } from '@coreui/react'
-import {
-  cilBell,
-  cilCreditCard,
-  cilCommentSquare,
-  cilEnvelopeOpen,
-  cilFile,
-  cilLockLocked,
-  cilSettings,
-  cilTask,
-  cilUser,
-} from '@coreui/icons'
+import { cilLockLocked, cilSettings, cilUser } from '@coreui/icons'
 /**
  *
  * Header working here
  */
 class AppHeaderDropdown extends Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       user: null,
     }
@@ -46,7 +33,7 @@ class AppHeaderDropdown extends Component {
     this.props.getCurrentProfile()
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.auth) {
       this.setState({ user: nextProps.auth.user })
     }
@@ -73,7 +60,7 @@ class AppHeaderDropdown extends Component {
     return (
       <CDropdown variant="nav-item">
         <CDropdownToggle placement="bottom-end" className="py-0" caret={false}>
-          <CAvatar src={user.avatar} size="md" />
+          <CAvatar src={user.avatar} size="lg" className="profile-img" />
         </CDropdownToggle>
         <CDropdownMenu className="pt-0" placement="bottom-end">
           <CDropdownHeader className="bg-light fw-semibold py-2">Account</CDropdownHeader>

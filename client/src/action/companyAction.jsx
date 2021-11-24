@@ -15,7 +15,7 @@ export const createCompany = (data, history) => (dispatch) => {
   axios
     .post('/v1/company/', data)
     .then((result) => {
-      history.push('/setting')
+      history.push('/dashboard')
     })
     .catch((error) => {
       dispatch({

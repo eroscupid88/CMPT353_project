@@ -1,31 +1,9 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeStaff } from '../../action/companyAction'
-import {
-  CAvatar,
-  CButton,
-  CProgress,
-  CTable,
-  CTableBody,
-  CTableDataCell,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
-} from '@coreui/react'
+import { CAvatar, CTableDataCell, CTableRow } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cilUserX,
-  cilPeople,
-  cilUser,
-  cilGroup,
-} from '@coreui/icons'
+import { cilUser, cilStar, cilX } from '@coreui/icons'
 
 export function CompanyByStaffCard(props) {
   const dispatch = useDispatch()
@@ -36,7 +14,7 @@ export function CompanyByStaffCard(props) {
     <>
       <CTableRow>
         <CTableDataCell className="text-center">
-          <CAvatar size="md" src={props.staff.user.avatar} />
+          <CAvatar size="lg" src={props.staff.user.avatar} className="profile-img" />
         </CTableDataCell>
 
         <CTableDataCell>
@@ -50,21 +28,26 @@ export function CompanyByStaffCard(props) {
         <CTableDataCell className="text-center">
           <CIcon
             size="xl"
-            icon={props.staff.user._id === currentCompany.companyByStaff.owner ? cilGroup : cilUser}
+            icon={props.staff.user._id === currentCompany.companyByStaff.owner ? cilStar : cilUser}
             title={props.staff.user._id === currentCompany.companyByStaff.owner ? 'Owner' : 'Staff'}
           />
         </CTableDataCell>
         <CTableDataCell className="text-center">
           <div className="small text-large-emphasis">{props.staff.user.date}</div>
         </CTableDataCell>
-        {isOwner && props.staff.user._id != currentUser.user.userId ? (
+        {isOwner && props.staff.user._id !== currentUser.user.userId ? (
           <CTableDataCell>
-            <span id="deleteStaff" onClick={() => dispatch(removeStaff(props.staff.user._id))}>
-              <CIcon size="xl" icon={cilUserX} title="Remove Staff" />
-            </span>
+            <button
+              id="deleteStaff"
+              className="delete-user-btn"
+              type="button"
+              onClick={() => dispatch(removeStaff(props.staff.user._id))}
+            >
+              <CIcon size="xl" icon={cilX} title="Remove Staff" />
+            </button>
           </CTableDataCell>
         ) : (
-          <CTableDataCell></CTableDataCell>
+          <CTableDataCell />
         )}
       </CTableRow>
     </>

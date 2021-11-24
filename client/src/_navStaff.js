@@ -1,6 +1,6 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cibDashlane, cibDraugiemLv, cibHuawei, cilBank, cilDollar } from '@coreui/icons'
+import { cibDashlane, cibDraugiemLv, cilBank, cilDollar } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _navStaff = [
@@ -13,12 +13,6 @@ const _navStaff = [
     name: 'About Us',
     to: '/about',
     icon: <CIcon icon={cibDraugiemLv} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Settings',
-    to: '/setting',
-    icon: <CIcon icon={cibHuawei} customClassName="nav-icon" />,
   },
   {
     component: CNavItem,
