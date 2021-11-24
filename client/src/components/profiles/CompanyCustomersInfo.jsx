@@ -25,11 +25,13 @@ import {
   cilPeople,
   cilUser,
   cilGroup,
+  cilXCircle,
 } from '@coreui/icons'
 import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
 import { AppContent, AppFooter, AppHeader, AppSidebar } from '../index'
 import DefaultLayout from '../../layout/DefaultLayout'
+import { removeStaff } from '../../action/companyAction'
 
 class CompanyCustomersInfo extends Component {
   constructor(props) {
@@ -59,6 +61,7 @@ class CompanyCustomersInfo extends Component {
                   </CTableHeaderCell>
                   <CTableHeaderCell>People</CTableHeaderCell>
                   <CTableHeaderCell className="text-center">Creation Date</CTableHeaderCell>
+                  <CTableHeaderCell />
                 </CTableRow>
               </CTableHead>
               <CTableBody>{customerDetails}</CTableBody>

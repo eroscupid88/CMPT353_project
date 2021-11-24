@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { removeStaff } from '../../action/companyAction'
 import { CAvatar, CTableDataCell, CTableRow } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cilUser, cilStar, cilX } from '@coreui/icons'
+import { cilUser, cilStar, cilXCircle } from '@coreui/icons'
 
 export function CompanyByStaffCard(props) {
   const dispatch = useDispatch()
@@ -43,7 +43,7 @@ export function CompanyByStaffCard(props) {
               type="button"
               onClick={() => dispatch(removeStaff(props.staff.user._id))}
             >
-              <CIcon size="xl" icon={cilX} title="Remove Staff" />
+              <CIcon size="xl" icon={cilXCircle} title="Remove Staff" />
             </button>
           </CTableDataCell>
         ) : (

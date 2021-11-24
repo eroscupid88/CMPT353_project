@@ -24,6 +24,7 @@ import {
   cilPeople,
   cilUser,
   cilGroup,
+  cilXCircle,
 } from '@coreui/icons'
 
 export function CompanyCustomersCard(props) {
@@ -42,6 +43,11 @@ export function CompanyCustomersCard(props) {
       <CTableDataCell className="text-center">
         <div className="small text-medium-emphasis">Created at</div>
         {props.customer.date}
+      </CTableDataCell>
+      <CTableDataCell>
+        <button id="deleteCustomer" className="delete-user-btn" type="button" onClick={() => {}}>
+          <CIcon size="xl" icon={cilXCircle} title="Remove Staff" />
+        </button>
       </CTableDataCell>
     </>
   )
