@@ -30,20 +30,22 @@ export const Donation = (props) => {
   }
   let showDonation = (
     <div className="col pt-2">
-      <CInputGroup className="donation-field">
-        <CInputGroupText id="basic-addon1">Amount</CInputGroupText>
-        <CFormInput
-          placeholder="Donation Amount"
-          value={total}
-          onChange={(e) => {
-            setTotal(e.target.value)
-            console.log({ total })
-          }}
-        />
-        <CButton color="success" type="submit" onSubmit={handleSubmit}>
-          Donate
-        </CButton>
-      </CInputGroup>
+      <CForm onSubmit={handleSubmit}>
+        <CInputGroup className="donation-field">
+          <CInputGroupText id="basic-addon1">Amount</CInputGroupText>
+          <CFormInput
+            placeholder="Donation Amount"
+            value={total}
+            onChange={(e) => {
+              setTotal(e.target.value)
+              console.log({ total })
+            }}
+          />
+          <CButton color="success" type="submit">
+            Donate
+          </CButton>
+        </CInputGroup>
+      </CForm>
     </div>
   )
   return (
