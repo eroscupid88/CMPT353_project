@@ -14,6 +14,7 @@ class CompanyCard extends Component {
       customerRequest: false,
       errors: {},
       company: props.company,
+      total: 0
     }
   }
 
@@ -25,9 +26,19 @@ class CompanyCard extends Component {
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
-    if (!isEmpty(nextProps.errors.request)) {
+    if (!isEmpty(nextProps.errors)) {
       this.setState({ errors: nextProps.errors })
+    }
+    if (!isEmpty(nextProps.company)) {
+      this.setState({
+        company:nextProps.company
+      })
+    }
+    if (nextProps.errors.request){
       alert(nextProps.errors.request)
+    }
+    if (nextProps.errors.currency){
+      alert(nextProps.errors.currency)
     }
   }
 
@@ -67,7 +78,7 @@ class CompanyCard extends Component {
                     Apply for Jobs
                   </button>
                 )}
-                <Donation />
+                <Donation companyId = {this.state.company._id} errors = {this.state.errors}/>
               </div>
 
               <div className="user-actions" />

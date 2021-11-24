@@ -17,6 +17,8 @@ const passport = require('passport');
 
 const validateCompanyInputs = require('../../validation/company');
 
+const validateCurrencyInputs = require('../../validation/currency');
+
 const mongoose = require('mongoose');
 
 /**
@@ -231,18 +233,38 @@ router.put('/:id',passport.authenticate('jwt', { session: false }), function(req
 /**
  * Rest API to get a company invoke by getCurrentCompanyByStaff (for staffs only)
  */
-router.get('/donation',passport.authenticate('jwt', { session: false }),
+router.post('/donate',passport.authenticate('jwt', { session: false }),
     (req, res) => {
-        const errors = {}
+        const { amount,companyId } = req.body
+        const { errors, isValid } = validateCurrencyInputs(amount);
+        // Check Validation
+        if (!isValid) {
+            // Return any errors with 400 status
+            return res.status(400).json(errors);
+        }
+        console.log(amount,companyId)
         // check if user is a staff
         // find company by auth user
-            Company.find()
-                .then((company) => res.json(company[0]))
-                .catch((err) =>{
-                        errors.err = err
-                        res.status(404).json(errors)
-                    }
-                );
+        Company.findById({_id: companyId})
+            .populate({
+                path:'donation.user',
+                model: 'User'
+            })
+            .then((company) =>{
+                    company.donation.unshift(
+                        {user:req.user[0]._id,
+                                firstname: req.user[0].firstname,
+                                lastname: req.user[0].lastname,
+                                amount: amount })
+                    console.log(company)
+                    company.save()
+                    return res.json(company)
+            })
+            .catch((err) =>{
+                    errors.err = err
+                    return res.status(400).json(errors)
+                }
+            );
         })
 
 

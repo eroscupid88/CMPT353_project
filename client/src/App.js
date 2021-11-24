@@ -13,6 +13,7 @@ import CompanyStaffsInfo from './components/organization/CompanyStaffsInfo'
 import CompanyCustomersInfo from './components/profiles/CompanyCustomersInfo'
 import RequestManage from './components/organization/request-manage/RequestManage'
 import { ShowDonation } from './components/organization/donation/ShowDonation'
+import { Donation } from './components/organization/donation/Donation'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -41,6 +42,7 @@ class App extends Component {
           <Route exact path="/500" name="Page 500" component={Page500} />
           <Route exact path="/" name="Home Page" component={About} />
           <Route exact path="/about" name="About" component={About} />
+          <Route exact path="/test" name="About" component={Donation} />
           <Route exact path="/donation" name="Donation" component={ShowDonation} />
           <Switch>
             <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
