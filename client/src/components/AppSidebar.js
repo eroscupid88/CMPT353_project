@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getCurrentCompany } from '../action/companyAction'
+import { getCurrentCompany, getCurrentCompanyByStaff } from '../action/companyAction'
 import PropTypes from 'prop-types'
 import { CSidebar, CSidebarBrand, CSidebarNav } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
@@ -71,6 +71,7 @@ AppSidebar.propTypes = {
   company: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
   getCurrentCompany: PropTypes.func.isRequired,
+  getCurrentCompanyByStaff: PropTypes.func.isRequired,
 }
 
 const mapPropToState = (state) => ({
@@ -78,4 +79,4 @@ const mapPropToState = (state) => ({
   auth: state.auth,
 })
 
-export default connect(mapPropToState, { getCurrentCompany })(AppSidebar)
+export default connect(mapPropToState, { getCurrentCompany, getCurrentCompanyByStaff })(AppSidebar)

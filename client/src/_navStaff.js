@@ -16,8 +16,8 @@ const _navStaff = [
   },
   {
     component: CNavItem,
-    name: 'Welcome',
-    to: '/welcome',
+    name: 'Settings',
+    to: '/setting',
     icon: <CIcon icon={cibHuawei} customClassName="nav-icon" />,
   },
   {
