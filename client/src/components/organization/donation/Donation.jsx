@@ -29,15 +29,13 @@ export const Donation = () => {
       )
 
   }
-  console.log({displayState})
+
   const onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     })
   }
-  let showDonation
-  if({displayState}=== true){
-    showDonation = (
+  let showDonation = (
       <div>
         <CInputGroup className="mb-3">
 
@@ -47,23 +45,26 @@ export const Donation = () => {
           <CFormInput
             placeholder="Donation Amount"
             value={total}
+            onChange={()=>{}}
           />
+          <CButton color="success" type="submit">
+            Donate
+          </CButton>
           </CInputGroup>
       </div>
     )
-  }
   return (
     <>
+      <CForm onSubmit={()=>{}}>
       <button
         className="btn btn-light m-5"
         type="button"
-        onClick={() => {
-          setDisplayState(!{displayState})
-          console.log({displayState})
-        }}>Donate Here!
+        onClick={() => {setDisplayState(!displayState)
+          console.log({displayState})}
+        }>Donate Here!
       </button>
-      {displayState}
-      {showDonation}
+      {displayState ? showDonation: ''}
+      </CForm>
     </>
 
   )

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createStaffRequest } from '../../action/requestingAction'
 import { CLink } from '@coreui/react'
+import {Donation } from '../../components/organization/donation/Donation'
 class CompanyCard extends Component {
   constructor(props) {
     super(props)
@@ -66,6 +67,7 @@ class CompanyCard extends Component {
                     Apply for Jobs
                   </button>
                 )}
+                <Donation />
               </div>
 
               <div className="user-actions" />
