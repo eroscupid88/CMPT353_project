@@ -13,6 +13,8 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+import { cilPeople } from '@coreui/icons'
 export const ShowDonation = () => {
   const [total, setTotal] = React.useState(0)
   const currentCompany = useSelector((state) => state.company)
@@ -28,36 +30,40 @@ export const ShowDonation = () => {
       <div className="wrapper d-flex flex-column min-vh-100 bg-light">
         <AppHeader />
         <div className="body flex-grow-1 px-3">
-          <p>Show Donation</p>
-          {!currentCompany.companyByStaff
-            ? null
-            : currentCompany.companyByStaff.donation.map((someitem, index) => {
-                // {someitem.amount? setTotal(total+someitem.amount): setTotal(total)}
-                totalAmout = totalAmout + someitem.amount
-                return (
-                  <>
-                    <CTableRow key={index}>
-                      <CTableDataCell>
-                        <span>
-                          {someitem.firstname} {someitem.lastname} has donated: $
-                        </span>
-                        <span> </span>
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div>
-                          <span> </span>
-                          {someitem.amount}
-                        </div>
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div> at {someitem.date}</div>
-                      </CTableDataCell>
-                    </CTableRow>
-                  </>
-                )
-              })}
+          <CTable align="middle" className="mb-3 mt-3 border" hover responsive>
+            <CTableHead color="light">
+              <CTableRow>
+                <CTableHeaderCell className="text-center">User</CTableHeaderCell>
+                <CTableHeaderCell className="text-center">Donation Amount</CTableHeaderCell>
+                <CTableHeaderCell>Time</CTableHeaderCell>
+              </CTableRow>
+            </CTableHead>
+            <CTableBody>
+              {!currentCompany.companyByStaff
+                ? null
+                : currentCompany.companyByStaff.donation.map((someitem, index) => {
+                    // {someitem.amount? setTotal(total+someitem.amount): setTotal(total)}
+                    totalAmout = totalAmout + someitem.amount
+                    return (
+                      <>
+                        <CTableRow key={index}>
+                          <CTableDataCell className="text-center">
+                            {someitem.firstname} {someitem.lastname}
+                          </CTableDataCell>
+                          <CTableDataCell className="text-center">
+                            $ {someitem.amount}
+                          </CTableDataCell>
+                          <CTableDataCell>{someitem.date}</CTableDataCell>
+                        </CTableRow>
+                      </>
+                    )
+                  })}
+            </CTableBody>
+          </CTable>
         </div>
-        <div>Total of ${totalAmout} has been donate to organization</div>
+        <div className="text-center">
+          <h3>Total of ${totalAmout.toFixed(2)} has been donate to this organization</h3>
+        </div>
         <AppFooter />
       </div>
     </div>
