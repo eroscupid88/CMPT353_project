@@ -13,12 +13,12 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-export const ShowDonation = ()=>{
-  const dispatch = useDispatch()
+export const ShowDonation = ({props})=>{
+  const [total, setTotal] = React.useState(0)
   const currentCompany = useSelector((state) => state.company)
   // useEffect(() => {
-  //   dispatch(getCompanies())
-  // }, [])
+  // }, [props])
+  let totalAmout=0
 console.log(currentCompany)
   return(
     <div>
@@ -29,10 +29,11 @@ console.log(currentCompany)
           <p>Show Donation</p>
           {!currentCompany.company ? null : currentCompany.company.donation.map(
             (someitem,index)=> {
-              console.log(someitem)
+              // {someitem.amount? setTotal(total+someitem.amount): setTotal(total)}
+              totalAmout=totalAmout+someitem.amount
             return (
               <>
-              <CTableRow>
+              <CTableRow key={index}>
                 <CTableDataCell>
                     <span>{someitem.firstname} {someitem.lastname} has donated: $</span>
                     <span>   </span>
@@ -50,6 +51,9 @@ console.log(currentCompany)
               </CTableRow>
               </>)
           })}
+        </div>
+        <div>
+          Total of ${totalAmout} has been donate to organization
         </div>
         <AppFooter />
       </div>
