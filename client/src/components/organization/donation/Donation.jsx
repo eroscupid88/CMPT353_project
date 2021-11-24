@@ -27,9 +27,7 @@ export const Donation = () => {
             }
         </div>
       )
-
   }
-
   const onChange = (event) => {
     setTotal(event.currentTarget.value)
   }
@@ -53,7 +51,7 @@ export const Donation = () => {
     )
   return (
     <>
-      <CForm onSubmit={()=>{}}>
+      <CForm onSubmit={()=>{dispatch()}}>
       <button
         className="btn btn-light m-5"
         type="button"
