@@ -32,14 +32,14 @@ class Register extends Component {
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/welcome')
+      this.props.history.push('/setting')
     }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     // if authenticate, /register cannot be call and push to welcome instead
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push('/welcome')
+      this.props.history.push('/setting')
     } else if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
       alert('Email had already been registered!')

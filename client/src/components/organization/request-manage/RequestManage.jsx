@@ -1,16 +1,17 @@
-import React ,{Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import {connect} from 'react-redux'
-import {getAllRequests} from '../../../action/requestingAction'
+import { connect } from 'react-redux'
+import { getAllRequests } from '../../../action/requestingAction'
 import Loader from '../../common/Loader'
 import isEmpty from '../../../validation/isEmpty'
-import { RequestList }  from './RequestList'
+import { RequestList } from './RequestList'
+import DefaultLayout from '../../../layout/DefaultLayout'
 
 class RequestManage extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      errors: null
+      errors: null,
     }
   }
   componentDidMount() {
@@ -24,28 +25,25 @@ class RequestManage extends Component {
   }
 
   render() {
-    const {requests, loading } = this.props.request
+    const { requests, loading } = this.props.request
     let showRequest
-    if (loading){
+    if (loading) {
       showRequest = <Loader />
-    }
-    else if (requests === null){
+    } else if (requests === null) {
       showRequest = null
+    } else {
+      showRequest = <RequestList requests={requests} />
     }
-    else {
-        showRequest = <RequestList requests={requests} />
-    }
-    return (<h1>{showRequest}</h1>)
 
-}
+    return <DefaultLayout content={<h1>{showRequest}</h1>} />
+  }
 }
 RequestManage.propTypes = {
   request: PropTypes.object.isRequired,
-  getAllRequests: PropTypes.func.isRequired
-
+  getAllRequests: PropTypes.func.isRequired,
 }
-const mapPropsToState = (state) =>({
+const mapPropsToState = (state) => ({
   request: state.request,
-  errors: state.errors
+  errors: state.errors,
 })
-export default connect(mapPropsToState,{getAllRequests})(RequestManage)
+export default connect(mapPropsToState, { getAllRequests })(RequestManage)

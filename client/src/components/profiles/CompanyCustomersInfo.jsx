@@ -29,6 +29,7 @@ import {
 import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
 import { AppContent, AppFooter, AppHeader, AppSidebar } from '../index'
+import DefaultLayout from '../../layout/DefaultLayout'
 
 class CompanyCustomersInfo extends Component {
   constructor(props) {
@@ -47,29 +48,24 @@ class CompanyCustomersInfo extends Component {
       customerDetails = <CompanyCustomersList profiles={profiles} />
     }
     return (
-      <div>
-        <AppSidebar />
-        <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-          <AppHeader />
-          <div className="body flex-grow-1 px-3">
-            <>
-              <CTable align="middle" className="mb-0 border" hover responsive>
-                <CTableHead color="light">
-                  <CTableRow>
-                    <CTableHeaderCell className="text-center">
-                      <CIcon icon={cilPeople} />
-                    </CTableHeaderCell>
-                    <CTableHeaderCell>People</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Creation Date</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>{customerDetails}</CTableBody>
-              </CTable>
-            </>
-          </div>
-          <AppFooter />
-        </div>
-      </div>
+      <DefaultLayout
+        content={
+          <>
+            <CTable align="middle" className="mb-0 border" hover responsive>
+              <CTableHead color="light">
+                <CTableRow>
+                  <CTableHeaderCell className="text-center">
+                    <CIcon icon={cilPeople} />
+                  </CTableHeaderCell>
+                  <CTableHeaderCell>People</CTableHeaderCell>
+                  <CTableHeaderCell className="text-center">Creation Date</CTableHeaderCell>
+                </CTableRow>
+              </CTableHead>
+              <CTableBody>{customerDetails}</CTableBody>
+            </CTable>
+          </>
+        }
+      />
     )
   }
 }

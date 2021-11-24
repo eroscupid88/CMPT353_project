@@ -1,20 +1,20 @@
-import React, {Component} from "react";
-import {CButton, CForm, CFormInput, CInputGroup, CInputGroupText} from "@coreui/react";
-import CIcon from "@coreui/icons-react";
-import {cibTwitter} from "@coreui/icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAddressBook} from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import {createCompany, getCurrentCompany} from "../../action/companyAction";
-import isEmpty from "../../validation/isEmpty";
+import React, { Component } from 'react'
+import { CButton, CForm, CFormInput, CInputGroup, CInputGroupText } from '@coreui/react'
+import CIcon from '@coreui/icons-react'
+import { cibTwitter } from '@coreui/icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { createCompany, getCurrentCompany } from '../../action/companyAction'
+import DefaultLayout from '../../layout/DefaultLayout'
 class EditCompany extends Component {
   constructor(props) {
-    super(props);
-    this.state={
-      name : '',
+    super(props)
+    this.state = {
+      name: '',
       description: '',
-      errors: {}
+      errors: {},
     }
   }
 
@@ -30,74 +30,75 @@ class EditCompany extends Component {
       const company = nextProps.company.company
       this.setState({
         name: company.name,
-        description: company.description
+        description: company.description,
       })
     }
-
   }
 
-  onSubmit=(event) =>{
+  onSubmit = (event) => {
     event.preventDefault()
     const data = {
-      name : this.state.name,
-      description: this.state.description
+      name: this.state.name,
+      description: this.state.description,
     }
-    this.props.createCompany(data,this.props.history)
-
+    this.props.createCompany(data, this.props.history)
   }
   onChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     })
   }
-  render(){
-    const {errors} = this.state
+  render() {
+    const { errors } = this.state
     console.log(errors)
     return (
-      <div>
-        <div className="create-profile">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8 m-auto">
-                <h1 className="display-4 text-center">Edit Company</h1>
-                <CForm onSubmit={this.onSubmit}>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <CIcon icon={cibTwitter} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="Company name"
-                      name="name"
-                      value={this.state.name}
-                      onChange={this.onChange}
-                      errors={errors.name}
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <FontAwesomeIcon icon={faAddressBook} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="description"
-                      name="description"
-                      value={this.state.description}
-                      onChange={this.onChange}
-                      errors={errors.description}
-                    />
-                  </CInputGroup>
+      <DefaultLayout
+        content={
+          <>
+            <div className="create-profile">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-8 m-auto">
+                    <h1 className="display-4 text-center">Edit Company</h1>
+                    <CForm onSubmit={this.onSubmit}>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText id="basic-addon1">
+                          <CIcon icon={cibTwitter} />
+                        </CInputGroupText>
+                        <CFormInput
+                          placeholder="Company name"
+                          name="name"
+                          value={this.state.name}
+                          onChange={this.onChange}
+                          errors={errors.name}
+                        />
+                      </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText id="basic-addon1">
+                          <FontAwesomeIcon icon={faAddressBook} />
+                        </CInputGroupText>
+                        <CFormInput
+                          placeholder="description"
+                          name="description"
+                          value={this.state.description}
+                          onChange={this.onChange}
+                          errors={errors.description}
+                        />
+                      </CInputGroup>
 
-                  <div className="d-grid">
-                    <CButton color="success" type="submit">
-                      Submit
-                    </CButton>
+                      <div className="d-grid">
+                        <CButton color="success" type="submit">
+                          Submit
+                        </CButton>
+                      </div>
+                    </CForm>
                   </div>
-                </CForm>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
+          </>
+        }
+      />
     )
   }
 }
@@ -106,11 +107,11 @@ EditCompany.propTypes = {
   createCompany: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
   company: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
   company: state.company,
 })
-export default connect(mapStateToProps,{createCompany,getCurrentCompany})(EditCompany)
+export default connect(mapStateToProps, { createCompany, getCurrentCompany })(EditCompany)

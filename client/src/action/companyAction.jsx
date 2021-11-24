@@ -15,7 +15,7 @@ export const createCompany = (data, history) => (dispatch) => {
   axios
     .post('/v1/company/', data)
     .then((result) => {
-      history.push('/welcome')
+      history.push('/setting')
     })
     .catch((error) => {
       dispatch({
@@ -77,25 +77,24 @@ export const getCurrentCompanyByStaff = () => (dispatch) => {
   )
 }
 
-export const donate = (data)=> (dispatch) => {
-  if (window.confirm(`Are you sure you want to donate $${data.amount} to organization?`)){
-    axios.post('/v1/company/donate',data)
-      .then(
-
-        company => {
-          alert("donated!")
-          dispatch({
+export const donate = (data) => (dispatch) => {
+  if (window.confirm(`Are you sure you want to donate $${data.amount} to organization?`)) {
+    axios
+      .post('/v1/company/donate', data)
+      .then((company) => {
+        alert('donated!')
+        dispatch({
           type: GET_CURRENT_COMPANY,
-          payload: company.data
-        })}
-      ).catch(
-      (err) =>
+          payload: company.data,
+        })
+      })
+      .catch((err) =>
         dispatch({
           type: GET_ERRORS,
           payload: err.response.data,
-        }))
+        }),
+      )
   }
-
 }
 
 // get company with id
