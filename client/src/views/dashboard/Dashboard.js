@@ -17,8 +17,16 @@ class Dashboard extends Component {
     }
   }
   render() {
-    const user = this.props.auth
-    return <></>
+    const user = this.props.auth.user
+    console.log(user)
+    return (
+      <>
+        <br />
+        <h1>
+          Welcome {user.firstname} {user.lastname}!
+        </h1>
+      </>
+    )
   }
 }
 
