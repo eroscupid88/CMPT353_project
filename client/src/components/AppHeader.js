@@ -26,7 +26,7 @@ const AppHeader = () => {
   return (
     <CHeader position="sticky">
       <CContainer fluid>
-        <CHeaderToggler
+        {/* <CHeaderToggler
           className="ps-1"
           onClick={() => dispatch({ type: SET, sidebarShow: !sidebarShow })}
         >
@@ -34,12 +34,12 @@ const AppHeader = () => {
         </CHeaderToggler>
         <CHeaderBrand className="mx-auto d-md-none" to="/">
           <CIcon icon={logo} height={48} alt="Logo" />
-        </CHeaderBrand>
+        </CHeaderBrand> */}
 
         <CHeaderNav className="d-none d-md-flex me-auto">
-          <CNavItem>
+          {/* <CNavItem>
             <CNavLink href="/organization/staff">Get Staff-Customer</CNavLink>
-          </CNavItem>
+          </CNavItem> */}
         </CHeaderNav>
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown />
