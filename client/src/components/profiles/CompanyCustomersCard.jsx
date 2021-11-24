@@ -1,33 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import isEmpty from '../../validation/isEmpty'
+import { deleteCustomerAccount } from '../../action/profileAction'
 import {
   CAvatar,
-  CButton,
-  CProgress,
-  CTable,
-  CTableBody,
   CTableDataCell,
-  CTableHead,
-  CTableHeaderCell,
-  CTableRow,
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import {
-  cibCcAmex,
-  cibCcApplePay,
-  cibCcMastercard,
-  cibCcPaypal,
-  cibCcStripe,
-  cibCcVisa,
-  cilUserX,
-  cilPeople,
-  cilUser,
-  cilGroup,
   cilXCircle,
 } from '@coreui/icons'
 
 export function CompanyCustomersCard(props) {
+  const dispatch = useDispatch()
+
+  let isOwner = false
+    if(!isEmpty(props.company)) {
+      isOwner = (props.company.owner === props.user)
+    }
   return (
     <>
       <CTableDataCell className="text-center">
@@ -44,11 +35,12 @@ export function CompanyCustomersCard(props) {
         <div className="small text-medium-emphasis">Created at</div>
         {props.customer.date}
       </CTableDataCell>
-      <CTableDataCell>
-        <button id="deleteCustomer" className="delete-user-btn" type="button" onClick={() => {}}>
+      {isOwner ? <CTableDataCell>
+        <button id="deleteCustomer" className="delete-user-btn" type="button" onClick={() => {dispatch(deleteCustomerAccount(props.customer.user._id))}}>
           <CIcon size="xl" icon={cilXCircle} title="Remove Staff" />
         </button>
-      </CTableDataCell>
+      </CTableDataCell> : null}
+
     </>
   )
 }

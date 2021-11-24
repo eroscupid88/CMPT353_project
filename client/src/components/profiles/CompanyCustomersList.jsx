@@ -9,7 +9,11 @@ export default class CompanyCustomersList extends Component {
         <CTableRow v-for="item in tableItems">
           <CompanyCustomersCard key={index}
                                 colNum="col-md-3 col-xs-6"
-                                customer={profile} />
+                                customer={profile}
+                                company = {this.props.company}
+                                user = {this.props.user}
+
+          />
         </CTableRow>
       )
     })
