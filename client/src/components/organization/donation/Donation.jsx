@@ -1,37 +1,47 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCompanies } from '../../../action/companyAction'
+import { getCompanies, donate } from '../../../action/companyAction'
 import isEmpty from '../../../validation/isEmpty'
 import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton, CRow, CCol } from '@coreui/react'
 
-export const Donation = () => {
+export const Donation = (props) => {
   const [total, setTotal] = React.useState(0)
   const [displayState, setDisplayState] = React.useState(false)
+  const [errors, setErrors] = React.useState(props)
+  const [company, setCompanies] = React.useState(props)
 
-  useEffect(() => {
-    dispatch(getCompanies())
-  }, [])
   const dispatch = useDispatch()
-  const currentCompany = useSelector((state) => state.company)
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    dispatch(donate({ amount: total, companyId: props.companyId }))
+  }
+
+  const currentErrors = useSelector((state) => state.errors)
   let companyDonation = null
-  if (!isEmpty(currentCompany.companies)) {
-    console.log(currentCompany.companies[0])
+  if (!isEmpty(company.companies)) {
+    console.log(company.companies[0])
     companyDonation = (
       <div>
-        {currentCompany.companies[0].donation.map((item) => {
+        {company.companies.donation.map((item) => {
           return <h1>{item}</h1>
         })}
       </div>
     )
   }
-  const onChange = (event) => {
-    setTotal(event.currentTarget.value)
-  }
   let showDonation = (
     <div className="col pt-2">
       <CInputGroup className="donation-field">
         <CInputGroupText id="basic-addon1">Amount</CInputGroupText>
-        <CFormInput placeholder="Donation Amount" value={total} onChange={() => {}} />
+        <CForm onSubmit={handleSubmit}>
+          <CFormInput
+            placeholder="Donation Amount"
+            value={total}
+            onChange={(e) => {
+              setTotal(e.target.value)
+              console.log({ total })
+            }}
+          />
+        </CForm>
         <CButton color="success" type="submit">
           Donate
         </CButton>
@@ -39,9 +49,6 @@ export const Donation = () => {
     </div>
   )
   return (
-    // <CForm onSubmit={() => {}}>
-    //   <CRow className="justify-content-center">
-    //     <CCol className="donate-btn">
     <div className="row">
       <div className="col-4">
         <button
@@ -57,10 +64,5 @@ export const Donation = () => {
       </div>
       {displayState ? showDonation : ''}
     </div>
-
-    // {/*    </CCol>*/}
-    // {/*    <CCol></CCol>*/}
-    // {/*  </CRow>*/}
-    // {/*</CForm>*/}
   )
 }
