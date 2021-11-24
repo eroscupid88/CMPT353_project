@@ -74,6 +74,25 @@ export const deleteAccount = (history) => (dispatch) => {
   }
 }
 
+// delete Profile
+export const deleteCustomerAccount = (id) => (dispatch) => {
+  console.log(id)
+  // if (window.confirm('Are you sure you want to delete your customer profile')) {
+  //   axios
+  //     .delete(`/v1/profile/${id}`)
+  //     .then((result) => {
+  //       console.log(result)
+  //     })
+  //     .catch((err) =>
+  //       dispatch({
+  //         type: GET_ERRORS,
+  //         payload: err.response.data,
+  //       }),
+  //     )
+  // }
+}
+
+
 export const getProfileByProfileUsername = (profileusername) => (dispatch) => {
   dispatch(setProfileLoading())
   axios
