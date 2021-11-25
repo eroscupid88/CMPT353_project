@@ -1,6 +1,6 @@
 import React from 'react'
-import { AppContent, AppSidebar, AppFooter, AppHeader } from '../components/index'
-import isEmpty from '../validation/isEmpty'
+import { AppContent, AppSidebar, AppFooter, AppHeader } from '../index'
+import isEmpty from '../../validation/isEmpty'
 
 function DefaultLayout({ content }) {
   return (

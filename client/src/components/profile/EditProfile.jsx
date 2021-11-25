@@ -9,7 +9,7 @@ import CIcon from '@coreui/icons-react'
 import { cibGithub, cibInstagram, cibLinkedin, cibTwitter, cibYoutube } from '@coreui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, faUser } from '@fortawesome/free-solid-svg-icons'
-import DefaultLayout from 'src/layout/DefaultLayout'
+import DefaultLayout from 'src/components/layout/DefaultLayout'
 
 class EditProfile extends Component {
   constructor(props) {

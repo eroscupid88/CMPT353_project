@@ -8,7 +8,7 @@ import Loader from '../../components/common/Loader'
 import ProfileAction from './ProfileAction'
 import { CButton, CCard, CCol, CContainer, CNavLink, CRow } from '@coreui/react'
 import isEmpty from '../../validation/isEmpty'
-import DefaultLayout from 'src/layout/DefaultLayout'
+import DefaultLayout from 'src/components/layout/DefaultLayout'
 
 class Welcome extends Component {
   constructor(props) {
