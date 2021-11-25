@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import CompanyList from './CompanyList'
 import Loader from '../common/Loader'
 import { AppFooter, AppHeader, AppSidebar } from '../index'
-import DefaultLayout from '../../layout/DefaultLayout'
+import DefaultLayout from '../layout/DefaultLayout'
 
 class Organizations extends Component {
   constructor(props) {

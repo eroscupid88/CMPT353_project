@@ -5,7 +5,7 @@ import { getAllRequests } from '../../../action/requestingAction'
 import Loader from '../../common/Loader'
 import isEmpty from '../../../validation/isEmpty'
 import { RequestList } from './RequestList'
-import DefaultLayout from '../../../layout/DefaultLayout'
+import DefaultLayout from '../../layout/DefaultLayout'
 
 class RequestManage extends Component {
   constructor(props) {

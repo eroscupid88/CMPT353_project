@@ -1,4 +1,3 @@
-import isEmpty from '../validation/isEmpty'
 import { GET_TEAM, TEAM_ERROR } from '../action/types'
 
 const initialState = {

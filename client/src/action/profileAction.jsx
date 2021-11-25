@@ -14,10 +14,10 @@ export const createProfile = (data, history) => (dispatch) => {
       history.push('/dashboard')
     })
     .catch((error) => {
-        dispatch({
-          type: GET_ERRORS,
-          payload: error.response.data
-        })
+      dispatch({
+        type: GET_ERRORS,
+        payload: error.response.data,
+      })
     })
 }
 

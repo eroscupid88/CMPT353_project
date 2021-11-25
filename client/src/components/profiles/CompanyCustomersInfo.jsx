@@ -32,7 +32,7 @@ import {
 import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
 import { AppContent, AppFooter, AppHeader, AppSidebar } from '../index'
-import DefaultLayout from '../../layout/DefaultLayout'
+import DefaultLayout from '../layout/DefaultLayout'
 import { removeStaff } from '../../action/companyAction'
 
 class CompanyCustomersInfo extends Component {

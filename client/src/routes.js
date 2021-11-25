@@ -7,8 +7,6 @@ const Typography = React.lazy(() => import('./views/theme/typography/Typography'
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
 const Breadcrumbs = React.lazy(() => import('./views/base/breadcrumbs/Breadcrumbs'))
-const Cards = React.lazy(() => import('./views/base/cards/Cards'))
-const Carousels = React.lazy(() => import('./views/base/carousels/Carousels'))
 const Collapses = React.lazy(() => import('./views/base/collapses/Collapses'))
 const ListGroups = React.lazy(() => import('./views/base/list-groups/ListGroups'))
 const Navs = React.lazy(() => import('./views/base/navs/Navs'))
@@ -55,11 +53,8 @@ const routes = [
   { path: '/theme', name: 'Theme', component: Colors, exact: true },
   { path: '/theme/colors', name: 'Colors', component: Colors },
   { path: '/theme/typography', name: 'Typography', component: Typography },
-  { path: '/base', name: 'Base', component: Cards, exact: true },
   { path: '/base/accordion', name: 'Accordion', component: Accordion },
   { path: '/base/breadcrumbs', name: 'Breadcrumbs', component: Breadcrumbs },
-  { path: '/base/cards', name: 'Cards', component: Cards },
-  { path: '/base/carousels', name: 'Carousel', component: Carousels },
   { path: '/base/collapses', name: 'Collapse', component: Collapses },
   { path: '/base/list-groups', name: 'List Groups', component: ListGroups },
   { path: '/base/navs', name: 'Navs', component: Navs },

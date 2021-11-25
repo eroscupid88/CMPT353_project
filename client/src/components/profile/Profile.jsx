@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import ProfileHeader from './ProfileHeader'
 import Loader from '../common/Loader'
 import { getProfileByProfileUsername } from '../../action/profileAction'
-import DefaultLayout from 'src/layout/DefaultLayout'
+import DefaultLayout from 'src/components/layout/DefaultLayout'
 
 class Profile extends Component {
   componentDidMount() {
