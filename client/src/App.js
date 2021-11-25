@@ -43,10 +43,10 @@ class App extends Component {
           <Route exact path="/" name="Home Page" component={About} />
           <Route exact path="/about" name="About" component={About} />
           <Switch>
-            <Route exact path="/profile/:profileusername" name="profile" component={Profile} />
+            <PrivateRoute exact path="/profile/:profileusername" name="profile" component={Profile} />
           </Switch>
           <Switch>
-            <Route exact path="/manage" name="About" component={RequestManage} />
+            <PrivateRoute exact path="/manage" name="About" component={RequestManage} />
           </Switch>
           <Switch>
             <PrivateRoute exact path="/dashboard" component={DefaultLayout} />
@@ -76,7 +76,7 @@ class App extends Component {
             <PrivateRoute exact path="/staff" component={CompanyStaffsInfo} />
           </Switch>
           <Switch>
-            <Route exact path="/donation" name="Donation" component={ShowDonation} />
+            <PrivateRoute exact path="/donation" name="Donation" component={ShowDonation} />
           </Switch>
         </Router>
       </React.Suspense>
