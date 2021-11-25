@@ -1,11 +1,11 @@
-import AppContent from './AppContent'
-import AppFooter from './AppFooter'
-import AppHeader from './AppHeader'
-import AppHeaderDropdown from './header/AppHeaderDropdown'
-import AppSidebar from './AppSidebar'
-import DocsCallout from './DocsCallout'
-import DocsLink from './DocsLink'
-import DocsExample from './DocsExample'
+import AppContent from './app-docs/AppContent'
+import AppFooter from './app-docs/AppFooter'
+import AppHeader from './app-docs/AppHeader'
+import AppHeaderDropdown from './app-docs/AppHeaderDropdown'
+import AppSidebar from './app-docs/AppSidebar'
+import DocsCallout from './app-docs/DocsCallout'
+import DocsLink from './app-docs/DocsLink'
+import DocsExample from './app-docs/DocsExample'
 
 export {
   AppContent,
