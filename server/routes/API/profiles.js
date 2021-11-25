@@ -1,55 +1,47 @@
-const router = require("express").Router();
-const passport = require("passport");
-const multer = require("multer");
+const router = require('express').Router();
+const passport = require('passport');
+const multer = require('multer');
 // load profile user  Model
-const Profile = require("../../model/profile");
-const User = require("../../model/user");
-const validateProfileInputs = require("../../validation/profile");
-const upload = require("../../middleware/image-upload");
+const Profile = require('../../model/profile');
+const User = require('../../model/user');
+const validateProfileInputs = require('../../validation/profile');
+const upload = require('../../middleware/image-upload');
 
-const singleUpload = upload.single("image");
+const singleUpload = upload.single('image');
 
-router.post(
-  "/image-upload",
-  passport.authenticate("jwt", { session: false }),
-  function (req, res) {
-    singleUpload(req, res, function (err) {
-      if (err) {
-        return res
-          .status(422)
-          .send({
-            errors: [{ title: "Image Upload Error", detail: err.message }],
-          });
-      }
-      User.findOneAndUpdate(
-        { id: req.user[0].id },
-        { avatar: req.file.location },
-        { new: true }
-      )
-        .then((users) => {
-          console.log(users);
-          return res.json(users);
-        })
-        .catch((err) => {
-          return res.send(err);
-        });
+
+router.post('/image-upload',
+    passport.authenticate('jwt', { session: false }),
+    function(req, res) {
+    singleUpload(req, res, function(err) {
+        if (err) {
+            return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}]});
+        }
+        User.findOneAndUpdate(
+            {_id:req.user[0]._id},
+            {avatar:req.file.location},
+            { new: true }
+        ).then(
+            users => {
+                return res.json(users)
+        }).catch(err => {return res.send(err)})
     });
-  }
-);
+});
+
 
 /**
  * API to get profile
  */
 router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
+  '/',
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const errors = {};
     Profile.findOne({ user: req.user[0].id })
-      .populate("user", ["firstname", "lastname", "email", "avatar"])
+      .populate('user', ['firstname','lastname', 'email', 'avatar'])
       .then((profile) => {
         if (!profile) {
-          errors.noprofile = "There is no profile for this user";
+          errors.noprofile = 'There is no profile for this user';
           return res.status(404).json(errors);
         }
         res.json(profile);
@@ -64,13 +56,13 @@ router.get(
 // v1/profile/profileusername/:profileusername
 // get profile by profileusername
 // public
-router.get("/profileusername/:profileusername", (req, res) => {
+router.get('/profileusername/:profileusername', (req, res) => {
   const errors = {};
   Profile.findOne({ profileusername: req.params.profileusername })
-    .populate("user", ["firstname", "lastname", "avatar"])
+    .populate('user', ['firstname','lastname', 'avatar'])
     .then((profile) => {
       if (!profile) {
-        errors.noprofile = "There is no profile for this user";
+        errors.noprofile = 'There is no profile for this user';
         res.status(404).json(errors);
       }
       res.json(profile);
@@ -80,21 +72,21 @@ router.get("/profileusername/:profileusername", (req, res) => {
 
 // get profile/all
 // get company user profile
-// get all customers
+// get all profiles
 // public
-router.get("/all", (req, res) => {
+router.get('/all', (req, res) => {
   const errors = {};
   Profile.find()
-    .populate("user", ["avatar", "firstname", "lastname"])
+    .populate('user', ['avatar', 'firstname','lastname'])
     .then((profiles) => {
       if (!profiles) {
-        errors.noprofile = "There are no customers";
+        errors.noprofile = 'There are no profiles';
         return res.status.json(errors);
       }
       res.json(profiles);
     })
     .catch((err) =>
-      res.status(404).json({ profile: " There are no customers" })
+      res.status(404).json({ profile: ' There are no profiles' })
     );
 });
 
@@ -102,23 +94,25 @@ router.get("/all", (req, res) => {
 // get profile by user_id
 // public
 
-router.get("/user/:user_id", (req, res) => {
+router.get('/user/:user_id', (req, res) => {
   const errors = {};
   Profile.findOne({ user: req.params.user_id })
-    .populate("user", ["firstname", "lastname", "avatar"])
+    .populate('user', ['firstname','lastname', 'avatar'])
     .then((profile) => {
       if (!profile) {
-        errors.noprofile = "There is no profile for this user";
+        errors.noprofile = 'There is no profile for this user';
         return res.status(404).json(errors);
       }
       return res.json(profile);
     })
-    .catch((err) => {
-      return res.status(404).json({
-        err,
-        profile: "there is no profile for this user",
-      });
-    });
+    .catch((err) =>{ return res.status(404).json({
+            err,
+            profile: 'there is no profile for this user',
+        })
+
+    }
+
+    );
 });
 
 // post profile
@@ -126,8 +120,8 @@ router.get("/user/:user_id", (req, res) => {
 // private
 
 router.post(
-  "/",
-  passport.authenticate("jwt", { session: false }),
+  '/',
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateProfileInputs(req.body);
     if (!isValid) {
@@ -153,34 +147,32 @@ router.post(
     if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
     // find profile of the user.
     Profile.findOne({ user: req.user[0].id }).then((result) => {
-      // if found a profile
+        // if found a profile
       if (result) {
         // Update
         Profile.findOneAndUpdate(
           { user: req.user[0].id },
           { $set: profileFields },
           { new: true }
-        ).then((profile) => {
-          res.json(profile);
-        });
+        ).then((profile) => { res.json(profile)});
       } else {
-        // Check if handle exists
-        Profile.findOne({
-          profileusername: profileFields.profileusername,
-        }).then((found) => {
-          if (found) {
-            errors.profileusername = "That username already exists";
-            console.log(found);
-            return res.status(400).json(errors);
-          } else {
-            // Save Profile
-            new Profile(profileFields)
-              .save()
-              .then((profile) => res.json(profile));
-          }
-        });
-      }
-    });
+          // Check if handle exists
+          Profile.findOne({profileusername: profileFields.profileusername,})
+              .then((found) => {
+                  if (found) {
+                      errors.profileusername = 'That username already exists';
+                      console.log(found)
+                      return res.status(400).json(errors);
+                  }
+                  else{
+                      // Save Profile
+                      new Profile(profileFields).save().then((profile) => res.json(profile));
+                  }
+
+            });
+
+         }})
+
   }
 );
 
@@ -189,8 +181,8 @@ router.post(
 // private
 
 router.delete(
-  "/",
-  passport.authenticate("jwt", { session: false }),
+  '/',
+  passport.authenticate('jwt', { session: false }),
   (req, res) => {
     Profile.findOneAndRemove({ user: req.user[0].id }).then(() =>
       res.json({ success: true })
@@ -198,14 +190,14 @@ router.delete(
   }
 );
 router.delete(
-  "/:id",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const { id } = req.params;
-    Profile.findOneAndRemove({ user: id }).then(() =>
-      res.json({ success: true })
-    );
-  }
+    '/:id',
+    passport.authenticate('jwt', { session: false }),
+    (req, res) => {
+        const { id } = req.params
+        Profile.findOneAndRemove({ user: id }).then(() =>
+            res.json({ success: true })
+        );
+    }
 );
 
 module.exports = router;
