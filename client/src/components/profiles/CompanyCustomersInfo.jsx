@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { getProfiles } from '../../action/profileAction'
+import { getCurrentCompany } from '../../action/companyAction'
 import PropTypes from 'prop-types'
 import Loader from '../common/Loader'
 import CompanyCustomersList from './CompanyCustomersList'
+import isEmpty from '../../validation/isEmpty'
 import {
   CAvatar,
   CButton,
@@ -40,14 +42,17 @@ class CompanyCustomersInfo extends Component {
   componentDidMount() {
     // call getCompanies to get information of the companies
     this.props.getProfiles()
+    this.props.getCurrentCompany()
   }
   render() {
     const { profiles, loading } = this.props.profile
+    const { company } = this.props.company
+    const { user } = this.props.auth
     let customerDetails
     if (profiles == null || loading) {
       customerDetails = <Loader />
     } else {
-      customerDetails = <CompanyCustomersList profiles={profiles} />
+      customerDetails = <CompanyCustomersList profiles={profiles} company={isEmpty(company)?null:company} user={user.userId}/>
     }
     return (
       <DefaultLayout
@@ -76,10 +81,14 @@ class CompanyCustomersInfo extends Component {
 const isOwner = false
 CompanyCustomersInfo.propTypes = {
   profile: PropTypes.object.isRequired,
+  getCurrentCompany: PropTypes.func.isRequired,
+  getProfiles: PropTypes.func.isRequired,
 }
 
 const mapPropToState = (state) => ({
   profile: state.profile,
+  company: state.company,
+  auth: state.auth
 })
 
-export default connect(mapPropToState, { getProfiles })(CompanyCustomersInfo)
+export default connect(mapPropToState, { getProfiles,getCurrentCompany })(CompanyCustomersInfo)
