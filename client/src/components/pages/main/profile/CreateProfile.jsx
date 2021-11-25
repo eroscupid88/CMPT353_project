@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom'
 import { cibGithub, cibLinkedin, cibYoutube, cibInstagram, cibTwitter } from '@coreui/icons'
 import { createProfile } from '../../../../action/profileAction'
 import isEmpty from '../../../../validation/isEmpty'
+import DefaultLayout from "../DefaultLayout";
 
 class CreateProfile extends Component {
   constructor() {
@@ -151,7 +152,7 @@ class CreateProfile extends Component {
       )
     }
     return (
-      <div>
+      <DefaultLayout content={<div>
         <div className="create-profile">
           <div className="container">
             <div className="row">
@@ -221,7 +222,7 @@ class CreateProfile extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </div>}/>
     )
   }
 }
