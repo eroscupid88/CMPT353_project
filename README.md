@@ -6,25 +6,32 @@
 - Lucius Ho
 - Kyle Holtby
 
-## Software Stack for this project:
 
+
+## Description about this project:
+
+to create user first create user with email dillon@yahoo.com.
+This account is the only account allowed to create unique company by default.
+this account can create unique company and owner of that company.
+
+# Software Stack for this CMPT353 project:
 - server side using NodeJs with express
 - client side using HTML, CSS and React, Redux
-- Database using MongoDB
+- App Database using MongoDB
+- Team Database using mySQL
+- cloud storage using AWS S3
 
-## To Start:
+## To Start first you need to have Docker set up. for more info
+## please visit https://www.docker.com/ to install docker:
 
-# Run with docker
+# Run with docker command:
+docker-compose up
 
-- If docker image has not been created run start-command.sh
-- If image is already create simple run docker compose up to run
-
-# For Running on local machine:
+# To run on client side run on:
+http://locahost:3000
 
 
-implementation ELK stacks
-zipkin server run on localhost:9411
-eureka server run on localhost:8081
-gateway server run on localhost:7072
-config server run on localhost:8082
-kibana server run on localhost:5601
+
+
+
+
