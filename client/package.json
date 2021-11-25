@@ -75,6 +75,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://user-server:8080"
+  "proxy": "http://gatewayserver:7072"
 
 }
