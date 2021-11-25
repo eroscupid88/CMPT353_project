@@ -35,6 +35,7 @@ class AppHeaderDropdown extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps, nextContext) {
     if (nextProps.auth) {
+      console.log(nextProps.auth.user.avatar)
       this.setState({ user: nextProps.auth.user })
     }
   }
