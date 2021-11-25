@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCompanies, donate } from '../../../../../action/companyAction'
+import { donate } from '../../../../../action/companyAction'
 import isEmpty from '../../../../../validation/isEmpty'
-import { CFormInput, CInputGroup, CInputGroupText, CForm, CButton, CRow, CCol } from '@coreui/react'
+import {
+  CFormInput,
+  CInputGroup,
+  CInputGroupText,
+  CForm,
+  CButton,
+} from '@coreui/react'
 
 export const Donation = (props) => {
   const [total, setTotal] = React.useState(0)
   const [displayState, setDisplayState] = React.useState(false)
-  const [errors, setErrors] = React.useState(props)
-  const [company, setCompanies] = React.useState(props)
+  const [company] = React.useState(props)
 
   const dispatch = useDispatch()
   const handleSubmit = (e) => {
@@ -16,17 +21,8 @@ export const Donation = (props) => {
     dispatch(donate({ amount: total, companyId: props.companyId }))
   }
 
-  const currentErrors = useSelector((state) => state.errors)
-  let companyDonation = null
   if (!isEmpty(company.companies)) {
     console.log(company.companies[0])
-    companyDonation = (
-      <div>
-        {company.companies.donation.map((item) => {
-          return <h1>{item}</h1>
-        })}
-      </div>
-    )
   }
   let showDonation = (
     <div className="col pt-2">

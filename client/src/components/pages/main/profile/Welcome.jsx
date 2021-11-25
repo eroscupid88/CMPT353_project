@@ -2,8 +2,14 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getCurrentProfile, deleteAccount } from '../../../../action/profileAction'
-import { getCurrentCompany, deleteCompany } from '../../../../action/companyAction'
+import {
+  getCurrentProfile,
+  deleteAccount,
+} from '../../../../action/profileAction'
+import {
+  getCurrentCompany,
+  deleteCompany,
+} from '../../../../action/companyAction'
 import Loader from '../../../common/Loader'
 import ProfileAction from './ProfileAction'
 import { CButton, CCard, CCol, CContainer, CNavLink, CRow } from '@coreui/react'
@@ -71,7 +77,10 @@ class Welcome extends Component {
       if (Object.keys(profile).length > 0) {
         dashboardContent = (
           <div>
-            <ProfileAction mycompany={this.props.company} user={this.props.auth} />
+            <ProfileAction
+              mycompany={this.props.company}
+              user={this.props.auth}
+            />
             <div style={{ marginBottom: '10px' }} />
             <CRow>
               {deleteProfileButton}
@@ -100,7 +109,7 @@ class Welcome extends Component {
               <button className="button dashboard-button">Dashboard</button>
             </Link>
             <CContainer>
-              <CCol md={4}>
+              <CCol md={5}>
                 <CCard className="p-4">
                   <div className="container">
                     <div className="row">

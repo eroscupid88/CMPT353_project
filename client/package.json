@@ -63,5 +63,9 @@
     "node": ">=10",
     "npm": ">=6"
   },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false
+  },
   "proxy": "http://localhost:8080"
 }

@@ -1,42 +1,45 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { getCurrentCompany, getCurrentCompanyByStaff } from '../../action/companyAction'
-import PropTypes from 'prop-types'
-import { CSidebar, CSidebarBrand, CSidebarNav } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilSnowflake } from '@coreui/icons'
-import isEmpty from '../../validation/isEmpty'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import {
+  getCurrentCompany,
+  getCurrentCompanyByStaff,
+} from '../../action/companyAction';
+import PropTypes from 'prop-types';
+import { CSidebar, CSidebarBrand, CSidebarNav } from '@coreui/react';
+import CIcon from '@coreui/icons-react';
+import { cilSnowflake } from '@coreui/icons';
+import isEmpty from '../../validation/isEmpty';
 
-import { AppSidebarNav } from './AppSidebarNav'
-import SimpleBar from 'simplebar-react'
-import 'simplebar/dist/simplebar.min.css'
+import { AppSidebarNav } from './AppSidebarNav';
+import SimpleBar from 'simplebar-react';
+import 'simplebar/dist/simplebar.min.css';
 
 // sidebar nav config
-import navigationOwner from '../../_navOwner'
-import navigationStaff from '../../_navStaff'
-import { SET } from '../../action/types'
+import navigationOwner from '../pages/main/_navOwner';
+import navigationStaff from '../pages/main/_navStaff';
+import { SET } from '../../action/types';
 
 class AppSidebar extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       user: null,
-    }
+    };
   }
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
       this.setState({
         user: this.props.auth.user,
-      })
+      });
     }
     // call getCurrentCompany
-    this.props.getCurrentCompany()
+    this.props.getCurrentCompany();
   }
   render() {
-    const { company } = this.props.company
-    let isOwner = false
+    const { company } = this.props.company;
+    let isOwner = false;
     if (!isEmpty(company) && !isEmpty(this.state.user)) {
-      isOwner = company.owner === this.state.user.userId
+      isOwner = company.owner === this.state.user.userId;
     }
 
     return (
@@ -64,7 +67,7 @@ class AppSidebar extends Component {
           </SimpleBar>
         </CSidebarNav>
       </CSidebar>
-    )
+    );
   }
 }
 AppSidebar.propTypes = {
@@ -72,11 +75,14 @@ AppSidebar.propTypes = {
   auth: PropTypes.object.isRequired,
   getCurrentCompany: PropTypes.func.isRequired,
   getCurrentCompanyByStaff: PropTypes.func.isRequired,
-}
+};
 
 const mapPropToState = (state) => ({
   company: state.company,
   auth: state.auth,
-})
+});
 
-export default connect(mapPropToState, { getCurrentCompany, getCurrentCompanyByStaff })(AppSidebar)
+export default connect(mapPropToState, {
+  getCurrentCompany,
+  getCurrentCompanyByStaff,
+})(AppSidebar);

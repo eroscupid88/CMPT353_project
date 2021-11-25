@@ -1,6 +1,16 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
-import { cibDashlane, cibDraugiemLv, cilBank, cilDollar } from '@coreui/icons'
+import {
+  cibDashlane,
+  cibDraugiemLv,
+  cilBank,
+  cilContact,
+  cilDollar,
+  cilMagnifyingGlass,
+  cilNotes,
+  cilPencil,
+  cilPeople,
+} from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
 const _navOwner = [
@@ -34,26 +44,31 @@ const _navOwner = [
         component: CNavItem,
         name: 'View Organization',
         to: '/organization',
+        icon: <CIcon icon={cilMagnifyingGlass} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Edit Organization',
         to: '/edit-company',
+        icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Application Request',
         to: '/manage',
+        icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Show Staff',
         to: '/staff',
+        icon: <CIcon icon={cilContact} customClassName="nav-icon" />,
       },
       {
         component: CNavItem,
         name: 'Show Customer',
         to: '/customer',
+        icon: <CIcon icon={cilPeople} customClassName="nav-icon" />,
       },
     ],
   },
