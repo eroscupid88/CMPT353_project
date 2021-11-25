@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+const Dashboard = React.lazy(() => import('./components/pages/main/Dashboard'))
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
 
@@ -76,7 +76,7 @@ const routes = [
   { path: '/forms/range', name: 'Range', component: Range },
   { path: '/forms/input-group', name: 'Input Group', component: InputGroup },
   { path: '/forms/floating-labels', name: 'Floating Labels', component: FloatingLabels },
-  { path: '/forms/layout', name: 'Layout', component: Layout },
+  { path: '/forms/main', name: 'Layout', component: Layout },
   { path: '/forms/validation', name: 'Validation', component: Validation },
   { path: '/icons', exact: true, name: 'Icons', component: CoreUIIcons },
   { path: '/icons/coreui-icons', name: 'CoreUI Icons', component: CoreUIIcons },
