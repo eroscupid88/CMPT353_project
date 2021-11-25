@@ -24,7 +24,7 @@
 
 implementation ELK stacks
 zipkin server run on localhost:9411
-eureka server run on localhost:7070
+eureka server run on localhost:8081
 gateway server run on localhost:7072
-config server run on localhost:7071
+config server run on localhost:8082
 kibana server run on localhost:5601

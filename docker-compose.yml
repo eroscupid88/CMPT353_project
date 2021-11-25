@@ -157,7 +157,7 @@ services:
     environment:
       PROFILE: "dev"
     ports:
-      - "7071:7071"
+      - "8082:8082"
     networks:
       app:
         aliases:
@@ -173,7 +173,7 @@ services:
         window: 120s
     container_name: eurekaServer
     ports:
-      - "7070:7070"
+      - "8081:8081"
     environment:
       configserver: configserver
     depends_on:
@@ -199,11 +199,12 @@ services:
       PROFILE: "dev"
       SERVER_PORT: "7072"
       LOGSTASH: logstash
-      CONFIGSERVER_URI: http://configserver:7071
-      EUREKASERVER_URI: http://eurekaserver:7070/eureka/
-      EUREKASERVER_PORT: "7070"
-      CONFIGSERVER_PORT: "7071"
+      CONFIGSERVER_URI: http://configserver:8082
+      EUREKASERVER_URI: http://eurekaserver:8081/eureka/
+      EUREKASERVER_PORT: "8081"
+      CONFIGSERVER_PORT: "8082"
     depends_on:
+      - mysql
       - mongodb
       - configserver
       - eurekaserver
