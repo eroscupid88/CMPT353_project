@@ -13,5 +13,5 @@ export default combineReducers({
   profile: profileReducer,
   company: companyReducer,
   team: teamReducer,
-  request: requestingReducer
+  request: requestingReducer,
 })

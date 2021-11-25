@@ -18,12 +18,6 @@ import {
 } from '@coreui/icons'
 import { connect } from 'react-redux'
 import CIcon from '@coreui/icons-react'
-import avatar1 from 'src/assets/images/avatars/1.jpg'
-import avatar2 from 'src/assets/images/avatars/2.jpg'
-import avatar3 from 'src/assets/images/avatars/3.jpg'
-import avatar4 from 'src/assets/images/avatars/4.jpg'
-import avatar5 from 'src/assets/images/avatars/5.jpg'
-import avatar6 from 'src/assets/images/avatars/6.jpg'
 import {
   CAvatar,
   CButton,
@@ -36,7 +30,7 @@ import {
   CTableRow,
 } from '@coreui/react'
 import { AppContent, AppFooter, AppHeader, AppSidebar } from '../index'
-import DefaultLayout from '../../layout/DefaultLayout'
+import DefaultLayout from '../layout/DefaultLayout'
 
 class CompanyStaffsInfo extends Component {
   constructor(props) {

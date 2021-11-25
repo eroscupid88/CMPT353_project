@@ -1,16 +1,12 @@
 import axios from 'axios'
-import {
-  REQUESTINGS_LOADING,
-  GET_ERRORS,
-  GET_REQUESTINGS_SUCESS
-} from './types'
+import { REQUESTINGS_LOADING, GET_ERRORS, GET_REQUESTINGS_SUCESS } from './types'
 
 export const createStaffRequest = (data) => (dispatch) => {
   axios
-    .post('/v1/requesting',data)
-    .then(res => {
-      if(res.data){
-        alert("request has been sent to Organization")
+    .post('/v1/requesting', data)
+    .then((res) => {
+      if (res.data) {
+        alert('request has been sent to Organization')
       }
       console.log(res.data)
       // res.data
@@ -18,46 +14,48 @@ export const createStaffRequest = (data) => (dispatch) => {
     .catch((errors) =>
       dispatch({
         type: GET_ERRORS,
-        payload: errors.response.data
-      }))
+        payload: errors.response.data,
+      }),
+    )
 }
 
 export const getAllRequests = () => (dispatch) => {
   dispatch(requestingLoading())
-  axios.get('/v1/requesting').then(
-    requests => dispatch({
-      type: GET_REQUESTINGS_SUCESS,
-      payload: requests.data
-    })
-  ).catch((errors) =>
-    dispatch({
-      type: GET_ERRORS,
-      payload: errors.response.data
-    }))
+  axios
+    .get('/v1/requesting')
+    .then((requests) =>
+      dispatch({
+        type: GET_REQUESTINGS_SUCESS,
+        payload: requests.data,
+      }),
+    )
+    .catch((errors) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: errors.response.data,
+      }),
+    )
 }
-export const acceptRequest = (id) =>dispatch=>{
+export const acceptRequest = (id) => (dispatch) => {
   axios
     .post(`/v1/requesting/acceptrequest/${id}`)
-    .then(result => {
-        alert("Accepted application")
-        console.log(result)
-        window.location.reload();
-
+    .then((result) => {
+      alert('Accepted application')
+      console.log(result)
+      window.location.reload()
     })
     .catch()
 }
-export const denyRequest = (id) =>dispatch=>{
+export const denyRequest = (id) => (dispatch) => {
   axios
     .post(`/v1/requesting/denyrequest/${id}`)
-    .then(result =>{
-        alert("Denied application")
-        console.log(result)
-        window.location.reload();
-      }
-      )
+    .then((result) => {
+      alert('Denied application')
+      console.log(result)
+      window.location.reload()
+    })
     .catch()
 }
-
 
 // bookingLoading loading
 export const requestingLoading = () => {
@@ -65,4 +63,3 @@ export const requestingLoading = () => {
     type: REQUESTINGS_LOADING,
   }
 }
-

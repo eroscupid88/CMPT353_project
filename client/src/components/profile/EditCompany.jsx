@@ -7,7 +7,7 @@ import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { createCompany, getCurrentCompany } from '../../action/companyAction'
-import DefaultLayout from '../../layout/DefaultLayout'
+import DefaultLayout from '../layout/DefaultLayout'
 class EditCompany extends Component {
   constructor(props) {
     super(props)
