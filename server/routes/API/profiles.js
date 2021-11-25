@@ -191,14 +191,12 @@ router.delete(
     );
   }
 );
-
-
 router.delete(
     '/:id',
     passport.authenticate('jwt', { session: false }),
     (req, res) => {
         const { id } = req.params
-        Profile.findOneAndRemove({ user: req.user[0].id }).then(() =>
+        Profile.findOneAndRemove({ user: id }).then(() =>
             res.json({ success: true })
         );
     }
