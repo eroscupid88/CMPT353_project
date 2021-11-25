@@ -3,7 +3,7 @@ import { REQUESTINGS_LOADING, GET_ERRORS, GET_REQUESTINGS_SUCESS } from './types
 
 export const createStaffRequest = (data) => (dispatch) => {
   axios
-    .post('/v1/requesting', data)
+    .post('/service/v1/requesting', data)
     .then((res) => {
       if (res.data) {
         alert('request has been sent to Organization')
@@ -22,7 +22,7 @@ export const createStaffRequest = (data) => (dispatch) => {
 export const getAllRequests = () => (dispatch) => {
   dispatch(requestingLoading())
   axios
-    .get('/v1/requesting')
+    .get('/service/v1/requesting')
     .then((requests) =>
       dispatch({
         type: GET_REQUESTINGS_SUCESS,
@@ -38,7 +38,7 @@ export const getAllRequests = () => (dispatch) => {
 }
 export const acceptRequest = (id) => (dispatch) => {
   axios
-    .post(`/v1/requesting/acceptrequest/${id}`)
+    .post(`/service/v1/requesting/acceptrequest/${id}`)
     .then((result) => {
       alert('Accepted application')
       console.log(result)
@@ -48,7 +48,7 @@ export const acceptRequest = (id) => (dispatch) => {
 }
 export const denyRequest = (id) => (dispatch) => {
   axios
-    .post(`/v1/requesting/denyrequest/${id}`)
+    .post(`/service/v1/requesting/denyrequest/${id}`)
     .then((result) => {
       alert('Denied application')
       console.log(result)

@@ -1,9 +1,11 @@
 // import variable environment from dev environment
 require("custom-env").env("dev");
 // import dependencies
+const log4js = require('log4js');
 const express = require("express");
 const path = require("path");
-const logger = require("morgan");
+// const logger = require("morgan");
+const log = log4js.getLogger("app");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -34,16 +36,14 @@ require("./config/passport")(passport);
 app.use(passport.initialize());
 // path to HTML file
 app.use("/", express.static("public"));
+app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
 app.use(cors())
-// For LOGGER
-app.use(logger("dev"));
 // PASS COOKIES from HTTP
 app.use(cookieParser());
 // parsing JSON format
 app.use(express.json());
 // Body parser
 app.use(express.urlencoded({ extended: true }));
-
 eurekaHelper.registerWithEureka("user-service", process.env.SERVER_PORT);
 
 // connect user route
@@ -77,6 +77,7 @@ app.use((req, res, next) => {
   const error = new Error("Not Found");
   error.status = 404;
   next(error);
+
 });
 
 const mongodb = process.env.MONGODB || "localhost";
