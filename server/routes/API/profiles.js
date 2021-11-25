@@ -18,13 +18,11 @@ router.post('/image-upload',
             return res.status(422).send({errors: [{title: 'Image Upload Error', detail: err.message}]});
         }
         User.findOneAndUpdate(
-            {id:req.user[0].id},
+            {_id:req.user[0]._id},
             {avatar:req.file.location},
             { new: true }
         ).then(
-
             users => {
-                console.log(users)
                 return res.json(users)
         }).catch(err => {return res.send(err)})
     });

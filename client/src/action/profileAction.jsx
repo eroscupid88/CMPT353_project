@@ -73,7 +73,6 @@ export const deleteAccount = (history) => (dispatch) => {
       )
   }
 }
-
 // delete Profile
 export const deleteCustomerAccount = (id) => (dispatch) => {
   if (window.confirm('Are you sure you want to delete your customer profile')) {
