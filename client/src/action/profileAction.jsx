@@ -103,11 +103,9 @@ export const getProfileByProfileUsername = (profileusername) => (dispatch) => {
         payload: res.data,
       }),
     )
-    .catch((err) =>
-      dispatch({
-        type: GET_PROFILE,
-        payload: null,
-      }),
+    .catch(() => {
+        return null
+      },
     )
 }
 
