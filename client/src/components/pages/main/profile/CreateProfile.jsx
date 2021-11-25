@@ -42,7 +42,27 @@ class CreateProfile extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
+    }
+    if (!isEmpty(nextProps.errors.profileusername)) {
       alert(nextProps.errors.profileusername)
+    }
+    if (!isEmpty(nextProps.errors.githubusername)) {
+      alert(nextProps.errors.githubusername)
+    }
+    if (!isEmpty(nextProps.errors.youtube)) {
+      alert(nextProps.errors.youtube)
+    }
+    if (!isEmpty(nextProps.errors.twitter)) {
+      alert(nextProps.errors.twitter)
+    }
+    if (!isEmpty(nextProps.errors.facebook)) {
+      alert(nextProps.errors.facebook)
+    }
+    if (!isEmpty(nextProps.errors.linkedin)) {
+      alert(nextProps.errors.linkedin)
+    }
+    if (!isEmpty(nextProps.errors.instagram)) {
+      alert(nextProps.errors.instagram)
     }
   }
 

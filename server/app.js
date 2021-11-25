@@ -62,7 +62,21 @@ app.use("/v1/company", companyRoute);
 app.use("/uploads", express.static("uploads"));
 // eslint-disable-next-line consistent-return
 
+// if error first, it will response with status 500
+app.use((error, req, res, next) => {
+  res.status(error.status || 500);
+  res.json({
+    error: {
+      message: error.message,
+    },
+  });
+});
 
+app.use((req, res, next) => {
+  const error = new Error("Not Found");
+  error.status = 404;
+  next(error);
+});
 // if error first, it will response with status 500
 
 const mongodb = process.env.MONGODB || "localhost";
