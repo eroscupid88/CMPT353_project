@@ -64,21 +64,6 @@ app.use("/uploads", express.static("uploads"));
 
 
 // if error first, it will response with status 500
-app.use((error, req, res, next) => {
-  res.status(error.status || 500);
-  res.json({
-    error: {
-      message: error.message,
-    },
-  });
-});
-
-app.use((req, res, next) => {
-  const error = new Error("Not Found");
-  error.status = 404;
-  next(error);
-
-});
 
 const mongodb = process.env.MONGODB || "localhost";
 mongoose.connect(`mongodb://${mongodb}:${process.env.DB_PORT}/cmpt353db`);
