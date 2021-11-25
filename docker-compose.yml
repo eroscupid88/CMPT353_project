@@ -199,7 +199,7 @@ services:
       PROFILE: "dev"
       SERVER_PORT: "7072"
       LOGSTASH: logstash
-      CONFIGSERVER_URI: http://configserver:8082
+      CONFIGSERVER_URI: configserver
       EUREKASERVER_URI: http://eurekaserver:8081/eureka/
       EUREKASERVER_PORT: "8081"
       CONFIGSERVER_PORT: "8082"
