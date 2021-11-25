@@ -13,12 +13,14 @@ import {
 } from '@coreui/icons'
 
 export function CompanyCustomersCard(props) {
+
   const dispatch = useDispatch()
 
   let isOwner = false
     if(!isEmpty(props.company)) {
       isOwner = (props.company.owner === props.user)
     }
+
   return (
     <>
       <CTableDataCell className="text-center">

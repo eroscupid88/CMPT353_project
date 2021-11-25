@@ -9,6 +9,7 @@ import CIcon from '@coreui/icons-react'
 import { cibGithub, cibInstagram, cibLinkedin, cibTwitter, cibYoutube } from '@coreui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, faUser } from '@fortawesome/free-solid-svg-icons'
+import DefaultLayout from 'src/layout/DefaultLayout'
 
 class EditProfile extends Component {
   constructor(props) {
@@ -164,103 +165,107 @@ class EditProfile extends Component {
       )
     }
     return (
-      <div>
-        <div className="create-profile">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-8 m-auto">
-                <h1 className="display-4 text-center">Edit Your Profile</h1>
-                <CForm onSubmit={this.onSubmit}>
-                  {/*<CInputGroup className="mb-3">*/}
-                  {/*  <CInputGroupText id="basic-addon1">*/}
-                  {/*    <FontAwesomeIcon icon={faUser} />*/}
-                  {/*  </CInputGroupText>*/}
-                  {/*  <CFormInput*/}
-                  {/*    placeholder="* Profile username"*/}
-                  {/*    name="profileusername"*/}
-                  {/*    value={this.state.profileusername}*/}
-                  {/*    onChange={this.onChange}*/}
-                  {/*    errors={errors.profileusername}*/}
-                  {/*  />*/}
-                  {/*</CInputGroup>*/}
+      <DefaultLayout
+        content={
+          <div>
+            <div className="create-profile">
+              <div className="container">
+                <div className="row">
+                  <div className="col-md-8 m-auto">
+                    <h1 className="display-4 text-center">Edit Your Profile</h1>
+                    <CForm onSubmit={this.onSubmit}>
+                      {/*<CInputGroup className="mb-3">*/}
+                      {/*  <CInputGroupText id="basic-addon1">*/}
+                      {/*    <FontAwesomeIcon icon={faUser} />*/}
+                      {/*  </CInputGroupText>*/}
+                      {/*  <CFormInput*/}
+                      {/*    placeholder="* Profile username"*/}
+                      {/*    name="profileusername"*/}
+                      {/*    value={this.state.profileusername}*/}
+                      {/*    onChange={this.onChange}*/}
+                      {/*    errors={errors.profileusername}*/}
+                      {/*  />*/}
+                      {/*</CInputGroup>*/}
 
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <FontAwesomeIcon icon={faUser} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="* first name"
-                      name="firstname"
-                      value={this.state.firstname}
-                      onChange={this.onChange}
-                      errors={errors.firstname}
-                    />
-                  </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText id="basic-addon1">
+                          <FontAwesomeIcon icon={faUser} />
+                        </CInputGroupText>
+                        <CFormInput
+                          placeholder="* first name"
+                          name="firstname"
+                          value={this.state.firstname}
+                          onChange={this.onChange}
+                          errors={errors.firstname}
+                        />
+                      </CInputGroup>
 
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <FontAwesomeIcon icon={faUser} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="* last name"
-                      name="lastname"
-                      value={this.state.lastname}
-                      onChange={this.onChange}
-                      errors={errors.lastname}
-                    />
-                  </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText id="basic-addon1">
+                          <FontAwesomeIcon icon={faUser} />
+                        </CInputGroupText>
+                        <CFormInput
+                          placeholder="* last name"
+                          name="lastname"
+                          value={this.state.lastname}
+                          onChange={this.onChange}
+                          errors={errors.lastname}
+                        />
+                      </CInputGroup>
 
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <FontAwesomeIcon icon={faAddressBook} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="location"
-                      name="location"
-                      value={this.state.location}
-                      onChange={this.onChange}
-                      errors={errors.location}
-                    />
-                  </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText id="basic-addon1">
+                          <FontAwesomeIcon icon={faAddressBook} />
+                        </CInputGroupText>
+                        <CFormInput
+                          placeholder="location"
+                          name="location"
+                          value={this.state.location}
+                          onChange={this.onChange}
+                          errors={errors.location}
+                        />
+                      </CInputGroup>
 
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText id="basic-addon1">
-                      <CIcon icon={cibGithub} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="Github Username"
-                      name="githubusername"
-                      value={this.state.githubusername}
-                      onChange={this.onChange}
-                      errors={errors.githubusername}
-                    />
-                  </CInputGroup>
+                      <CInputGroup className="mb-3">
+                        <CInputGroupText id="basic-addon1">
+                          <CIcon icon={cibGithub} />
+                        </CInputGroupText>
+                        <CFormInput
+                          placeholder="Github Username"
+                          name="githubusername"
+                          value={this.state.githubusername}
+                          onChange={this.onChange}
+                          errors={errors.githubusername}
+                        />
+                      </CInputGroup>
 
-                  <div className="mb-3">
-                    <button
-                      type="button"
-                      onClick={() => {
-                        this.setState((prevState) => ({
-                          displaySocialInputs: !prevState.displaySocialInputs,
-                        }))
-                      }}
-                      className="btn btn-light m-5"
-                    >
-                      Add Social Network Links
-                    </button>
+                      <div className="mb-3">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            this.setState((prevState) => ({
+                              displaySocialInputs: !prevState.displaySocialInputs,
+                            }))
+                          }}
+                          className="btn btn-light m-5"
+                        >
+                          Add Social Network Links
+                        </button>
+                      </div>
+                      {socialInputs}
+                      <div className="d-grid">
+                        <CButton color="success" type="submit">
+                          Submit
+                        </CButton>
+                      </div>
+                    </CForm>
                   </div>
-                  {socialInputs}
-                  <div className="d-grid">
-                    <CButton color="success" type="submit">
-                      Submit
-                    </CButton>
-                  </div>
-                </CForm>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        }
+      />
     )
   }
 }
