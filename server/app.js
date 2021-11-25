@@ -9,7 +9,7 @@ const log = log4js.getLogger("app");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
-
+const eurekaHelper = require("./eureka-helper");
 const cors = require('cors')
 
 //  use this for connect mongodb with an app
@@ -44,6 +44,7 @@ app.use(cookieParser());
 app.use(express.json());
 // Body parser
 app.use(express.urlencoded({ extended: true }));
+eurekaHelper.registerWithEureka("user-service", process.env.SERVER_PORT);
 
 // connect user route
 app.use("/v1", teamRoute);
