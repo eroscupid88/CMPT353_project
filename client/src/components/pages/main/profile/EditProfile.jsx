@@ -2,11 +2,26 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
-import { createProfile, getCurrentProfile } from '../../../../action/profileAction'
+import {
+  createProfile,
+  getCurrentProfile,
+} from '../../../../action/profileAction'
 import isEmpty from '../../../../validation/isEmpty'
-import { CButton, CForm, CFormInput, CInputGroup, CInputGroupText } from '@coreui/react'
+import {
+  CButton,
+  CForm,
+  CFormInput,
+  CInputGroup,
+  CInputGroupText,
+} from '@coreui/react'
 import CIcon from '@coreui/icons-react'
-import { cibGithub, cibInstagram, cibLinkedin, cibTwitter, cibYoutube } from '@coreui/icons'
+import {
+  cibGithub,
+  cibInstagram,
+  cibLinkedin,
+  cibTwitter,
+  cibYoutube,
+} from '@coreui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook, faUser } from '@fortawesome/free-solid-svg-icons'
 import DefaultLayout from 'src/components/pages/main/DefaultLayout'
@@ -39,13 +54,25 @@ class EditProfile extends Component {
 
       // if profile field doesnt exist , make empty string
       profile.location = !isEmpty(profile.location) ? profile.location : ''
-      profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : ''
+      profile.githubusername = !isEmpty(profile.githubusername)
+        ? profile.githubusername
+        : ''
       profile.social = !isEmpty(profile.social) ? profile.social : {}
-      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : ''
-      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : ''
-      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : ''
-      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : ''
-      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : ''
+      profile.twitter = !isEmpty(profile.social.twitter)
+        ? profile.social.twitter
+        : ''
+      profile.facebook = !isEmpty(profile.social.facebook)
+        ? profile.social.facebook
+        : ''
+      profile.linkedin = !isEmpty(profile.social.linkedin)
+        ? profile.social.linkedin
+        : ''
+      profile.youtube = !isEmpty(profile.social.youtube)
+        ? profile.social.youtube
+        : ''
+      profile.instagram = !isEmpty(profile.social.instagram)
+        ? profile.social.instagram
+        : ''
 
       // set component fields state
       this.setState({
@@ -244,7 +271,8 @@ class EditProfile extends Component {
                           type="button"
                           onClick={() => {
                             this.setState((prevState) => ({
-                              displaySocialInputs: !prevState.displaySocialInputs,
+                              displaySocialInputs:
+                                !prevState.displaySocialInputs,
                             }))
                           }}
                           className="btn btn-light m-5"
@@ -283,5 +311,5 @@ const mapStateToProps = (state) => ({
   profile: state.profile,
 })
 export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
-  withRouter(EditProfile),
+  withRouter(EditProfile)
 )

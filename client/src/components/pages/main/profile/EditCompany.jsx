@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
-import { CButton, CForm, CFormInput, CInputGroup, CInputGroupText } from '@coreui/react'
+import {
+  CButton,
+  CForm,
+  CFormInput,
+  CInputGroup,
+  CInputGroupText,
+} from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cibTwitter } from '@coreui/icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAddressBook } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { createCompany, getCurrentCompany } from '../../../../action/companyAction'
+import {
+  createCompany,
+  getCurrentCompany,
+} from '../../../../action/companyAction'
 import DefaultLayout from '../DefaultLayout'
 class EditCompany extends Component {
   constructor(props) {
@@ -114,4 +123,6 @@ const mapStateToProps = (state) => ({
   errors: state.errors,
   company: state.company,
 })
-export default connect(mapStateToProps, { createCompany, getCurrentCompany })(EditCompany)
+export default connect(mapStateToProps, { createCompany, getCurrentCompany })(
+  EditCompany
+)
