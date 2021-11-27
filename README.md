@@ -37,7 +37,7 @@ this account can create unique company and owner of that company.
 ## please visit https://www.docker.com/ to install docker:
 ## install maven for java
 
-
+# before running docker make sure you increase your memory and resources!
 # Run with docker command:
 
 brew install maven
@@ -59,6 +59,10 @@ http://localhost:7072/actuator/gateway/routes
 http://localhost:9411/zipkin/
 # kibana
 http://localhost:5601/app/kibana
+
+# reset the server if it not working!
+# if an error show up for java file , run :
+ mvn clean package
 
 
 
