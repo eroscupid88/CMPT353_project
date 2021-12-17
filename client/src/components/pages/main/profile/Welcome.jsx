@@ -100,7 +100,7 @@ class Welcome extends Component {
               <button className="button dashboard-button">Dashboard</button>
             </Link>
             <CContainer>
-              <CCol md={4}>
+              <CCol md={5}>
                 <CCard className="p-4">
                   <div className="container">
                     <div className="row">
