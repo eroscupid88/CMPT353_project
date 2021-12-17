@@ -114,41 +114,41 @@ services:
 
 
   # client
-#  client:
-#    build: ${CLIENT_BUILD_LOCATION}
-#    image: node_client:latest
-#      # set container name
-#    container_name: ${PROJECT_NAME}_${CLIENT_SERVICE_NAME}
-#      #set environment
-#    environment:
-#      NODE_ENV: ${APPLICATION_ENV}
-#      # The location of dockerfile to build this service
-#    ports:
-#      - ${CLIENT_PORT}:${CLIENT_PORT}
-#    networks:
-#      app:
-#        aliases:
-#          - 'client'
-#  # #server
-#  user-server:
-#    build: ${SERVER_BUILD_LOCATION}
-#    image: node_server:alpine
-#     # set container name
-#    container_name: ${PROJECT_NAME}_${SERVER_SERVICE_NAME}
-#    depends_on:
-#      - mongodb
-#     #set environment
-#    environment:
-#      NODE_ENV: ${APPLICATION_ENV}
-#      MONGODB: mongodb
-#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: eureka
-#     # Ports to map, mapping our port 8080, to the port 8080 on the container
-#    ports:
-#      - ${SERVER_PORT}:${SERVER_PORT}
-#    networks:
-#      app:
-#        aliases:
-#         - 'user-server'
+  client:
+    build: ./client
+    image: node_client:latest
+      # set container name
+    container_name: CMPT353_client
+      #set environment
+    environment:
+      NODE_ENV: dev
+      # The location of dockerfile to build this service
+    ports:
+      - 3000:3000
+    networks:
+      app:
+        aliases:
+          - 'client'
+  # #server
+  user-server:
+    build: ./server
+    image: node_server:alpine
+     # set container name
+    container_name: CMPT353_server
+    depends_on:
+      - mongodb
+     #set environment
+    environment:
+      NODE_ENV: dev
+      MONGODB: mongodb
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: eureka
+     # Ports to map, mapping our port 8080, to the port 8080 on the container
+    ports:
+      - 8080:8080
+    networks:
+      app:
+        aliases:
+         - 'user-server'
 
   configserver:
     build: ./configserver

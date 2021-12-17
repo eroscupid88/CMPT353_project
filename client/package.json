@@ -63,5 +63,5 @@
     "node": ">=10",
     "npm": ">=6"
   },
-  "proxy": "http://localhost:8080"
+  "proxy": "http://gatewayserver:7072"
 }
