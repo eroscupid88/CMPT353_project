@@ -1,11 +1,9 @@
 // import variable environment from dev environment
 require("custom-env").env("dev");
 // import dependencies
-const log4js = require('log4js');
 const express = require("express");
 const path = require("path");
 // const logger = require("morgan");
-const log = log4js.getLogger("app");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -36,7 +34,6 @@ require("./config/passport")(passport);
 app.use(passport.initialize());
 // path to HTML file
 app.use("/", express.static("public"));
-app.use(log4js.connectLogger(log4js.getLogger("http"), { level: 'auto' }));
 app.use(cors())
 // PASS COOKIES from HTTP
 app.use(cookieParser());
