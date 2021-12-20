@@ -12,7 +12,7 @@ exports.registerWithEureka = function (appName, PORT) {
       preferIpAddress: true,
       instanceId: `${appName}-${PORT}`,
       app: appName,
-      hostName: 'localhost',
+      hostName: hostName,
       ipAddr: ipAddr,
       port: {
         $: PORT,
@@ -27,7 +27,7 @@ exports.registerWithEureka = function (appName, PORT) {
         registerWithEureka: true,
         fetchRegistry: true,
         serviceUrl: {
-          defaultZone: 'http://${eurekaserver:localhost}:7070/eureka/',
+          defaultZone: 'http://eurekaserver:8081/eureka/',
         },
       },
       // app: appName,

@@ -11,9 +11,9 @@ module.exports = function validateProfileInputs(data) {
       'profileusername needs to be between 2 and 40 characters';
   }
 
-  if (!isEmpty(data.website)) {
-    if (!validator.isURL(data.website)) {
-      errors.website = 'not a valid  website URL';
+  if (!isEmpty(data.githubusername)) {
+    if (!validator.isURL(data.githubusername)) {
+      errors.githubusername = 'not a valid  website URL';
     }
   }
   if (!isEmpty(data.youtube)) {

@@ -3,7 +3,7 @@ import { GET_TEAM, TEAM_ERROR } from './types'
 
 export const getTeam = () => (dispatch) => {
   axios
-    .get('/v1/team')
+    .get('/service/v1/team')
     .then((result) => {
       dispatch({ type: GET_TEAM, payload: result.data })
     })

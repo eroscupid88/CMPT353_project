@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom'
 import { cibGithub, cibLinkedin, cibYoutube, cibInstagram, cibTwitter } from '@coreui/icons'
 import { createProfile } from '../../../../action/profileAction'
 import isEmpty from '../../../../validation/isEmpty'
+import DefaultLayout from "../DefaultLayout";
 
 class CreateProfile extends Component {
   constructor() {
@@ -41,7 +42,27 @@ class CreateProfile extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors })
+    }
+    if (!isEmpty(nextProps.errors.profileusername)) {
       alert(nextProps.errors.profileusername)
+    }
+    if (!isEmpty(nextProps.errors.githubusername)) {
+      alert(nextProps.errors.githubusername)
+    }
+    if (!isEmpty(nextProps.errors.youtube)) {
+      alert(nextProps.errors.youtube)
+    }
+    if (!isEmpty(nextProps.errors.twitter)) {
+      alert(nextProps.errors.twitter)
+    }
+    if (!isEmpty(nextProps.errors.facebook)) {
+      alert(nextProps.errors.facebook)
+    }
+    if (!isEmpty(nextProps.errors.linkedin)) {
+      alert(nextProps.errors.linkedin)
+    }
+    if (!isEmpty(nextProps.errors.instagram)) {
+      alert(nextProps.errors.instagram)
     }
   }
 
@@ -151,7 +172,7 @@ class CreateProfile extends Component {
       )
     }
     return (
-      <div>
+      <DefaultLayout content={<div>
         <div className="create-profile">
           <div className="container">
             <div className="row">
@@ -221,7 +242,7 @@ class CreateProfile extends Component {
             </div>
           </div>
         </div>
-      </div>
+      </div>}/>
     )
   }
 }

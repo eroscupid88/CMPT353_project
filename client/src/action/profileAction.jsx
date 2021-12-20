@@ -9,7 +9,7 @@ import {
 
 export const createProfile = (data, history) => (dispatch) => {
   axios
-    .post('/v1/profile/', data)
+    .post('/service/v1/profile/', data)
     .then((result) => {
       history.push('/dashboard')
     })
@@ -23,7 +23,7 @@ export const createProfile = (data, history) => (dispatch) => {
 
 export const getProfiles = () => (dispatch) => {
   axios
-    .get('/v1/profile/all')
+    .get('/service/v1/profile/all')
     .then((profiles) =>
       dispatch({
         type: GET_PROFILES,
@@ -43,7 +43,7 @@ export const getProfiles = () => (dispatch) => {
 export const getCurrentProfile = () => (dispatch) => {
   dispatch(setProfileLoading())
   axios
-    .get('/v1/profile')
+    .get('/service/v1/profile')
     .then((res) =>
       dispatch({
         type: GET_PROFILE,
@@ -61,7 +61,7 @@ export const getCurrentProfile = () => (dispatch) => {
 export const deleteAccount = (history) => (dispatch) => {
   if (window.confirm('Are you sure you want to delete your profile')) {
     axios
-      .delete('/v1/profile')
+      .delete('/service/v1/profile')
       .then((result) => {
         history.push('/dashboard')
       })
@@ -77,7 +77,7 @@ export const deleteAccount = (history) => (dispatch) => {
 export const deleteCustomerAccount = (id) => (dispatch) => {
   if (window.confirm('Are you sure you want to delete your customer profile')) {
     axios
-      .delete(`/v1/profile/${id}`)
+      .delete(`/service/v1/profile/${id}`)
       .then((result) => {
         console.log(result)
         window.location.reload();
@@ -95,7 +95,7 @@ export const deleteCustomerAccount = (id) => (dispatch) => {
 export const getProfileByProfileUsername = (profileusername) => (dispatch) => {
   dispatch(setProfileLoading())
   axios
-    .get(`/v1/profile/profileusername/${profileusername}`)
+    .get(`/service/v1/profile/profileusername/${profileusername}`)
     .then((res) =>
       dispatch({
         type: GET_PROFILE,
@@ -113,7 +113,7 @@ export const getProfileByProfileUsername = (profileusername) => (dispatch) => {
 export const getProfileById = (id) => (dispatch) => {
   dispatch(setProfileLoading())
   axios
-    .get(`/v1/profile/user/${id}`)
+    .get(`/service/v1/profile/user/${id}`)
     .then((res) =>
       dispatch({
         type: GET_PROFILE,
@@ -145,7 +145,7 @@ export const uploadImage = (image) => {
   let formData = new FormData()
   formData.append('image', image)
   return axios
-    .post('/v1/profile/image-upload', formData)
+    .post('/service/v1/profile/image-upload', formData)
     .then((json) => {
       return json.data.imageUrl
     })
