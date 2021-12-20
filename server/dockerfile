@@ -12,4 +12,4 @@ RUN npm install
 ## expose port
 EXPOSE 8080
 
-CMD ["npm","run", "docker-start"]
+CMD ["npm","run", "server"]

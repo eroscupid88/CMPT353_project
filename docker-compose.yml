@@ -156,6 +156,7 @@ services:
       app:
         aliases:
           - "logstash"
+
   configserver:
     build: ./configserver
     image: configserver:latest
